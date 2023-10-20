@@ -9,7 +9,7 @@
         <AppHeader />
 
         <main class="main">
-          <NuxtPage />
+          <NuxtPage /> 
         </main>
 
         <AppFooter />

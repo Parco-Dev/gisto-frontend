@@ -1,16 +1,63 @@
-# gisto-frontend
+# Kirby Nuxt Boilerplate
 
-Gisto website frontend with [Nuxt 3](https://nuxt.com/)
+This is a cleaned version of Johann Schopplich's [Kirby Nuxt Starter Kit](https://github.com/johannschopplich/kirby-nuxt-starterkit).
 
-### Installation
+## Key Features
 
-Clone the repository, then run `pnpm install`
+- 🫂 Kirby Query Language with [`nuxt-kql`](https://nuxt-kql.jhnn.dev)
+- 🪁 [Component based Kirby Blocks](./components/Kirby/Block/)
+- 🏛 Global [site data](./plugins/site.ts) similar to Kirby's `$site`
+- 🔎 SSR generated SEO metadata
+- 🔢 Pre-configured [VSCode settings](./.vscode/settings.json)
 
-### Serve locally
+## Usage
 
-Run `pnpm run dev` to launch dev environment at `http://localhost:3000`
+### Prerequisites
 
-### Deployment
+1. Enable [Corepack](https://github.com/nodejs/corepack) using `corepack enable`
+2. Install dependencies using `pnpm install`
+3. Adapt the relevant environment variables:
 
-The repository is deployed via Netlify.
-Automatic deploys are triggered any time there's a push to the `main` branch. 
+```bash
+# Base URL of the Kirby backend
+KIRBY_BASE_URL=
+# Token for bearer authentication
+# See https://github.com/johannschopplich/kirby-headless-starter#private-vs-public-api
+KIRBY_API_TOKEN=
+```
+
+### Development
+
+1. Start the development server using `pnpm run dev`
+2. Visit [localhost:3000](http://localhost:3000/)
+
+> ℹ️ Enable [Take Over Mode](https://vuejs.org/guide/typescript/overview.html#takeover-mode) in Visual Studio Code.
+
+### Production
+
+Build the application for production with `pnpm run build`.
+
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment).
+
+## FAQ
+
+### Are There Any Drawbacks?
+
+Data is fetched within Suspense components to ensure pre-rendered state for the user and SEO. Thus, the initial server response time is increased by about 50–100 ms for the initial KQL page query. This might be a road blocker for you. You can always [pre-render routes](https://github.com/johannschopplich/kirby-nuxt-starterkit/blob/8484d7890795919ef0b968b4cc4e9d00b7e0b84a/nuxt.config.ts#L20).
+
+### What's Kirby?
+
+- **[getkirby.com](https://getkirby.com)** – Get to know the CMS.
+- **[Try it](https://getkirby.com/try)** – Take a test ride with our online demo. Or download one of our kits to get started.
+- **[Documentation](https://getkirby.com/docs/guide)** – Read the official guide, reference and cookbook recipes.
+- **[Issues](https://github.com/getkirby/kirby/issues)** – Report bugs and other problems.
+- **[Feedback](https://feedback.getkirby.com)** – You have an idea for Kirby? Share it.
+- **[Forum](https://forum.getkirby.com)** – Whenever you get stuck, don't hesitate to reach out for questions and support.
+- **[Discord](https://chat.getkirby.com)** – Hang out and meet the community.
+- **[YouTube](https://youtube.com/kirbyCasts)** - Watch the latest video tutorials visually with Bastian.
+- **[Twitter](https://twitter.com/getkirby)** – Spread the word.
+- **[Instagram](https://www.instagram.com/getkirby/)** – Share your creations: #madewithkirby.
+
+## License
+
+[MIT](./LICENSE) License © 2022-present [Johann Schopplich](https://github.com/johannschopplich)

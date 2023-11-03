@@ -7,6 +7,30 @@ export const homeQuery: KirbyQuerySchema = {
     id: true,
     isListed: true,
     intendedTemplate: true,
-    text: 'page.text.kirbytext'
+    home_icon: {
+      query: "page.home_icon.toFiles",
+      select: {
+        url: true,
+        niceSize: true,
+        alt: "file.alt.kirbytext"
+      }
+    },
+    featuredProjects: {
+      query: 'page("work").children',
+      select: {
+        id: true,
+        url: 'page.slug',
+        title: true,
+        excerpt: 'page.excerpt.kirbytext',
+        main_image: {
+          query: "page.main_image.toFiles",
+          select: {
+            url: true,
+            niceSize: true,
+            alt: "file.alt.kirbytext"
+          }
+        },
+      },
+    },
   }
 }

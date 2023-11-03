@@ -1,8 +1,71 @@
-// Colors
-$color-background: #f0f0f0;
-$color-text: #000000;
+/* SPACER */
 
-// Typography
-$fontsize-s: 10px;
-$fontsize-m: 15px;
-$fontsize-l: 20px;
+$spacer-xl: 10px;
+$spacer: 10px;
+$spacer-sm: 20px;
+
+/* COLORS */
+
+$color-primary: #00f;
+$color-white: #f0f0f0;
+$color-black: #000000;
+
+/* TYPOGRAPHY */
+
+// Font size
+
+$extrasmall: 14px;
+$small: 23px;
+$medium: 36px;
+$large: 90px;
+
+$extrasmall-xl: 14px;
+$small-xl: 23px;
+$medium-xl: 36px;
+$large-xl: 90px;
+
+$extrasmall-sm: 14px;
+$small-sm: 23px;
+$medium-sm: 36px;
+$large-sm: 72px;
+
+// Line height
+
+$extrasmall-lineh: 1;
+$small-lineh: 1;
+$medium-lineh: 0.95;
+$large-lineh: 0.85;
+
+$extrasmall-lineh-xl: 1;
+$small-lineh-xl: 1;
+$medium-lineh-xl: 0.95;
+$large-lineh-xl: 0.85;
+
+$extrasmall-lineh-sm: 1;
+$small-lineh-sm: 1;
+$medium-lineh-sm: 0.95;
+$large-lineh-sm: 0.85;
+
+/* BREAKPOINTS */
+
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px
+);
+
+/* MEDIA QUERIES */
+
+@mixin media-breakpoint-up($breakpoint) {
+    @media (min-width: map-get($grid-breakpoints, $breakpoint)) {
+        @content;
+    }
+}
+
+@mixin media-breakpoint-down($breakpoint) {
+    @media (max-width: map-get($grid-breakpoints, $breakpoint)) {
+        @content;
+    }
+}

@@ -4,6 +4,7 @@ export default defineNuxtConfig({
   modules: ['@vueuse/nuxt', 'nuxt-kql'],
 
   css: [
+    '~/node_modules/bootstrap/dist/css/bootstrap.css',
     '~/assets/scss/main.scss',
   ],
 

@@ -8,15 +8,14 @@ const [ home, about ] = computed(() =>
 </script>
 
 <template>
-  <footer class="footer">
-    <div class="footer__items">
-      <span>Copyright</span>
-    </div>
+  <footer class="site-footer">
+    <div class="footer-bio" v-router-links v-html="site.short_bio"></div>
+    <div class="footer-studio-address" v-router-links v-html="site.studio_address"></div>
+    <div class="footer-workshop-address" v-router-links v-html="site.workshop_address"></div>
+    <div class="footer-social" v-router-links v-html="site.social"></div>
+    <div class="footer-legal" v-router-links v-html="site.legal"></div>
   </footer>
 </template>
 
 <style scoped lang="scss">
-.footer {
-  padding: 20px;
-}
 </style>

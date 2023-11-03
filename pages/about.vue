@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { getPageQuery } from '~/queries'
+import { aboutQuery } from '~/queries'
 
-const { queryApi, queryParams } = useQueryParams(getPageQuery('about'));
+const { queryApi, queryParams } = useQueryParams(aboutQuery);
 const { data } = await useFetch(queryApi, queryParams);
 const page = (data?.value as any)?.result;
 
@@ -9,12 +9,70 @@ setPage(page);
 </script>
 
 <template>
-<div class="content">
+<div class="content page-about">
 
-  This is the about page
+  <div class="about-text">
+    <p v-html="page?.about_text"></p>
+  </div>
 
-  <h1>{{ page?.title }}</h1>
-  <div v-router-links v-html="page?.text" />
+  <div class="about-contacts">
+    <div class="row">
+      <div class="col-lg-3 col-12">
+        <!-- <p class="footer-studio-address" v-router-links v-html="site.studio_address"></p> -->
+      </div>
+      <div class="col-lg-3 col-12">
+        <!-- <p class="footer-workshop-address" v-router-links v-html="site.workshop_address"></p> -->
+      </div>
+      <div class="col-lg-2 col-12">
+        <div class="contact-email">
+          <p class="label">E-mail</p>
+          <p v-html="page?.email"></p>
+        </div>
+        <div class="contact-social">
+          <p class="label">Social</p>
+          <div class="social-list">
+            <a v-for="social in page?.social" :key="social.url" :href="`/work/${social.url}`">
+              {{ social.name }}
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-12">
+        <p v-html="page?.jobs"></p>
+      </div>
+      <div class="col-lg-1 col-12"></div>
+    </div>
+  </div>
+
+  <div class="about-content">
+    <div class="row">
+      <div class="col-lg-8 col-12">
+        <!-- <img :src="page?.about_image?.[0]?.url" :alt="page?.about_image?.[0]?.alt" /> -->
+        <img src="https://placehold.co/900x500/png">
+        <p v-html="page?.text"></p>
+      </div>
+      <div class="col-lg-4 col-12"></div>
+    </div>
+  </div>
+
+
+  <div class="about-collaborations-press">
+    <div class="about-collaborations">
+      <p class="label">Collaborations</p>
+      <div v-html="page?.collaborations"></div>
+    </div>
+    <div class="about-press">
+      <p class="label">Press</p>
+      <div v-html="page?.press"></div>
+    </div>
+  </div>
+
+  <div class="about-news">
+    <!--<img :src="page.image.url" :alt="page.image.alt" />-->
+    
+  </div>
+
+
 
 </div>
 </template>

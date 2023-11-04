@@ -41,7 +41,7 @@ setPage(page);
       </div>
 
       <div class="projects-list">
-        <div class="single-project" v-for="(project, index) in page.children" :key="project.id" :data-project="'project-' + (index + 1)">
+        <div v-for="(project, index) in page.children" :key="project.id" :data-project="'project-' + (index + 1)" class="single-project">
           <a :href="`/work/${project.url}`">
             <div class="row">
               <div class="col-lg-1 col-12 project-year">

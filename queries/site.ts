@@ -18,7 +18,7 @@ export const siteQuery: KirbyQuerySchema = {
         url: true
       }
     },
-    projects: {
+    /* projects: {
       query: 'page("work").children.listed',
       select: {
         id: true,
@@ -30,6 +30,6 @@ export const siteQuery: KirbyQuerySchema = {
         // category: true,
         // type_of_work: true,
       },
-    }, 
+    }, */
   },
 };

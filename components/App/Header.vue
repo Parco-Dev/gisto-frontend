@@ -6,7 +6,7 @@ const pages = computed(() =>
   (site.value?.children ?? []).filter((i: any) => i.isListed)
 ).value;
 
-const page = site.value;
+const page = usePage();
 const projects = site.value?.projects;
 
 // console.log(page);
@@ -57,15 +57,43 @@ const isProject = computed(() => route.path.startsWith('/work/'));
     </div>
 
     <div class="top-header-project" v-if="isProject">
-      <div v-html="projects?.year"></div><!-- missing -->
-      <div v-html="projects?.place"></div><!-- missing -->
-      <div v-html="projects?.client"></div><!-- missing -->
-      <div v-for="category in projects?.category" :key="category">
-        {{ category }}
+      <div class="row">
+        <div class="col-lg-1 col-12">
+          <div class="header-content">
+            <p v-html="page?.year"></p>
+          </div>
+          <div class="header-label">
+            <p>Year</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-12">
+          <div class="header-content">
+            <p v-html="page?.place"></p>
+          </div>
+          <div class="header-label">
+            <p>Place</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-12">
+          <div class="header-content">
+            <p v-html="page?.client"></p>
+          </div>
+          <div class="header-label">
+            <p>Client</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-12">
+          <div class="header-content">
+            <p v-for="category in page?.category" :key="category">
+              {{ category }}
+            </p>
+            <p v-for="typeOfWork in page?.type_of_work" :key="typeOfWork">
+              {{ typeOfWork }}
+            </p>
+          </div>
+        </div>
       </div>
-      <div v-for="typeOfWork in projects?.type_of_work" :key="type_of_work">
-        {{ typeOfWork }}
-      </div>
+      
     </div>
 
   </div>

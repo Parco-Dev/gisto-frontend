@@ -23,7 +23,7 @@ export function getProjectQuery(pageId: string): KirbyQuerySchema {
       },
       category: 'page.category.split',
       type_of_work: 'page.type_of_work.split',
-      /* content: {
+      /* contentblocks: {
         query: 'page.content.blocks',
         select: {
           text_block: {
@@ -38,12 +38,13 @@ export function getProjectQuery(pageId: string): KirbyQuerySchema {
             caption1: 'double_images.caption1.kirbytext',
             image2: 'double_images.image2.files.url',
             caption2: 'double_images.caption2.kirbytext',
-          },
+          }, 
         },
       }, */
       // type_of_work: 'page.type_of_work',
-      // content: 'page.content.toBlocks',
       
+      content: 'page.contentblocks.toBlocks',
+
       /*
       contentblocks: {
         query: 'page.content.toBlocks',
@@ -67,21 +68,65 @@ export function getProjectQuery(pageId: string): KirbyQuerySchema {
           credits_content: 'credits.credits_content.kirbytext',
         },
       }, */
-      children: {
-        query: `page.children.listed`,
+      credits: {
+        query: 'page.credits.toStructure',
         select: {
           id: true,
-          title: true,
-          children: {
-            query: `page.files`,
-            select: {
-              id: true,
-              title: true,
-              url: true,
-            }
-          }
+          credits_title: true,
+          credits_content: true,
         }
-      }
+      },
+      // photo_dump: 'page.photo_dump',
+      photo_dump: {
+        query: "page.photo_dump.toFiles",
+        select: {
+          url: true,
+          name: true,
+          type: true,
+          niceSize: true,
+          alt: "file.alt.kirbytext"
+        }
+      },
+      drawings_diagrams: {
+        query: "page.drawings_diagrams.toFiles",
+        select: {
+          url: true,
+          name: true,
+          type: true,
+          niceSize: true,
+          alt: "file.alt.kirbytext"
+        }
+      },
+      models: {
+        query: "page.models.toFiles",
+        select: {
+          url: true,
+          name: true,
+          type: true,
+          niceSize: true,
+          alt: "file.alt.kirbytext"
+        }
+      },
+      video: {
+        query: "page.video.toFiles",
+        select: {
+          url: true,
+          name: true,
+          type: true,
+          niceSize: true,
+          alt: "file.alt.kirbytext"
+        }
+      },
+      graphics: {
+        query: "page.graphics.toFiles",
+        select: {
+          url: true,
+          name: true,
+          type: true,
+          niceSize: true,
+          alt: "file.alt.kirbytext"
+        }
+      },
     },
   }
 }

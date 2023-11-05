@@ -6,6 +6,8 @@ const { data } = await useFetch(queryApi, queryParams);
 const page = (data?.value as any)?.result;
 
 setPage(page);
+console.log(page);
+
 </script>
 
 <template>
@@ -26,12 +28,12 @@ setPage(page);
       <div class="col-lg-2 col-12">
         <div class="contact-email">
           <p class="label">E-mail</p>
-          <p v-html="page?.email"></p>
+          <a :href="`mailto:${page.email}`">{{ page?.email }}</a>
         </div>
         <div class="contact-social">
           <p class="label">Social</p>
           <div class="social-list">
-            <a v-for="social in page?.social" :key="social.url" :href="`/work/${social.url}`">
+            <a v-for="social in page?.social" :key="social.url" :href="`${social.url}`">
               {{ social.name }}
             </a>
           </div>
@@ -47,8 +49,7 @@ setPage(page);
   <div class="about-content">
     <div class="row">
       <div class="col-lg-8 col-12">
-        <!-- <img :src="page?.about_image?.[0]?.url" :alt="page?.about_image?.[0]?.alt" /> -->
-        <img src="https://placehold.co/900x500/png">
+        <img :src="page?.about_image?.[0]?.url" :alt="page?.about_image?.[0]?.alt" />
         <p v-html="page?.text"></p>
       </div>
       <div class="col-lg-4 col-12"></div>
@@ -68,8 +69,20 @@ setPage(page);
   </div>
 
   <div class="about-news">
-    <!--<img :src="page.image.url" :alt="page.image.alt" />-->
-    
+    <div class="row">
+      <div v-for="news in page?.news" :key="news.id" class="single-news">
+        <img :src="news.news_image?.[0]?.url" :alt="news.news_image?.[0]?.alt" />
+        <div class="news-info">
+          <p><span class="news-title">{{ news.title }}</span>{{ news.text }}</p>
+        </div>
+        <div class="news-links">
+          <div v-for="link in news.links" :key="link.id" class="news-link">
+            <p v-html="link.link_text"></p>
+          </div>
+        </div>
+        
+      </div>
+    </div>
   </div>
 
 

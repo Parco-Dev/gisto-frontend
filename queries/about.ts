@@ -8,7 +8,7 @@ export const aboutQuery: KirbyQuerySchema = {
     isListed: true,
     intendedTemplate: true,
     about_text: 'page.about_text.kirbytext',
-    email: 'page.email.kirbytext',
+    email: 'page.email',
     social: {
       query: 'page.social.toStructure',
       select: {
@@ -17,24 +17,39 @@ export const aboutQuery: KirbyQuerySchema = {
       }
     },
     jobs: 'page.jobs.kirbytext',
-    /*
     about_image: {
-      query: "page.image.toFiles",
+      query: "page.aboutimage.toFiles",
       select: {
         url: true,
         niceSize: true,
         alt: "file.alt.kirbytext"
       }
     },
-    */
     text: 'page.text.kirbytext',
     collaborations: 'page.collaborations.kirbytext',
     press: 'page.press.kirbytext',
-    /* news: {
+    news: {
       query: 'page.news.toStructure',
       select: {
-       title: 'page.news.title.kirbytext',
+        id: true,
+        title: 'structureItem.title.kirbytextinline',
+        text: 'structureItem.title.kirbytextinline',
+        news_image: {
+          query: "structureItem.news_image.toFiles",
+          select: {
+            url: true,
+            niceSize: true,
+            alt: "file.alt.kirbytext"
+          }
+        },
+        links: {
+          query: 'structureItem.links.toStructure',
+          select: {
+            id: true,
+            link_text: 'structureItem.link_text.kirbytext',
+          }
+        }
       }
-    } */
+    } 
   }
 }

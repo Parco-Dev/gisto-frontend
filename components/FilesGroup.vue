@@ -16,7 +16,7 @@ defineProps<{ group: { title: string, files: any } }>()
       v-for="(file, index) in group.files" :key="file.name" @click="{
         setLightboxContent(group.files)
         openLightbox(index)
-    }">
+      }">
       <p v-html="file.name"></p>
     </div>
   </div>

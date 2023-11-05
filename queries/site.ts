@@ -18,18 +18,12 @@ export const siteQuery: KirbyQuerySchema = {
         url: true
       }
     },
-    /* projects: {
+    projects: {
       query: 'page("work").children.listed',
       select: {
-        id: true,
-        year: 'page.year.kirbytext',
-        place: 'page.place.kirbytext',
-        client: 'page.client.kirbytext',
         category: 'page.category.split',
         type_of_work: 'page.type_of_work.split',
-        // category: true,
-        // type_of_work: true,
       },
-    }, */
+    },
   },
 };

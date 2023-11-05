@@ -15,22 +15,28 @@ export const homeQuery: KirbyQuerySchema = {
         alt: "file.alt.kirbytext"
       }
     },
-    featuredProjects: {
-      query: 'page("work").children',
+    featured: {
+      query: 'page.featured.toStructure',
       select: {
-        id: true,
-        url: 'page.slug',
-        title: true,
-        excerpt: 'page.excerpt.kirbytext',
-        main_image: {
-          query: "page.main_image.toFiles",
+        columns: true,
+        project: {
+          query: 'structureItem.project.toPages',
           select: {
-            url: true,
-            niceSize: true,
-            alt: "file.alt.kirbytext"
+            id: true,
+            url: 'page.slug',
+            title: true,
+            excerpt: 'page.excerpt.kirbytextinline',
+            main_image: {
+              query: "page.main_image.toFiles",
+              select: {
+                url: true,
+                niceSize: true,
+                alt: "file.alt.kirbytext"
+              }
+            },
           }
-        },
-      },
-    },
+        }
+      }
+    }
   }
 }

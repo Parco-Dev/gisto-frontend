@@ -17,6 +17,22 @@ const isAboutPage = computed(() => route.path === '/about');
 const isWorkPage = computed(() => route.path === '/work');
 const isProject = computed(() => route.path.startsWith('/work/'));
 
+const projectCategories = ref([] as string[]);
+const projectWorkTypes = ref([] as string[]);
+
+site.value.projects?.forEach((project: any) => {
+  project.category?.forEach((val: string) => {
+    if (!projectCategories.value.includes(val)) {
+      projectCategories.value.push(val);
+    }
+  })
+  project.type_of_work?.forEach((val: string) => {
+    if (!projectWorkTypes.value.includes(val)) {
+      projectWorkTypes.value.push(val);
+    }
+  })
+});
+
 </script>
 
 <template>
@@ -42,15 +58,17 @@ const isProject = computed(() => route.path.startsWith('/work/'));
     </div>
 
     <div class="top-header-filters" v-if="isWorkPage">
-      <div class="category-list">
-        <p>Categories:</p>
+      <div class="filters-group category-list">
+        <p class="taxonomy-label">Categories:</p>
         <ul>
+          <li class="active">All</li>
           <li v-for="category in projectCategories" :key="category">{{ category }}</li>
         </ul>
       </div>
-      <div class="type-of-work-list">
-        <p>Type of Work:</p>
+      <div class="filters-group type-of-work-list">
+        <p class="taxonomy-label">Type of Work:</p>
         <ul>
+          <li class="active">All</li>
           <li v-for="workType in projectWorkTypes" :key="workType">{{ workType }}</li>
         </ul>
       </div>
@@ -83,7 +101,7 @@ const isProject = computed(() => route.path.startsWith('/work/'));
           </div>
         </div>
         <div class="col-lg-4 col-12">
-          <div class="header-content">
+          <div class="header-content header-taxonomies">
             <p v-for="category in page?.category" :key="category">
               {{ category }}
             </p>
@@ -129,6 +147,7 @@ const isProject = computed(() => route.path.startsWith('/work/'));
 
     </nav>
   </header>
+
 </template>
 
 <style scoped lang="scss">

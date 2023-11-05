@@ -1,35 +1,35 @@
 <script setup lang="ts">
 
-defineProps<{ group: { title: string, files: any } }>()
+const props = defineProps<{ group: { title: string, files: any, index: number } }>()
 
-import { getPageQuery } from '~/queries'
+const groupContent = useLightboxContent();
 
-const kirbyPath = useRoute().path
-const { queryApi, queryParams } = useQueryParams(getPageQuery(kirbyPath));
-const { data } = await useFetch(queryApi, queryParams);
-const page = (data?.value as any)?.result;
-
-setPage(page);
+const toggleGroup = () => {
+  // If group is not active, open files list and update lightbox content
+  if (props.group.index !== groupContent.value.index) {
+    setLightboxContent(props.group.index, props.group.files)
+    setLightboxSlideIndex(0);
+  } 
+  // If group is already active, close lightbox, files list and reset content
+  else {
+    closeLightbox();
+    setLightboxContent(-1, null);
+  }
+}
 
 </script>
 
 <template>
 
-  <div v-if="page?.photo_dump && page.photo_dump.length" class="files-group">
-    <div class="files-group-title">
+  <div v-if="group.files.length" class="files-group">
+    <div class="files-group-title" @click="toggleGroup()">
       <p>{{ group.title }}</p>
     </div>
-    <div class="files-group-list">
-      <div v-for="(file, index) in group.files" :key="file.name" @click="() => { setLightboxContent(group.files); openLightbox(index); }" class="single-file">
+    <div v-if="group.index === groupContent.index" class="files-group-list">
+      <div v-for="(file, slideIndex) in group.files" :key="file.name" class="single-file" @click="openLightbox(slideIndex)">
         <p v-html="file.name"></p>
       </div>
     </div>
   </div>
   
 </template>
-<!-- 
-graphics 
-  - 01
-  - 02
-  - 03
--->

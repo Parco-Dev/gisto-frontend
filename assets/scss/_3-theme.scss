@@ -680,7 +680,7 @@ body[data-template=default] {
 .single-project {
 	.project-title {
 		mix-blend-mode: difference;
-		background-color: $color-black;
+		// background-color: $color-black;
 		position: sticky;
 		top: calc($spacer * 6);
 		z-index: 3;
@@ -766,7 +766,8 @@ body[data-template=default] {
 		position: fixed;
 		top: calc($spacer / 4);
 		right: calc($spacer / 4);
-		z-index: 2;
+		z-index: 9999;
+		// z-index: 2;
 		display: flex;
 		align-items: flex-end;
 		flex-direction: column;
@@ -802,16 +803,9 @@ body[data-template=default] {
 			}
 		}
 		.project-files-content {
-			opacity: 0;
-			pointer-events: none;
-			transition: opacity 0s linear;
 			display: flex;
 			align-items: flex-end;
 			flex-direction: column;
-			&.visible {
-				opacity: 1;
-				pointer-events: all;
-			}
 			.files-group {
 				display: flex;
 				flex-direction: column;
@@ -831,10 +825,6 @@ body[data-template=default] {
 					}
 				}
 				.files-group-list {
-					display: none;
-					&.visible {
-						display: block;
-					}
 					.single-file {
 						padding: calc($spacer / 2);
 						margin-bottom: 1px;
@@ -862,46 +852,5 @@ body[data-template=default] {
 			}
 		}
 	}
-	.project-lightbox {
-		position: fixed;
-		top: 0px;
-		left: 0px;
-		width: 100vw;
-		height: 100vh;
-		z-index: 1;
-		pointer-events: none;
-		&.lightbox-active {
-			pointer-events: all;
-		}
-		.single-lightbox {
-			position: fixed;
-			top: 0px;
-			left: 0px;
-			width: 100vw;
-			height: 100vh;
-			z-index: 1;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			opacity: 0;
-			pointer-events: none;
-			transition: opacity 0.15s linear;
-			&.visible {
-				opacity: 1;
-				pointer-events: all;
-			}
-			.type-video {
-				video {
-					width: 60vw;
-					height: auto;
-				}
-			}
-			.type-image {
-				img {
-					width: 60vw;
-					height: auto;
-				}
-			}
-		}
-	}
+
 }

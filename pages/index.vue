@@ -32,6 +32,8 @@ const featured = page?.featured.map(f => {
       </a>
     </div>
 
+    <CursorView />
+
     <div class="background-icon">
       <img :src="homeIcon?.url" :alt="homeIcon?.alt" />
     </div>

@@ -15,10 +15,11 @@ setPage(page);
 <template>
 <div class="content single-project">
 
+  <div class="project-title">
+    <p>{{ page?.title }}</p>
+  </div>
+
   <div class="project-header">
-    <div class="project-title">
-      <p>{{ page?.title }}</p>
-    </div>
     <div class="project-subtitle">
       <div class="row">
         <div class="col-lg-8 col-12">
@@ -88,7 +89,9 @@ setPage(page);
     </div>
   </div>
 
-  <div class="project-files">
+  <Files />
+
+  <!--<div class="project-files">
     <div class="project-files-button">
       <svg class="closed-folder" version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 13.4 11.4" style="enable-background:new 0 0 13.4 11.4;" xml:space="preserve">
         <g>
@@ -161,6 +164,7 @@ setPage(page);
       </div>
     </div>
   </div>
+  -->
 
   <div class="project-lightbox">
     <div class="single-lightbox" id="photo_dump">

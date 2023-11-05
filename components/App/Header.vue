@@ -102,10 +102,10 @@ site.value.projects?.forEach((project: any) => {
         </div>
         <div class="col-lg-4 col-12">
           <div class="header-content header-taxonomies">
-            <p v-for="category in page?.category" :key="category">
+            <p v-for="category in page?.category" :key="category" class="single-category">
               {{ category }}
             </p>
-            <p v-for="typeOfWork in page?.type_of_work" :key="typeOfWork">
+            <p v-for="typeOfWork in page?.type_of_work" :key="typeOfWork" class="single-type-of-work">
               {{ typeOfWork }}
             </p>
           </div>
@@ -115,6 +115,8 @@ site.value.projects?.forEach((project: any) => {
     </div>
 
   </div>
+
+  <div class="white-header"></div>
 
   <header class="site-header">
 

@@ -31,6 +31,7 @@ export function setPage<T extends Record<string, any>>(page?: T) {
 
   useHead({
     bodyAttrs: {
+      'class': page.intendedTemplate || 'default',
       'data-template': page.intendedTemplate || 'default',
     },
     link: [{ rel: 'canonical', href: url }],

@@ -34,6 +34,7 @@ export const aboutQuery: KirbyQuerySchema = {
         id: true,
         title: 'structureItem.title.kirbytextinline',
         text: 'structureItem.title.kirbytextinline',
+        columns: true,
         news_image: {
           query: "structureItem.news_image.toFiles",
           select: {

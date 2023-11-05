@@ -6,7 +6,9 @@ const { data } = await useFetch(queryApi, queryParams);
 const page = (data?.value as any)?.result;
 
 setPage(page);
+const site = useSite()
 console.log(page);
+console.log(site);
 
 </script>
 
@@ -20,10 +22,10 @@ console.log(page);
   <div class="about-contacts">
     <div class="row">
       <div class="col-lg-3 col-12">
-        <!-- <p class="footer-studio-address" v-router-links v-html="site.studio_address"></p> -->
+        <p class="footer-studio-address" v-router-links v-html="site.studio_address"></p>
       </div>
       <div class="col-lg-3 col-12">
-        <!-- <p class="footer-workshop-address" v-router-links v-html="site.workshop_address"></p> -->
+        <p class="footer-workshop-address" v-router-links v-html="site.workshop_address"></p>
       </div>
       <div class="col-lg-2 col-12">
         <div class="contact-email">
@@ -69,18 +71,15 @@ console.log(page);
   </div>
 
   <div class="about-news">
-    <div class="row">
-      <div v-for="news in page?.news" :key="news.id" class="single-news">
-        <img :src="news.news_image?.[0]?.url" :alt="news.news_image?.[0]?.alt" />
-        <div class="news-info">
-          <p><span class="news-title">{{ news.title }}</span>{{ news.text }}</p>
-        </div>
-        <div class="news-links">
-          <div v-for="link in news.links" :key="link.id" class="news-link">
-            <p v-html="link.link_text"></p>
-          </div>
-        </div>
-        
+    <div v-for="news in page?.news" :key="news.id" :class="`single-news columns-${news.columns}`">
+      <img :src="news.news_image?.[0]?.url" :alt="news.news_image?.[0]?.alt" />
+      <div class="news-info">
+        <p><span class="news-title">{{ news.title }}</span>{{ news.text }}</p>
+      </div>
+      <div class="news-links">
+        <a v-for="link in news.links" :key="link.id" :href="`${news.url}`" class="news-link">
+          <p class="link-text"><span v-html="link.link_text"></span> ↗</p>
+        </a>
       </div>
     </div>
   </div>

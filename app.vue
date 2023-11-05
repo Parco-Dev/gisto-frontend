@@ -8,9 +8,9 @@
       <div class="page">
         <AppHeader />
 
-        <main class="main">
+        <!-- <main class="main"> -->
           <NuxtPage /> 
-        </main>
+        <!-- </main> -->
 
         <AppFooter />
       </div>

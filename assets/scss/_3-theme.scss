@@ -114,14 +114,18 @@ a, p {
 	text-decoration: none;
 }
 
+a:hover {
+	color: $color-dark-grey;
+}
+
 /* HEADER */
 
 body[data-template=home] {
 	.top-header {
-		z-index: -1;
+		// z-index: -1;
 	}
 	.site-header {
-		mix-blend-mode: difference;
+		// mix-blend-mode: difference;
 		.header-title {
 			color: $color-white;
 		}
@@ -142,16 +146,20 @@ body[data-template=home] {
 	top: 0px;
 	z-index: 1;
 	height: calc($spacer * 6);
+	background-color: $color-black;
+	mix-blend-mode: difference;
 	.top-header-bio {
 		margin-bottom: calc($spacer * 2);
 		p {
 			margin-bottom: 0px;
+			color: $color-white;
 		}
 	}
 	.top-header-filters {
 		p {
 			@extend %small;
 			margin-bottom: 0px;
+			color: $color-white;
 		}
 		ul {
 			display: flex;
@@ -162,6 +170,7 @@ body[data-template=home] {
 				margin-right: $spacer;
 				a {
 					@extend %small;
+					color: $color-white;
 				}
 			}
 		}
@@ -176,12 +185,18 @@ body[data-template=home] {
     justify-content: space-between;
 	position: sticky;
 	top: calc($spacer * 6);
-	z-index: 1;
+	z-index: 3;
+	background-color: $color-black;
+	mix-blend-mode: difference;
 	.header-title {
 		@extend %large;
 		text-transform: uppercase;
 		letter-spacing: -4px;
 		margin: 0px;
+		color: $color-white;
+		&:hover {
+			color: $color-dark-grey;
+		}
 	}
 	.header-nav {
 		.header-nav-inner {
@@ -193,6 +208,10 @@ body[data-template=home] {
 				margin-left: $spacer;
 				a {
 					@extend %large;
+					color: $color-white;
+					&:hover {
+						color: $color-dark-grey;
+					}
 				}
 			}
 		}
@@ -277,6 +296,8 @@ body[data-template=home] {
 		}
 		img {
 			width: 100%;
+			position: relative;
+			z-index: 2;
 		}
 		.project-info {
 			padding-top: calc($spacer / 2);
@@ -284,7 +305,7 @@ body[data-template=home] {
 				@extend %extrasmall;
 				.project-title {
 					@extend %medium;
-					line-height: 0.5;
+					line-height: 0.7;
 				}
 			}
 		}
@@ -421,14 +442,11 @@ body[data-template=home] {
 
 body[data-template=about] {
 	.top-header {
-		background-color: $color-white;
+		// background-color: $color-white;
 	}
 	.site-header {
-		background-color: $color-white;
+		// background-color: $color-white;
 	}
-}
-
-.page-about {
 	.about-text {
 		p {
 			@extend %large;
@@ -467,6 +485,8 @@ body[data-template=about] {
 		margin-bottom: calc($spacer * 8);
 		img {
 			width: 100%;
+			position: relative;
+			z-index: 2;
 		}
 		p {
 			@extend %medium;
@@ -497,11 +517,145 @@ body[data-template=about] {
 		}
 	}
 	.about-news {
-		
+		display: flex;
+		flex-wrap: wrap;
+		margin: 0px calc(-#{$spacer} / 4);
+		.single-news {
+			margin-bottom: calc($spacer * 6);
+			padding: 0px calc($spacer / 4);
+			&.columns-1 {
+				width: calc(100% / 12);
+			}
+			&.columns-2 {
+				width: calc(100% / 12 * 2);
+			}
+			&.columns-3 {
+				width: calc(100% / 12 * 3);
+			}
+			&.columns-4 {
+				width: calc(100% / 12 * 4);
+			}
+			&.columns-5 {
+				width: calc(100% / 12 * 5);
+			}
+			&.columns-6 {
+				width: calc(100% / 12 * 6);
+			}
+			&.columns-7 {
+				width: calc(100% / 12 * 7);
+			}
+			&.columns-8 {
+				width: calc(100% / 12 * 8);
+			}
+			&.columns-9 {
+				width: calc(100% / 12 * 9);
+			}
+			&.columns-10 {
+				width: calc(100% / 12 * 10);
+			}
+			&.columns-11 {
+				width: calc(100% / 12 * 11);
+			}
+			&.columns-12 {
+				width: 100%;
+			}
+			img {
+				width: 100%;
+			}
+			.news-info {
+				padding-top: calc($spacer / 2);
+				p {
+					@extend %extrasmall;
+					.news-title {
+						@extend %medium;
+						line-height: 0.7;
+					}
+				}
+			}
+			.news-links {
+				.news-link {
+					display: flex;
+					p {
+						margin-bottom: 0px;
+						span {
+							margin-top: -2px;
+							margin-right: calc($spacer / 2);
+							display: inline-block;
+						}
+					}
+					.link-text {
+						display: flex;
+						align-items: center;
+					}
+				}
+			}
+		}
 	}
 }
 
 /* PROJECT */
+
+body {
+	.top-header {
+		mix-blend-mode: difference;
+    	background-color: $color-black;
+		z-index: 3;
+		.top-header-project {
+			.header-content {
+				p {
+					color: $color-white;
+				}
+			}
+			.header-label {
+				p {
+					color: $color-white;
+				}
+			}
+		}
+	}
+	.white-header {
+		background-color: #ffffff;
+		position: fixed;
+		top: 0px;
+		left: 0px;
+		width: 100vw;
+		height: 140px;
+		z-index: 1;
+	}
+}
+
+body[data-template=default] {
+	.top-header {
+		mix-blend-mode: difference;
+    	background-color: $color-black;
+		z-index: 3;
+		.top-header-project {
+			.header-content {
+				p {
+					color: $color-white;
+				}
+			}
+			.header-label {
+				p {
+					color: $color-white;
+				}
+			}
+		}
+	}
+	.site-header {
+		position: relative;
+		top: 0px;
+	}
+	.white-header {
+		background-color: #ffffff;
+		position: fixed;
+		top: 0px;
+		left: 0px;
+		width: 100vw;
+		height: 140px;
+		z-index: 1;
+	}
+}
 
 .top-header-project {
 	margin-bottom: calc($spacer * 2);
@@ -524,13 +678,19 @@ body[data-template=about] {
 }
 
 .single-project {
-	.project-header {
-		.project-title {
-			p {
-				@extend %large;
-				margin-bottom: calc($spacer / 2);
-			}
+	.project-title {
+		mix-blend-mode: difference;
+		background-color: $color-black;
+		position: sticky;
+		top: calc($spacer * 6);
+		z-index: 3;
+		p {
+			@extend %large;
+			margin-bottom: calc($spacer / 2);
+			color: $color-white;
 		}
+	}
+	.project-header {
 		.project-subtitle {
 			p {
 				@extend %medium;
@@ -549,9 +709,13 @@ body[data-template=about] {
 					width: 100%;
 					height: 50vw;
 					object-fit: cover;
+					position: relative;
+					z-index: 2;
 				}
 				.caption {
 					margin-bottom: calc($spacer * 4);
+					position: relative;
+					z-index: 0;
 					p {
 						margin-bottom: 0px;
 					}
@@ -560,15 +724,21 @@ body[data-template=about] {
 			.module-double-images {
 				img {
 					width: 100%;
+					position: relative;
+					z-index: 2;
 				}
 				.caption {
 					margin-bottom: calc($spacer * 4);
+					position: relative;
+					z-index: 0;
 					p {
 						margin-bottom: 0px;
 					}
 				}
 			}
 			.module-text {
+				position: relative;
+				z-index: 0;
 				p {
 					@extend %medium;
 					margin-bottom: 0px;

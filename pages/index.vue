@@ -11,12 +11,25 @@ console.log(page);
 
 const homeIcon = page?.home_icon?.[0]; 
 
-const featured = page?.featured.map(f => {
+const featured = page?.featured.map((item: any) => {
   return {
-    ...f.project[0],
-    columns: f.columns,
+    ...item.project[0],
+    columns: item.columns,
   }
 })
+
+const onMouseEnter = () => {
+  showCursor()
+}
+
+const onMouseLeave = () => {
+  hideCursor()
+}
+
+const onMouseMove = (e: any) => {
+  const position = { x: e.pageX, y: e.pageY };
+  setCursorPosition(position);
+}
 
 </script>
 
@@ -25,18 +38,33 @@ const featured = page?.featured.map(f => {
 
     <div v-for="project in featured" :key="project.id" :class="`featured-project columns-${project.columns}`">
       <a :href="`/work/${project.url}`">
-        <img :src="project.main_image?.[0]?.url" :alt="project.main_image?.[0]?.alt" />
+        <img
+          class="project-image"
+          :src="project.main_image?.[0]?.url"
+          :alt="project.main_image?.[0]?.alt"
+          @mouseenter="onMouseEnter()"
+          @mouseleave="onMouseLeave()"
+          @mousemove="(e) => onMouseMove(e)"
+        />
         <div class="project-info">
           <p><span class="project-title">{{ project.title }}</span>{{ project.excerpt }}</p>
         </div>
       </a>
     </div>
-
-    <CursorView />
-
+    
     <div class="background-icon">
       <img :src="homeIcon?.url" :alt="homeIcon?.alt" />
     </div>
+    
+    <CursorView />
 
   </div>
+
+  
 </template>
+
+<style scoped lang="scss">
+.project-image {
+  cursor: none;
+}
+</style>

@@ -14,9 +14,9 @@ export function getProjectsQuery(): KirbyQuerySchema {
           id: true,
           title: true,
           url: 'page.slug',
-          year: 'page.year.kirbytext',
-          place: 'page.place.kirbytext',
-          client: 'page.client.kirbytext',
+          year: true,
+          place: true,
+          client: true,
           category: true,
           type_of_work: true,
           main_image: {

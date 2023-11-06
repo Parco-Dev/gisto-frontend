@@ -55,13 +55,13 @@ const filters = useFilters();
         <ul>
           <li
             :class="{ active: !filters?.category }"
-            @click="setFilter('category', null)"
+            @click="setFilter('category', null), setFilteredWork()"
           >All</li>
           <li
             v-for="category in projectCategories"
             :key="category"
             :class="{ active: filters?.category === category }"
-            @click="setFilter('category', category)"
+            @click="setFilter('category', category); setFilteredWork()"
           >{{ category }}</li>
         </ul>
       </div>
@@ -70,13 +70,13 @@ const filters = useFilters();
         <ul>
           <li
             :class="{ active: !filters?.workType }"
-            @click="setFilter('workType', null)"
+            @click="setFilter('workType', null); setFilteredWork()"
           >All</li>
           <li
             v-for="workType in projectWorkTypes"
             :key="workType"
             :class="{ active: filters?.workType === workType }"
-            @click="setFilter('workType', workType)"
+            @click="setFilter('workType', workType); setFilteredWork()"
           >{{ workType }}</li>
         </ul>
       </div>

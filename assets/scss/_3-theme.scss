@@ -344,9 +344,10 @@ body[data-template=home] {
 		margin: 0px;
 		text-transform: capitalize;
 		cursor: pointer;
-		color: $color-black;
+		color: $color-white;
 		&.active {
 			background-color: $color-light-grey;
+			color: $color-black;
 		}
 	}
 }

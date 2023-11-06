@@ -2,15 +2,14 @@
 const route = useRoute()
 const site = useSite()
 
-const pages = computed(() =>
-  (site.value?.children ?? []).filter((i: any) => i.isListed)
-).value;
+// const pages = computed(() =>
+//   (site.value?.children ?? []).filter((i: any) => i.isListed)
+// ).value;
 
 const page = usePage();
-const projects = site.value?.projects;
+// const projects = site.value?.projects;
 
 // console.log(page);
-// console.log(projects);
 
 const isHomePage = computed(() => route.path === '/');
 const isAboutPage = computed(() => route.path === '/about');
@@ -33,13 +32,15 @@ site.value.projects?.forEach((project: any) => {
   })
 });
 
+const filters = useFilters();
+
 </script>
 
 <template>
 
   <div class="top-header">
 
-    <div class="top-header-bio" v-if="isHomePage">
+    <div v-if="isHomePage || isAboutPage" class="top-header-bio">
       <div class="row">
         <div class="col-lg-10 col-12">
           <div v-router-links v-html="site.long_bio" ></div>
@@ -48,33 +49,40 @@ site.value.projects?.forEach((project: any) => {
       </div>
     </div>
 
-    <div class="top-header-bio" v-if="isAboutPage">
-      <div class="row">
-        <div class="col-lg-10 col-12">
-          <div v-router-links v-html="site.long_bio" ></div>
-        </div>
-        <div class="col-lg-2 col-12"></div>
-      </div>
-    </div>
-
-    <div class="top-header-filters" v-if="isWorkPage">
+    <div v-if="isWorkPage" class="top-header-filters">
       <div class="filters-group category-list">
         <p class="taxonomy-label">Categories:</p>
         <ul>
-          <li class="active">All</li>
-          <li v-for="category in projectCategories" :key="category">{{ category }}</li>
+          <li
+            :class="{ active: !filters?.category }"
+            @click="setFilter('category', null)"
+          >All</li>
+          <li
+            v-for="category in projectCategories"
+            :key="category"
+            :class="{ active: filters?.category === category }"
+            @click="setFilter('category', category)"
+          >{{ category }}</li>
         </ul>
       </div>
       <div class="filters-group type-of-work-list">
         <p class="taxonomy-label">Type of Work:</p>
         <ul>
-          <li class="active">All</li>
-          <li v-for="workType in projectWorkTypes" :key="workType">{{ workType }}</li>
+          <li
+            :class="{ active: !filters?.workType }"
+            @click="setFilter('workType', null)"
+          >All</li>
+          <li
+            v-for="workType in projectWorkTypes"
+            :key="workType"
+            :class="{ active: filters?.workType === workType }"
+            @click="setFilter('workType', workType)"
+          >{{ workType }}</li>
         </ul>
       </div>
     </div>
 
-    <div class="top-header-project" v-if="isProject">
+    <div v-if="isProject" class="top-header-project">
       <div class="row">
         <div class="col-lg-1 col-12">
           <div class="header-content">

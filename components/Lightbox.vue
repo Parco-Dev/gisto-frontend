@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
 const content = useLightboxContent();
 const isLightbox = useLightbox();
 const fileIndex = useLightboxSlideIndex();
@@ -16,6 +17,20 @@ const changeSlide = (e: any) => {
   }
 }
 
+const onMouseEnter = () => {
+  showCursor()
+}
+
+const onMouseLeave = () => {
+  hideCursor()
+}
+
+const onMouseMove = (e: any) => {
+  const isLeft = (e.offsetX < e.target.width / 2);
+  const position = { x: e.pageX + (isLeft ? 10 : -50), y: e.pageY + 16 };
+  setCursor({position, text: isLeft ? '← Prev' : 'Next →'});
+}
+
 const reset = () => {
   closeLightbox();
   setLightboxContent(-1, null);
@@ -29,7 +44,15 @@ const reset = () => {
 
     <div class="close" @click="reset()"></div>
 
-    <div v-for="(file, index) in content.files" :key="file.id" class="lightbox-file" @click="(e) => changeSlide(e)">
+    <div
+      v-for="(file, index) in content.files"
+      :key="file.id"
+      class="lightbox-file"
+      @click="(e) => changeSlide(e)"
+      @mouseenter="onMouseEnter()"
+      @mouseleave="onMouseLeave()"
+      @mousemove="(e) => onMouseMove(e)"
+    >
 
       <div v-if="fileIndex === index && file.type === 'video'" class="type-video">
         <video autoplay loop playsinline muted>
@@ -42,6 +65,8 @@ const reset = () => {
       </div>
      
     </div>
+
+    <CursorView />
   </div>
 </template>
 
@@ -65,7 +90,7 @@ const reset = () => {
 
   .lightbox-file {
     position: relative;
-    transition: opacity 0.15s linear;
+    cursor: pointer;
 
     .type-video {
       video {

@@ -7,7 +7,7 @@ const cursor = useCursor();
 
 <template>
   <div v-if="cursor.active" class="cursor" :style="{ left: `${cursor.position.x}px`, top: `${cursor.position.y}px` }">
-    <span>View project ↗</span>
+    <span>{{ cursor.text }}</span>
   </div>
 </template>
 

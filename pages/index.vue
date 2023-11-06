@@ -27,8 +27,8 @@ const onMouseLeave = () => {
 }
 
 const onMouseMove = (e: any) => {
-  const position = { x: e.pageX, y: e.pageY };
-  setCursorPosition(position);
+  const position = { x: e.pageX + 10, y: e.pageY + 16 };
+  setCursor({position, text: 'View project ↗'});
 }
 
 </script>
@@ -65,6 +65,6 @@ const onMouseMove = (e: any) => {
 
 <style scoped lang="scss">
 .project-image {
-  cursor: none;
+  cursor: pointer;
 }
 </style>

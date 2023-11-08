@@ -45,7 +45,7 @@ const filters = useFilters();
     </div>
     </Transition>
 
-    <Transition name="top">
+    <Transition name="top" mode="out-in">
     <div v-if="isWorkPage" class="top-header-filters">
       <div class="filters-group category-list">
         <p class="taxonomy-label">Categories:</p>
@@ -80,7 +80,7 @@ const filters = useFilters();
     </div>
     </Transition>
 
-    <Transition name="top">
+    <Transition name="top" mode="out-in">
     <div v-if="isProject" class="top-header-project">
       <div class="row">
         <div class="col-lg-1 col-12">

@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { aboutQuery } from '~/queries'
 
+const site = useSite()
+
 const { queryApi, queryParams } = useQueryParams(aboutQuery);
 const { data } = await useFetch(queryApi, queryParams);
 const page = (data?.value as any)?.result;
 
 setPage(page);
-const site = useSite()
-console.log(page);
-console.log(site);
 
 </script>
 

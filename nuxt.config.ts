@@ -19,8 +19,8 @@ export default defineNuxtConfig({
     app: {
       KIRBY_BASE_URL: process.env.KIRBY_BASE_URL,
       KIRBY_API_TOKEN: process.env.KIRBY_API_TOKEN,
-      KIRBY_API_USERNAME: process.env.KIRBY_API_USERNAME,
-      KIRBY_API_PASSWORD: process.env.KIRBY_API_PASSWORD,
+      // KIRBY_API_USERNAME: process.env.KIRBY_API_USERNAME,
+      // KIRBY_API_PASSWORD: process.env.KIRBY_API_PASSWORD,
     },
   },
 

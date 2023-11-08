@@ -11,18 +11,20 @@ const isProject = computed(() => route.path.startsWith('/work/'));
 const projectCategories = ref([] as string[]);
 const projectWorkTypes = ref([] as string[]);
 
-site.value.projects?.forEach((project: any) => {
-  project.category?.forEach((val: string) => {
-    if (!projectCategories.value.includes(val)) {
-      projectCategories.value.push(val);
-    }
-  })
-  project.type_of_work?.forEach((val: string) => {
-    if (!projectWorkTypes.value.includes(val)) {
-      projectWorkTypes.value.push(val);
-    }
-  })
-});
+if (isWorkPage) {
+  site.value.projects?.forEach((p: any) => {
+    p.category?.forEach((val: string) => {
+      if (!projectCategories.value.includes(val)) {
+        projectCategories.value.push(val);
+      }
+    })
+    p.type_of_work?.forEach((val: string) => {
+      if (!projectWorkTypes.value.includes(val)) {
+        projectWorkTypes.value.push(val);
+      }
+    })
+  });
+}
 
 const filters = useFilters();
 

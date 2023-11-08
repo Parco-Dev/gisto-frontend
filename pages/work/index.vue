@@ -6,13 +6,9 @@ const { data } = await useFetch(queryApi, queryParams);
 const page = (data?.value as any)?.result;
 
 setPage(page);
-console.log(page);
-
 setWork(page.children);
 
 const filteredWork = useFilteredWork();
-
-console.log(filteredWork.value)
 
 </script>
 

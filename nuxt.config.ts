@@ -1,6 +1,10 @@
 // import { siteQuery } from './queries'
 
 export default defineNuxtConfig({
+  app: {
+    pageTransition: { name: 'page', mode: 'out-in' }
+  },
+
   modules: ['@vueuse/nuxt', 'nuxt-kql'],
 
   css: [

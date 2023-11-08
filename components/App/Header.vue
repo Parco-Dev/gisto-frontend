@@ -1,15 +1,7 @@
 <script setup lang="ts">
 const route = useRoute()
 const site = useSite()
-
-// const pages = computed(() =>
-//   (site.value?.children ?? []).filter((i: any) => i.isListed)
-// ).value;
-
-const page = usePage();
-// const projects = site.value?.projects;
-
-// console.log(page);
+const project = useProject();
 
 const isHomePage = computed(() => route.path === '/');
 const isAboutPage = computed(() => route.path === '/about');
@@ -39,7 +31,8 @@ const filters = useFilters();
 <template>
 
   <div class="top-header">
-
+    
+    <Transition name="top" mode="out-in">
     <div v-if="isHomePage || isAboutPage" class="top-header-bio">
       <div class="row">
         <div class="col-lg-10 col-12">
@@ -48,7 +41,9 @@ const filters = useFilters();
         <div class="col-lg-2 col-12"></div>
       </div>
     </div>
+    </Transition>
 
+    <Transition name="top">
     <div v-if="isWorkPage" class="top-header-filters">
       <div class="filters-group category-list">
         <p class="taxonomy-label">Categories:</p>
@@ -81,12 +76,14 @@ const filters = useFilters();
         </ul>
       </div>
     </div>
+    </Transition>
 
+    <Transition name="top">
     <div v-if="isProject" class="top-header-project">
       <div class="row">
         <div class="col-lg-1 col-12">
           <div class="header-content">
-            <p v-html="page?.year"></p>
+            <p v-html="project?.year"></p>
           </div>
           <div class="header-label">
             <p>Year</p>
@@ -94,7 +91,7 @@ const filters = useFilters();
         </div>
         <div class="col-lg-3 col-12">
           <div class="header-content">
-            <p v-html="page?.place"></p>
+            <p v-html="project?.place"></p>
           </div>
           <div class="header-label">
             <p>Place</p>
@@ -102,7 +99,7 @@ const filters = useFilters();
         </div>
         <div class="col-lg-4 col-12">
           <div class="header-content">
-            <p v-html="page?.client"></p>
+            <p v-html="project?.client"></p>
           </div>
           <div class="header-label">
             <p>Client</p>
@@ -110,10 +107,10 @@ const filters = useFilters();
         </div>
         <div class="col-lg-4 col-12">
           <div class="header-content header-taxonomies">
-            <p v-for="category in page?.category" :key="category" class="single-category">
+            <p v-for="category in project?.category" :key="category" class="single-category">
               {{ category }}
             </p>
-            <p v-for="typeOfWork in page?.type_of_work" :key="typeOfWork" class="single-type-of-work">
+            <p v-for="typeOfWork in project?.type_of_work" :key="typeOfWork" class="single-type-of-work">
               {{ typeOfWork }}
             </p>
           </div>
@@ -121,6 +118,7 @@ const filters = useFilters();
       </div>
       
     </div>
+    </Transition>
 
   </div>
 
@@ -161,6 +159,32 @@ const filters = useFilters();
 </template>
 
 <style scoped lang="scss">
+.top-enter-active,
+.top-leave-active {
+  transition: all 0.5s;
+}
+
+.top-enter-active {
+  transition-delay: 0.5s;
+}
+
+.top-enter-from,
+.top-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.top-header {
+  height: 60px;
+  max-height: 60px;
+  min-height: 60px;
+
+  &-bio, &-filters, &-project {
+    position: absolute;
+    top: 0;
+  }
+}
+
 .header {
   padding: 20px;
 

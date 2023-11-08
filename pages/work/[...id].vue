@@ -9,6 +9,7 @@ const page = (data?.value as any)?.result;
 console.log(page);
 
 setPage(page);
+setProject(page);
 
 </script>
 

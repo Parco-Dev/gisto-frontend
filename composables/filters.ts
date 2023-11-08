@@ -11,6 +11,12 @@ export const setWork = (work: any) => {
   useFilteredWork().value = work;
 }
 
+export const useProject = () => useState<any>('Project', () => {})
+
+export const setProject = (project: any) => {
+  useProject().value = project;
+}
+
 export const useFilteredWork = () => useState<any>('FilteredWork', () => {})
 
 export const setFilteredWork = (sort?: string) => {

@@ -25,7 +25,7 @@ export const homeQuery: KirbyQuerySchema = {
             id: true,
             url: 'page.slug',
             title: true,
-            excerpt: 'page.excerpt.kirbytextinline',
+            excerpt: 'page.excerpt',
             main_image: {
               query: "page.main_image.toFiles",
               select: {

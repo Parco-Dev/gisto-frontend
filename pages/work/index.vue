@@ -41,7 +41,12 @@ console.log(filteredWork.value)
       <a :href="`/work/${project.url}`">
         <div class="row">
           <div class="col-lg-1 col-12 project-year">
-            <p v-html="project.year"></p>
+            <div v-if="project.ongoing === 'true'">
+              <p>Ongoing</p>
+            </div>
+            <div v-else>
+              <p v-html="project.year"></p>
+            </div>
           </div>
           <div class="col-lg-5 col-12 project-title">
             <p>{{ project.title }}</p>

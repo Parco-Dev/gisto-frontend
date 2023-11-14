@@ -27,7 +27,8 @@ const toggleGroup = () => {
     </div>
     <div v-if="group.index === groupContent.index" class="files-group-list">
       <div v-for="(file, slideIndex) in group.files" :key="file.name" class="single-file" @click="openLightbox(slideIndex)">
-        <p v-html="file.name"></p>
+        <p v-if="file.name" v-html="`${file.name}.${file.extension}`"></p>
+        <p v-else-if="file.title" v-html="file.title"></p>
       </div>
     </div>
   </div>

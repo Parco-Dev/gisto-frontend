@@ -10,9 +10,9 @@ export function getProjectQuery(pageId: string): KirbyQuerySchema {
       text: 'page.text.kirbytext',
       excerpt: 'page.excerpt.kirbytext',
       subtitle: 'page.subtitle.kirbytext',
-      year: 'page.year.kirbytext',
-      place: 'page.place.kirbytext',
-      client: 'page.client.kirbytext',
+      year: true,
+      place: true,
+      client: true,
       main_image: {
         query: "page.image",
         select: {
@@ -21,29 +21,9 @@ export function getProjectQuery(pageId: string): KirbyQuerySchema {
           alt: "file.alt.kirbytext"
         }
       },
-      category: {
-        query: 'page.category.split',
-        select: {
-          name: true,
-          id: true
-        }
-      },
+      category: 'page.category.split',
       type_of_work: 'page.type_of_work.split',
       content: 'page.contentblocks.toBlocks',
-      /*
-      content: {
-        query: 'page.contentblocks.toBlocks',
-        select: {
-          content: {
-            query: 'content',
-            select: {
-              caption: true,
-              images: true
-            }
-          }
-        }
-      },
-      */
       credits: {
         query: 'page.credits.toStructure',
         select: {
@@ -86,14 +66,12 @@ export function getProjectQuery(pageId: string): KirbyQuerySchema {
         }
       },
       video: {
-        query: "page.video.toFiles",
+        query: 'page.video.toStructure',
         select: {
-          url: true,
-          name: true,
-          extension: true,
-          type: true,
-          niceSize: true,
-          alt: "file.alt.kirbytext"
+          id: true,
+          media: "structureItem.media.toFiles",
+          embeds: true,
+          title: true
         }
       },
       graphics: {

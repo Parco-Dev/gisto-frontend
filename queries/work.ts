@@ -14,6 +14,7 @@ export function getProjectsQuery(): KirbyQuerySchema {
           id: true,
           title: true,
           url: 'page.slug',
+          ongoing: 'page.ongoing.value',
           year: true,
           place: true,
           client: true,

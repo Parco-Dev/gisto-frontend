@@ -44,27 +44,31 @@ const reset = () => {
 
     <div class="close" @click="reset()"></div>
 
-    <div
-      v-for="(file, index) in content.files"
-      :key="file.id"
-      class="lightbox-file"
-      @click="(e) => changeSlide(e)"
-      @mouseenter="onMouseEnter()"
-      @mouseleave="onMouseLeave()"
-      @mousemove="(e) => onMouseMove(e)"
-    >
+      <div
+        v-for="(file, index) in content.files"
+        :key="file.id"
+        class="lightbox-file"
+        @click="(e) => changeSlide(e)"
+        @mouseenter="onMouseEnter()"
+        @mouseleave="onMouseLeave()"
+        @mousemove="(e) => onMouseMove(e)"
+      >
 
-      <div v-if="fileIndex === index && file.type === 'video'" class="type-video">
-        <video autoplay loop playsinline muted>
-          <source :src="file.url" type="video/mp4">
-        </video>
-      </div>
+        <div v-if="fileIndex === index && file.embed">
+          <p>Embed</p>
+        </div>
+        
+        <div v-else-if="fileIndex === index && file.type === 'video'" class="type-video">
+          <video autoplay loop playsinline muted>
+            <source :src="file.url" type="video/mp4">
+          </video>
+        </div>
 
-      <div v-else-if="fileIndex === index && file.type === 'image'" class="type-image">
-        <img :src="file.url" />
+        <div v-else-if="fileIndex === index && file.type === 'image'" class="type-image">
+          <img :src="file.url" />
+        </div>
+      
       </div>
-     
-    </div>
 
     <CursorView />
   </div>

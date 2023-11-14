@@ -131,7 +131,7 @@ const filters = useFilters();
     <NuxtLink
       to="/"
       class="header-title"
-      :aria-current="route.path.startsWith('/') ? 'page' : undefined"
+      :aria-current="route.path == '/' ? 'page' : undefined"
     >
       {{ site.title }}
     </NuxtLink>
@@ -140,10 +140,18 @@ const filters = useFilters();
 
       <ul class="header-nav-inner">
         <li class="header-item">
-          <NuxtLink to="/work">Work</NuxtLink>
+          <NuxtLink 
+            to="/work"
+            :aria-current="route.path.startsWith('/work') ? 'page' : undefined">
+            Work
+          </NuxtLink>
         </li>
         <li class="header-item">
-          <NuxtLink to="/about">About</NuxtLink>
+          <NuxtLink 
+          to="/about"
+          :aria-current="route.path.startsWith('/about') ? 'page' : undefined">
+            About
+          </NuxtLink>
         </li>
         <!-- <li v-for="page in pages" :key="page.id" class="header-item">
           <NuxtLink

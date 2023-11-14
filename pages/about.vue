@@ -81,6 +81,11 @@ console.log(site);
           <p class="link-text"><span v-html="link.link_text"></span> ↗</p>
         </a>
       </div>
+      <div class="news-downloads">
+        <a v-for="download in news.downloads" :key="download.id" :href="`${download.link_download?.[0]?.url}`" class="download-link">
+          <p class="download-text"><span v-html="download.name_download"></span> ↗</p>
+        </a>
+      </div>
     </div>
   </div>
 

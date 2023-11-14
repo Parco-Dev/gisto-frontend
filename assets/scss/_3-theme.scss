@@ -128,12 +128,18 @@ body[data-template=home] {
 		// mix-blend-mode: difference;
 		.header-title {
 			color: $color-white;
+			&:hover {
+				color: $color-dark-grey;
+			}
 		}
 		.header-nav {
 			.header-nav-inner {
 				li {
 					a {
 						color: $color-white;
+						&:hover {
+							color: $color-dark-grey;
+						}
 					}
 				}
 			}
@@ -209,6 +215,12 @@ body[data-template=home] {
 				a {
 					@extend %large;
 					color: $color-white;
+					&[aria-current] {
+						color: $color-dark-grey;
+					}
+					&.router-link-active {
+						color: $color-dark-grey;
+					}
 					&:hover {
 						color: $color-dark-grey;
 					}
@@ -577,6 +589,12 @@ body[data-template=about] {
 			.news-links {
 				.news-link {
 					display: flex;
+					&:hover {
+						color: $color-dark-grey;
+						p {
+							color: $color-dark-grey;
+						}
+					}
 					p {
 						margin-bottom: 0px;
 						span {
@@ -586,6 +604,29 @@ body[data-template=about] {
 						}
 					}
 					.link-text {
+						display: flex;
+						align-items: center;
+					}
+				}
+			}
+			.news-downloads {
+				.download-link {
+					display: flex;
+					&:hover {
+						color: $color-dark-grey;
+						p {
+							color: $color-dark-grey;
+						}
+					}
+					p {
+						margin-bottom: 0px;
+						span {
+							margin-top: -2px;
+							margin-right: calc($spacer / 2);
+							display: inline-block;
+						}
+					}
+					.download-text {
 						display: flex;
 						align-items: center;
 					}

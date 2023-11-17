@@ -82,7 +82,7 @@ const filters = useFilters();
       </div>
     </div>
 
-    <div v-if="isProject" class="top-header-project">
+    <div v-if="isProject" class="top-header-project top-header-project-desktop">
       <div class="row">
         <div class="col-lg-1 col-12">
           <div class="header-content">
@@ -119,8 +119,62 @@ const filters = useFilters();
           </div>
         </div>
       </div>
-      
     </div>
+
+    <div v-if="isProject" class="top-header-project top-header-project-mobile">
+      <div class="project-info-button">
+        <p>Project info <span class="arrow">↓</span></p>
+      </div>
+      <div class="project-info-content">
+        <div class="row">
+          <div class="col-lg-1 col-12">
+            <div class="header-content">
+              <p v-html="page?.year"></p>
+            </div>
+            <div class="header-label">
+              <p>Year</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-12">
+            <div class="header-content">
+              <p v-html="page?.place"></p>
+            </div>
+            <div class="header-label">
+              <p>Place</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-12">
+            <div class="header-content">
+              <p v-html="page?.client"></p>
+            </div>
+            <div class="header-label">
+              <p>Client</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-12">
+            <div class="header-content header-taxonomies">
+              <p v-for="category in page?.category" :key="category" class="single-category">
+                {{ category }}
+              </p>
+              <p v-for="typeOfWork in page?.type_of_work" :key="typeOfWork" class="single-type-of-work">
+                {{ typeOfWork }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="project-credits">
+          <div v-for="credit in page?.credits" :key="credit.id" class="credits-group">
+            <div class="credits-title">
+              <p v-html="credit.credits_title"></p>
+            </div>
+            <div class="credits-content">
+              <p v-html="credit.credits_content"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+     
 
   </div>
 

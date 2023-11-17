@@ -36,16 +36,16 @@ setPage(page);
         <img :src="constructImageUrl(block.content.images?.[0])" />
         <div class="caption">
           <div class="row">
-            <div class="col-lg-4 col-12"></div>
-            <div class="col-lg-8 col-12">
+            <div class="col-lg-4 col-3"></div>
+            <div class="col-lg-8 col-9">
               <p v-html="block.content.caption"></p>
             </div>
           </div>
         </div>
       </div>
       <div v-else-if="block.type === 'double_images'" class="single-module module-double-images">
-        <div class="row">
-          <div class="col-lg-6 col-12">
+        <div class="row double-image-column-container">
+          <div class="col-lg-6 col-9 double-image-column">
             <img :src="constructImageUrl(block.content.image1?.[0])" />
             <div class="caption">
               <div class="row">
@@ -55,7 +55,7 @@ setPage(page);
               </div>
             </div>
           </div>
-          <div class="col-lg-6 col-12">
+          <div class="col-lg-6 col-9 double-image-column">
             <img :src="constructImageUrl(block.content.image2?.[0])" />
             <div class="caption">
               <div class="row">

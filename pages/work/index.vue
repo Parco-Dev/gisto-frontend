@@ -14,6 +14,8 @@ const filteredWork = useFilteredWork();
 
 console.log(filteredWork.value)
 
+
+
 </script>
 
 <template>
@@ -40,7 +42,7 @@ console.log(filteredWork.value)
     <div v-for="(project, index) in filteredWork" :key="project.id" :data-project="`project-${index+1}`" class="single-project">
       <a :href="`/work/${project.url}`">
         <div class="row">
-          <div class="col-lg-1 col-12 project-year">
+          <div class="col-lg-1 col-3 project-year">
             <div v-if="project.ongoing === 'true'">
               <p>Ongoing</p>
             </div>
@@ -48,7 +50,7 @@ console.log(filteredWork.value)
               <p v-html="project.year"></p>
             </div>
           </div>
-          <div class="col-lg-5 col-12 project-title">
+          <div class="col-lg-5 col-9 project-title">
             <p>{{ project.title }}</p>
           </div>
           <div class="col-lg-3 col-12 project-place">
@@ -62,6 +64,12 @@ console.log(filteredWork.value)
       <div class="single-thumbnail">
         <img :src="project.main_image?.[0]?.url" :alt="project.main_image?.[0]?.alt" />
       </div>
+    </div>
+  </div>
+
+  <div class="mobile-projects-images">
+    <div v-for="(project, index) in filteredWork" :key="project.id" :data-project="`project-${index+1}`" class="single-thumbnail">
+      <img :src="project.main_image?.[0]?.url" :alt="project.main_image?.[0]?.alt" />
     </div>
   </div>
 

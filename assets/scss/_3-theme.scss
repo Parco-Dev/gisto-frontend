@@ -76,6 +76,7 @@
 	@include media-breakpoint-down(sm) { 
 		font-size: $large-sm;
 		line-height: $large-lineh-sm;
+		letter-spacing: -2px;
 	}
 }
 
@@ -739,6 +740,12 @@ body[data-template=home] {
 
 /* ABOUT */
 
+.page-about {
+	@include media-breakpoint-down(sm) { 
+		padding: 0px;
+	}
+}
+
 body[data-template=about] {
 	.top-header {
 		// background-color: $color-white;
@@ -750,6 +757,9 @@ body[data-template=about] {
 		p {
 			@extend %large;
 			margin-bottom: 0px;
+			@include media-breakpoint-down(sm) { 
+				font-size: 44px;
+			}
 		}
 	}
 	.about-contacts {
@@ -762,6 +772,9 @@ body[data-template=about] {
 		}
 		p:last-child {
 			margin-bottom: 0px;
+			@include media-breakpoint-down(sm) { 
+				margin-bottom: $spacer-sm;
+			}
 		}
 		.contact-email {
 			margin-bottom: $spacer;
@@ -777,6 +790,9 @@ body[data-template=about] {
 			}
 		}
 		.contact-social {
+			@include media-breakpoint-down(sm) { 
+				margin-bottom: $spacer-sm;
+			}
 			.label {
 				text-transform: uppercase;
 				margin-bottom: 0px;
@@ -784,6 +800,9 @@ body[data-template=about] {
 			.social-list {
 				display: flex;
 				flex-wrap: wrap;
+				@include media-breakpoint-down(sm) { 
+					flex-direction: column;
+				}
 				a {
 					display: inline-block;
 					margin-right: calc($spacer * 2);
@@ -797,6 +816,16 @@ body[data-template=about] {
 				}
 			}
 		}
+		.footer-studio-address {
+			@include media-breakpoint-down(sm) { 
+				margin-bottom: $spacer-sm;
+			}
+		}
+		.footer-studio-workshop {
+			@include media-breakpoint-down(sm) { 
+				margin-bottom: $spacer-sm;
+			}
+		}
 	}
 	.about-content {
 		margin-bottom: calc($spacer * 8);
@@ -804,7 +833,7 @@ body[data-template=about] {
 			margin-bottom: calc($spacer-xl * 8);
 		}
 		@include media-breakpoint-down(sm) { 
-			margin-bottom: calc($spacer-sm * 8);
+			margin-bottom: calc($spacer-sm * 4);
 		}
 		img {
 			width: 100%;
@@ -813,6 +842,9 @@ body[data-template=about] {
 		}
 		p {
 			@extend %medium;
+			@include media-breakpoint-down(sm) { 
+				font-size: 23px;
+			}
 		}
 	}
 	.about-collaborations-press {
@@ -822,7 +854,7 @@ body[data-template=about] {
 				margin-bottom: calc($spacer-xl * 8);
 			}
 			@include media-breakpoint-down(sm) { 
-				margin-bottom: calc($spacer-sm * 8);
+				margin-bottom: calc($spacer-sm * 4);
 			}
 			.label {
 				text-transform: uppercase;
@@ -831,6 +863,9 @@ body[data-template=about] {
 			}
 			p {
 				@extend %medium;
+				@include media-breakpoint-down(sm) { 
+					font-size: 23px;
+				}
 			}
 		}
 		.about-press {
@@ -839,7 +874,7 @@ body[data-template=about] {
 				margin-bottom: calc($spacer-xl * 8);
 			}
 			@include media-breakpoint-down(sm) { 
-				margin-bottom: calc($spacer-sm * 8);
+				margin-bottom: 0px;
 			}
 			.label {
 				text-transform: uppercase;
@@ -848,6 +883,9 @@ body[data-template=about] {
 			}
 			p {
 				@extend %medium;
+				@include media-breakpoint-down(sm) { 
+					font-size: 23px;
+				}
 			}
 		}
 	}
@@ -860,6 +898,12 @@ body[data-template=about] {
 		}
 		@include media-breakpoint-down(sm) { 
 			margin: 0px calc(-#{$spacer-sm} / 4);
+			display: flex;
+			overflow-x: auto;
+			overflow-y: hidden;
+			white-space: nowrap;
+			width: 100%;
+			flex-wrap: nowrap;
 		}
 		.single-news {
 			margin-bottom: calc($spacer * 6);
@@ -871,42 +915,80 @@ body[data-template=about] {
 			@include media-breakpoint-down(sm) { 
 				margin-bottom: calc($spacer-sm * 6);
 				padding: 0px calc($spacer-sm / 4);
+				flex: 0 0 auto;
+				white-space: initial;
 			}
 			&.columns-1 {
 				width: calc(100% / 12);
+				@include media-breakpoint-down(sm) { 
+					width: calc(100% / 12 * 9);
+				}
 			}
 			&.columns-2 {
 				width: calc(100% / 12 * 2);
+				@include media-breakpoint-down(sm) { 
+					width: calc(100% / 12 * 9);
+				}
 			}
 			&.columns-3 {
 				width: calc(100% / 12 * 3);
+				@include media-breakpoint-down(sm) { 
+					width: calc(100% / 12 * 9);
+				}
 			}
 			&.columns-4 {
 				width: calc(100% / 12 * 4);
+				@include media-breakpoint-down(sm) { 
+					width: calc(100% / 12 * 9);
+				}
 			}
 			&.columns-5 {
 				width: calc(100% / 12 * 5);
+				@include media-breakpoint-down(sm) { 
+					width: calc(100% / 12 * 9);
+				}
 			}
 			&.columns-6 {
 				width: calc(100% / 12 * 6);
+				@include media-breakpoint-down(sm) { 
+					width: calc(100% / 12 * 9);
+				}
 			}
 			&.columns-7 {
 				width: calc(100% / 12 * 7);
+				@include media-breakpoint-down(sm) { 
+					width: calc(100% / 12 * 9);
+				}
 			}
 			&.columns-8 {
 				width: calc(100% / 12 * 8);
+				@include media-breakpoint-down(sm) { 
+					width: calc(100% / 12 * 9);
+				}
 			}
 			&.columns-9 {
 				width: calc(100% / 12 * 9);
+				@include media-breakpoint-down(sm) { 
+					width: calc(100% / 12 * 9);
+				}
 			}
 			&.columns-10 {
 				width: calc(100% / 12 * 10);
+				@include media-breakpoint-down(sm) { 
+					width: calc(100% / 12 * 9);
+				}
 			}
 			&.columns-11 {
 				width: calc(100% / 12 * 11);
+				@include media-breakpoint-down(sm) { 
+					width: calc(100% / 12 * 9);
+				}
 			}
 			&.columns-12 {
 				width: 100%;
+				@include media-breakpoint-down(sm) { 
+					width: calc(100% / 12 * 9);
+				}
 			}
 			img {
 				width: 100%;
@@ -1029,7 +1111,7 @@ body[data-template=default] {
     	background-color: $color-black;
 		z-index: 3;
 		@include media-breakpoint-down(sm) { 
-			height: 40px;
+			height: 60px;
 		}
 		.top-header-project {
 			.header-content {
@@ -1049,7 +1131,7 @@ body[data-template=default] {
 		top: 0px;
 		@include media-breakpoint-down(sm) { 
 			position: sticky;
-			top: 40px;
+			top: 60px;
 		}
 	}
 	.white-header {
@@ -1058,14 +1140,14 @@ body[data-template=default] {
 		top: 0px;
 		left: 0px;
 		width: 100vw;
-		height: 140px;
+		height: 120px;
 		z-index: 1;
 		@include media-breakpoint-down(sm) { 
-			height: 70px;
+			height: 120px;
 		}
 	}
 	.content {
-		padding: 0px;
+		padding-bottom: 0px;
 	}
 }
 
@@ -1242,6 +1324,10 @@ body[data-template=default] {
 		}
 	}
 	.project-credits {
+		margin-bottom: calc($spacer * 24);
+		@include media-breakpoint-down(sm) { 
+			margin-bottom: calc($spacer-xl * 24);
+		}
 		@include media-breakpoint-down(sm) { 
 			display: none;
 		}

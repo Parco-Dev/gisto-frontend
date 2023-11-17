@@ -88,3 +88,14 @@ export function getProjectQuery(pageId: string): KirbyQuerySchema {
     },
   }
 }
+
+export function getProjectNavigationQuery(projectId: string): KirbyQuerySchema {
+  return {
+    query: `page("work/${projectId}").siblings(true).visible()`,
+    select: {
+      id: true,
+      title: true,
+      url: 'page.slug',
+    },
+  };
+}

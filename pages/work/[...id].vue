@@ -10,6 +10,30 @@ console.log(page);
 
 setPage(page);
 
+import { getProjectNavigationQuery } from '~/queries';
+
+const projectId = ref('');
+const project = ref({});
+const prevProject = ref({});
+const nextProject = ref({});
+const router = useRouter();
+
+onMounted(async () => {
+  projectId.value = useRoute().params.id;
+
+  // Fetch project details
+  const { data } = await useFetch(getProjectQuery(projectId.value));
+  project.value = data?.result;
+
+  // Fetch navigation data
+  const { data: navData } = await useFetch(getProjectNavigationQuery(projectId.value));
+  const [prev, current, next] = navData?.result || [];
+
+  prevProject.value = prev || {};
+  nextProject.value = next || {};
+
+});
+
 </script>
 
 <template>
@@ -92,6 +116,9 @@ setPage(page);
   <Files />
 
   <Lightbox />
+
+  <router-link :to="`/work/${prevProject.url}`">Previous Project</router-link>
+  <router-link :to="`/work/${nextProject.url}`">Next Project</router-link>
 
 </div>
 </template>

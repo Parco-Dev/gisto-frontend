@@ -5,21 +5,23 @@ const { queryApi, queryParams } = useQueryParams(getProjectsQuery());
 const { data } = await useFetch(queryApi, queryParams);
 const page = (data?.value as any)?.result;
 
+const minHeight = ref('');
+
 setPage(page);
-console.log(page);
 
 setWork(page.children);
 
 const filteredWork = useFilteredWork();
 
-console.log(filteredWork.value)
-
-
+onMounted(() => {
+  // Calculate minimum height for content
+  minHeight.value = '300px';
+})
 
 </script>
 
 <template>
-<div class="content page-work">
+<div class="content page-work" :style="{minHeight}">
 
   <div class="projects-header">
     <div class="row">

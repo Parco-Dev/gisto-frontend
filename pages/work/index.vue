@@ -17,6 +17,9 @@ const filteredWork = useFilteredWork();
 onMounted(() => {
   // Calculate minimum height for content
   minHeight.value = '300px';
+
+  // Add scroll listener
+  window.addEventListener('scroll', (e) => scrollFunction(e))
 })
 
 const showImage = (index: number) => {
@@ -25,6 +28,10 @@ const showImage = (index: number) => {
 
 const hideImage = () => {
   hoveredProject.value = -1;
+}
+
+const scrollFunction = (e: any) => {
+  // console.log(e.target.body);
 }
 
 </script>
@@ -82,6 +89,7 @@ const hideImage = () => {
         <img :src="project.main_image?.[0]?.url" :alt="project.main_image?.[0]?.alt" />
       </div>
     </div>
+    <div></div>
   </div>
 
   <div class="mobile-projects-images">

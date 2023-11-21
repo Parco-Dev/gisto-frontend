@@ -74,7 +74,7 @@ console.log(site);
     <div v-for="news in page?.news" :key="news.id" :class="`single-news columns-${news.columns}`">
       <img :src="news.news_image?.[0]?.url" :alt="news.news_image?.[0]?.alt" />
       <div class="news-info">
-        <p><span class="news-title">{{ news.title }}</span>{{ news.text }}</p>
+        <p><span class="news-title">{{ news.title }}</span> {{ news.text }}</p>
       </div>
       <div class="news-links">
         <a v-for="link in news.links" :key="link.id" :href="`${news.url}`" class="news-link">

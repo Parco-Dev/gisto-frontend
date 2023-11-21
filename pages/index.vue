@@ -47,7 +47,7 @@ const onMouseMove = (e: any) => {
           @mousemove="(e) => onMouseMove(e)"
         />
         <div class="project-info">
-          <p><span class="project-title">{{ project.title }}</span>{{ project.excerpt }}</p>
+          <p><span class="project-title">{{ project.title }}</span> {{ project.excerpt }}</p>
         </div>
       </a>
     </div>

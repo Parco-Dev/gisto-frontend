@@ -6,6 +6,7 @@ const { data } = await useFetch(queryApi, queryParams);
 const page = (data?.value as any)?.result;
 
 const minHeight = ref('');
+const hoveredProject = ref(-1);
 
 setPage(page);
 
@@ -17,6 +18,14 @@ onMounted(() => {
   // Calculate minimum height for content
   minHeight.value = '300px';
 })
+
+const showImage = (index: number) => {
+  hoveredProject.value = index;
+}
+
+const hideImage = () => {
+  hoveredProject.value = -1;
+}
 
 </script>
 
@@ -41,7 +50,13 @@ onMounted(() => {
   </div>
 
   <div class="projects-list">
-    <div v-for="(project, index) in filteredWork" :key="project.id" :data-project="`project-${index+1}`" class="single-project">
+    <div
+      v-for="(project, index) in filteredWork"
+      :key="project.id"
+      :data-project="`project-${index+1}`"
+      class="single-project"
+      :class="hoveredProject === index ? 'show-thumbnail' : ''"
+    >
       <a :href="`/work/${project.url}`">
         <div class="row">
           <div class="col-lg-1 col-3 project-year">
@@ -53,7 +68,7 @@ onMounted(() => {
             </div>
           </div>
           <div class="col-lg-5 col-9 project-title">
-            <p>{{ project.title }}</p>
+            <p @mouseenter="showImage(index)" @mouseleave="hideImage()">{{ project.title }}</p>
           </div>
           <div class="col-lg-3 col-12 project-place">
             <p v-html="project.place"></p>

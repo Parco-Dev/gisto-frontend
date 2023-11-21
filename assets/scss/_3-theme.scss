@@ -638,7 +638,8 @@ body[data-template=home] {
 			position: relative;
 			z-index: 0;
 			background-color: $color-white;
-			&:hover {
+			&.show-thumbnail {
+			// &:hover {
 				z-index: 1;
 				// mix-blend-mode: difference;
 				@include media-breakpoint-down(sm) { 
@@ -668,6 +669,7 @@ body[data-template=home] {
 			}
 			p {
 				@extend %small;
+				display: inline-block;
 				margin-bottom: 0px;
 				color: $color-black;
 				@include media-breakpoint-down(sm) { 

@@ -40,6 +40,7 @@ const filters = useFilters();
 
   <div class="top-header">
 
+    <Transition name="top" mode="out-in">
     <div v-if="isHomePage || isAboutPage" class="top-header-bio">
       <div class="row">
         <div class="col-lg-10 col-12">
@@ -48,7 +49,9 @@ const filters = useFilters();
         <div class="col-lg-2 col-12"></div>
       </div>
     </div>
+    </Transition>
 
+    <Transition name="top" mode="out-in">
     <div v-if="isWorkPage" class="top-header-filters">
       <div class="filters-group category-list">
         <p class="taxonomy-label">Categories:</p>
@@ -81,7 +84,9 @@ const filters = useFilters();
         </ul>
       </div>
     </div>
+    </Transition>
 
+    <Transition name="top" mode="out-in">
     <div v-if="isProject" class="top-header-project top-header-project-desktop">
       <div class="row">
         <div class="col-lg-1 col-12">
@@ -120,6 +125,7 @@ const filters = useFilters();
         </div>
       </div>
     </div>
+   </Transition>
 
     <div v-if="isProject" class="top-header-project top-header-project-mobile">
       <div class="project-info-button">
@@ -223,6 +229,21 @@ const filters = useFilters();
 </template>
 
 <style scoped lang="scss">
+.top-enter-active,
+.top-leave-active {
+  transition: all 0.5s;
+}
+
+.top-enter-active {
+  transition-delay: 0.5s;
+}
+
+.top-enter-from,
+.top-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
 .header {
   padding: 20px;
 

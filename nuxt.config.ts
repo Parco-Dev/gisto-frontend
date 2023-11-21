@@ -3,6 +3,10 @@
 export default defineNuxtConfig({
   modules: ['@vueuse/nuxt', 'nuxt-kql'],
 
+  app: {
+    pageTransition: { name: 'page', mode: 'out-in' }
+  },
+
   css: [
     '~/node_modules/bootstrap/dist/css/bootstrap.css',
     '~/assets/scss/main.scss',

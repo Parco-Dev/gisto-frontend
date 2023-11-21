@@ -13,6 +13,14 @@ export function getProjectQuery(pageId: string): KirbyQuerySchema {
       year: true,
       place: true,
       client: true,
+      next: {
+        query: 'page.next',
+        select: [ 'title', 'slug' ],
+      },
+      prev: {
+        query: 'page.prev',
+        select: [ 'title', 'slug' ],
+      },
       main_image: {
         query: "page.image",
         select: {

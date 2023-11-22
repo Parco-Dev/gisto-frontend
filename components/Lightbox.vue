@@ -3,17 +3,44 @@
 const content = useLightboxContent();
 const isLightbox = useLightbox();
 const fileIndex = useLightboxSlideIndex();
+const groupIndex = useLightboxGroupIndex();
 
 // Check click on left or right side of the image
 const changeSlide = (e: any) => {
 
-  // Previous slide
+  // Click on left half of the image
   if (e.offsetX < e.target.width / 2) {
-    setLightboxSlideIndex((fileIndex.value - 1) % content.value.files.length)
+
+    // Previous group
+    if (fileIndex.value <= 0) {
+      setLightboxGroupIndex(
+        groupIndex.value <= 0
+        ? content.value.length - 1
+        : groupIndex.value - 1
+      )
+      setLightboxSlideIndex(content.value?.[groupIndex.value]?.files.length - 1)
+    }
+    // Previous slide
+    else {
+      setLightboxSlideIndex(fileIndex.value - 1)
+    }   
   }
-  // Next slide
+  // Click on right half of the image
   else {
-    setLightboxSlideIndex((fileIndex.value + 1) % content.value.files.length)
+
+    // Next group
+    if (fileIndex.value >= content.value?.[groupIndex.value]?.files.length - 1) {
+      setLightboxGroupIndex(
+        groupIndex.value >= content.value.length - 1
+        ? 0
+        : groupIndex.value + 1
+      )
+      setLightboxSlideIndex(0)
+    }
+    // Slide
+    else {
+      setLightboxSlideIndex(fileIndex.value + 1)
+    }
   }
 }
 
@@ -33,7 +60,6 @@ const onMouseMove = (e: any) => {
 
 const reset = () => {
   closeLightbox();
-  setLightboxContent(-1, null);
   setFilesList(false);
 }
 
@@ -45,7 +71,7 @@ const reset = () => {
     <div class="close" @click="reset()"></div>
 
       <div
-        v-for="(file, index) in content.files"
+        v-for="(file, index) in content[groupIndex].files"
         :key="file.id"
         class="lightbox-file"
         @click="(e) => changeSlide(e)"

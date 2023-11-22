@@ -1471,7 +1471,8 @@ body[data-template=default] {
 							margin-right: calc($spacer-sm * 2);
 							padding-right: calc($spacer-sm * 2);
 						}
-						&:hover {
+						&:hover,
+						&.current {
 							background-color: $color-light-grey;
 						}
 						&.active {

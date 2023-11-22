@@ -1,13 +1,19 @@
 export const useLightboxContent = () => useState<any>('lightboxContent', () => [])
 
-export const setLightboxContent = (index: number, files: any) => {
-  useLightboxContent().value = {files, index};
+export const setLightboxContent = (groups: {title: string, files: any}[]) => {
+  useLightboxContent().value = groups;
 }
 
 export const useLightbox = () => useState<any>('lightbox', () => false)
 
 export const setLightbox = (value: boolean) => {
   useLightbox().value = value;
+}
+
+export const useLightboxGroupIndex = () => useState<any>('lightboxGroupIndex', () => null)
+
+export const setLightboxGroupIndex = (index: number) => {
+  useLightboxGroupIndex().value = index;
 }
 
 export const useLightboxSlideIndex = () => useState<any>('lightboxSlideIndex', () => null)
@@ -24,6 +30,8 @@ export const openLightbox = (index?: number) => {
 export const closeLightbox = () => {
   setLightbox(false);
   setLightboxSlideIndex(-1);
+  setLightboxGroupIndex(-1);
+  setLightboxContent([]);
 }
 
 export const useFilesList = () => useState<any>('filesList', () => false)

@@ -31,8 +31,10 @@ const toggleFilesList = () => {
 
   // If files list is open, close and reset lightbox
   if (isFilesOpen.value) {
-    setLightboxContent(-1, null);
     closeLightbox();
+  }
+  else {
+    setLightboxContent(groups)
   }
 
   setFilesList(!isFilesOpen.value);

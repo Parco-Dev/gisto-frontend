@@ -27,7 +27,7 @@ const onMouseLeave = () => {
 
 const onMouseMove = (e: any) => {
   const isLeft = (e.offsetX < e.target.width / 2);
-  const position = { x: e.pageX + (isLeft ? 10 : -50), y: e.pageY + 16 };
+  const position = { x: e.clientX + (isLeft ? 10 : -50), y: e.clientY + 16 };
   setCursor({position, text: isLeft ? '← Prev' : 'Next →'});
 }
 

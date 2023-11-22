@@ -5,43 +5,48 @@ const isLightbox = useLightbox();
 const fileIndex = useLightboxSlideIndex();
 const groupIndex = useLightboxGroupIndex();
 
+const prevGroup = () => {
+  setLightboxGroupIndex(
+    groupIndex.value <= 0
+    ? content.value.length - 1
+    : groupIndex.value - 1
+  )
+  setLightboxSlideIndex(content.value?.[groupIndex.value]?.files.length - 1)
+}
+
+const nextGroup = () => {
+  setLightboxGroupIndex(
+    groupIndex.value >= content.value.length - 1
+    ? 0
+    : groupIndex.value + 1
+  )
+  setLightboxSlideIndex(0)
+}
+
+const prevSlide = () => {
+  setLightboxSlideIndex(fileIndex.value - 1)
+}
+
+const nextSlide = () => {
+  setLightboxSlideIndex(fileIndex.value + 1)
+}
+
+const prev = () => {
+  const isFirstSlide = fileIndex.value <= 0;
+  if (isFirstSlide) prevGroup();
+  else prevSlide();
+}
+
+const next = () => {
+  const isLastSlide = fileIndex.value >= content.value?.[groupIndex.value]?.files.length - 1;
+  if (isLastSlide) nextGroup();
+  else nextSlide();
+}
+
 // Check click on left or right side of the image
 const changeSlide = (e: any) => {
-
-  // Click on left half of the image
-  if (e.offsetX < e.target.width / 2) {
-
-    // Previous group
-    if (fileIndex.value <= 0) {
-      setLightboxGroupIndex(
-        groupIndex.value <= 0
-        ? content.value.length - 1
-        : groupIndex.value - 1
-      )
-      setLightboxSlideIndex(content.value?.[groupIndex.value]?.files.length - 1)
-    }
-    // Previous slide
-    else {
-      setLightboxSlideIndex(fileIndex.value - 1)
-    }   
-  }
-  // Click on right half of the image
-  else {
-
-    // Next group
-    if (fileIndex.value >= content.value?.[groupIndex.value]?.files.length - 1) {
-      setLightboxGroupIndex(
-        groupIndex.value >= content.value.length - 1
-        ? 0
-        : groupIndex.value + 1
-      )
-      setLightboxSlideIndex(0)
-    }
-    // Slide
-    else {
-      setLightboxSlideIndex(fileIndex.value + 1)
-    }
-  }
+  if (e.offsetX < e.target.width / 2) prev();
+  else next();
 }
 
 const onMouseEnter = () => {
@@ -61,6 +66,36 @@ const onMouseMove = (e: any) => {
 const reset = () => {
   closeLightbox();
   setFilesList(false);
+}
+
+onMounted(() => {
+  window.addEventListener('keydown', useArrowNavigation);
+})
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', useArrowNavigation);
+})
+
+const useArrowNavigation = (e: KeyboardEvent) => {
+  if (isLightbox) {
+    switch (e.key) {
+      case 'Escape':
+        e.preventDefault();
+        setFilesList(false);
+        closeLightbox();
+        break;
+      case 'ArrowLeft':
+      case 'ArrowUp':
+        e.preventDefault();
+        prev();
+        break;
+      case 'ArrowRight':
+      case 'ArrowDown':
+        e.preventDefault();
+        next();
+        break;
+    }
+  }
 }
 
 </script>

@@ -77,7 +77,10 @@ export function getProjectQuery(pageId: string): KirbyQuerySchema {
         query: 'page.video.toStructure',
         select: {
           id: true,
-          media: "structureItem.media.toFiles",
+          media: {
+            query: "structureItem.media.toFiles",
+            select: ["title", "url", "name", "extension", "type"],
+          },
           embeds: true,
           title: true
         }

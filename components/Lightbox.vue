@@ -116,12 +116,33 @@ const useArrowNavigation = (e: KeyboardEvent) => {
     >
 
       <div class="lightbox-top">
-        <h6 class="lightbox-file-title">{{file.name}}</h6>
+        <h6 v-if="file.name" class="lightbox-file-title">{{file.name}}</h6>
+        <h6 v-else-if="file.title" class="lightbox-file-title">{{file.title}}</h6>
+        <h6 v-else-if="file.media?.length" class="lightbox-file-title">{{file.media[0].name}}</h6>
       </div>
 
+      <div v-if="fileIndex === index && file.embeds">
+        <div class="type-embed">
+          <iframe
+            width="560"
+            height="315"
+            :src="`https://www.youtube.com/embed/${file.embeds}`"
+            title=""
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen>
+          </iframe>
+        </div>
+      </div>
 
-      <div v-if="fileIndex === index && file.embed">
-        <p>Embed</p>
+      <div v-else-if="fileIndex === index && file.media?.length && file.media[0].type === 'video'" class="type-video">
+        <video autoplay loop playsinline muted>
+          <source :src="file.media[0].url" type="video/mp4">
+        </video>
+      </div>
+
+      <div v-else-if="fileIndex === index && file.media?.length && file.media[0].type === 'image'" class="type-image">
+        <img :src="file.media[0].url" />
       </div>
       
       <div v-else-if="fileIndex === index && file.type === 'video'" class="type-video">
@@ -174,6 +195,18 @@ const useArrowNavigation = (e: KeyboardEvent) => {
   &-file {
     position: relative;
     cursor: pointer;
+
+    .type-embed {
+      background-color: black;
+      max-width: 60vw;
+      max-height: 80vh;
+      height: auto;
+
+      iframe {
+        height: 60vh;
+        width: 90vh
+      }
+    }
 
     .type-video {
       video {

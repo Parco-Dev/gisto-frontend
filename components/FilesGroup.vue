@@ -34,6 +34,8 @@ const toggleGroup = () => {
       >
         <p v-if="file.name" v-html="`${file.name}.${file.extension}`"></p>
         <p v-else-if="file.title" v-html="file.title"></p>
+        <p v-else-if="file.media?.[0]" v-html="`${file.media[0].name}.${file.media[0].extension}`"></p>
+        <p v-else-if="file.embeds" v-html="`${file.title || 'Video'} on Youtube`"></p>
       </div>
     </div>
   </div>

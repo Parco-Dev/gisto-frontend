@@ -1,7 +1,7 @@
 // import { siteQuery } from './queries'
 
 export default defineNuxtConfig({
-  modules: ['@vueuse/nuxt', 'nuxt-kql'],
+  modules: ['@vueuse/nuxt', 'nuxt-kql', '@nuxtjs/google-fonts'],
 
   app: {
     pageTransition: { name: 'page', mode: 'out-in' }
@@ -11,6 +11,12 @@ export default defineNuxtConfig({
     '~/node_modules/bootstrap/dist/css/bootstrap.css',
     '~/assets/scss/main.scss',
   ],
+
+  googleFonts: {
+    families: {
+      Cousine: [400, 700],
+    }
+  },
 
   runtimeConfig: {
     public: {

@@ -59,7 +59,7 @@ const onMouseLeave = () => {
 
 const onMouseMove = (e: any) => {
   const isLeft = (e.offsetX < e.target.width / 2);
-  const position = { x: e.clientX + (isLeft ? 10 : -50), y: e.clientY + 16 };
+  const position = { x: e.clientX + 10, y: e.clientY + 16, align: isLeft ? 'right' : 'left' };
   setCursor({position, text: isLeft ? '← Prev' : 'Next →'});
 }
 
@@ -103,33 +103,38 @@ const useArrowNavigation = (e: KeyboardEvent) => {
 <template>
   <div v-if="isLightbox" class="lightbox">
 
-    <div class="close" @click="reset()"></div>
+    <div class="overlay-close" @click="reset()"></div>
 
-      <div
-        v-for="(file, index) in content[groupIndex].files"
-        :key="file.id"
-        class="lightbox-file"
-        @click="(e) => changeSlide(e)"
-        @mouseenter="onMouseEnter()"
-        @mouseleave="onMouseLeave()"
-        @mousemove="(e) => onMouseMove(e)"
-      >
+    <div
+      v-for="(file, index) in content[groupIndex].files"
+      :key="file.id"
+      class="lightbox-file"
+      @click="(e) => changeSlide(e)"
+      @mouseenter="onMouseEnter()"
+      @mouseleave="onMouseLeave()"
+      @mousemove="(e) => onMouseMove(e)"
+    >
 
-        <div v-if="fileIndex === index && file.embed">
-          <p>Embed</p>
-        </div>
-        
-        <div v-else-if="fileIndex === index && file.type === 'video'" class="type-video">
-          <video autoplay loop playsinline muted>
-            <source :src="file.url" type="video/mp4">
-          </video>
-        </div>
-
-        <div v-else-if="fileIndex === index && file.type === 'image'" class="type-image">
-          <img :src="file.url" />
-        </div>
-      
+      <div class="lightbox-top">
+        <h6 class="lightbox-file-title">{{file.name}}</h6>
       </div>
+
+
+      <div v-if="fileIndex === index && file.embed">
+        <p>Embed</p>
+      </div>
+      
+      <div v-else-if="fileIndex === index && file.type === 'video'" class="type-video">
+        <video autoplay loop playsinline muted>
+          <source :src="file.url" type="video/mp4">
+        </video>
+      </div>
+
+      <div v-else-if="fileIndex === index && file.type === 'image'" class="type-image">
+        <img :src="file.url" />
+      </div>
+    
+    </div>
 
     <CursorView />
   </div>
@@ -147,13 +152,26 @@ const useArrowNavigation = (e: KeyboardEvent) => {
   align-items: center;
   justify-content: center;
 
-  .close {
+  &-top {
     position: absolute;
+    top: -1.5em;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
     width: 100%;
-    height: 100%;
+    height: 1.5em;
+    padding: .25em;
+		font-family: 'Cousine', monospace;
+		font-weight: 400;
+    background-color: #fff;
   }
 
-  .lightbox-file {
+  &-file-title {
+    font-size: 11px;
+    line-height: 1.35em;
+  }
+
+  &-file {
     position: relative;
     cursor: pointer;
 
@@ -171,6 +189,12 @@ const useArrowNavigation = (e: KeyboardEvent) => {
         height: auto;
       }
     }
+  }
+
+  .overlay-close {
+    position: absolute;
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

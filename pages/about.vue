@@ -4,11 +4,9 @@ import { aboutQuery } from '~/queries'
 const { queryApi, queryParams } = useQueryParams(aboutQuery);
 const { data } = await useFetch(queryApi, queryParams);
 const page = (data?.value as any)?.result;
+const site = useSite();
 
 setPage(page);
-const site = useSite()
-console.log(page);
-console.log(site);
 
 </script>
 

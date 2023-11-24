@@ -7,9 +7,7 @@ const site = useSite()
 // ).value;
 
 const page = usePage();
-// const projects = site.value?.projects;
-
-// console.log(page);
+const project = useProject() as any;
 
 const isHomePage = computed(() => route.path === '/');
 const isAboutPage = computed(() => route.path === '/about');
@@ -91,7 +89,7 @@ const filters = useFilters();
       <div class="row">
         <div class="col-lg-1 col-12">
           <div class="header-content">
-            <p v-html="page?.year"></p>
+            <p v-html="project?.year"></p>
           </div>
           <div class="header-label">
             <p>Year</p>
@@ -99,7 +97,7 @@ const filters = useFilters();
         </div>
         <div class="col-lg-3 col-12">
           <div class="header-content">
-            <p v-html="page?.place"></p>
+            <p v-html="project?.place"></p>
           </div>
           <div class="header-label">
             <p>Place</p>
@@ -107,7 +105,7 @@ const filters = useFilters();
         </div>
         <div class="col-lg-4 col-12">
           <div class="header-content">
-            <p v-html="page?.client"></p>
+            <p v-html="project?.client"></p>
           </div>
           <div class="header-label">
             <p>Client</p>
@@ -115,10 +113,10 @@ const filters = useFilters();
         </div>
         <div class="col-lg-4 col-12">
           <div class="header-content header-taxonomies">
-            <p v-for="category in page?.category" :key="category" class="single-category">
+            <p v-for="category in project?.category" :key="category" class="single-category">
               {{ category }}
             </p>
-            <p v-for="typeOfWork in page?.type_of_work" :key="typeOfWork" class="single-type-of-work">
+            <p v-for="typeOfWork in project?.type_of_work" :key="typeOfWork" class="single-type-of-work">
               {{ typeOfWork }}
             </p>
           </div>
@@ -197,7 +195,6 @@ const filters = useFilters();
     </NuxtLink>
 
     <nav class="header-nav">
-
       <ul class="header-nav-inner">
         <li class="header-item">
           <NuxtLink 
@@ -247,6 +244,7 @@ const filters = useFilters();
 .top-header {
   &-bio, &-filters, &-project {
     position: fixed;
+    width: 100%;
   }
 }
 

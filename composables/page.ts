@@ -70,3 +70,11 @@ function usePageState() {
     () => 'pending'
   )
 }
+
+export function useProject () {
+  return useState('app.project', () => {})
+}
+
+export function setProject (page?: any) {
+  useProject().value = page;
+}

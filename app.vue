@@ -1,7 +1,7 @@
 <template>
   <Html lang="en">
     <Head>
-      <Link rel="icon" href="/favicon.ico" type="image/x-icon" />
+      <Link rel="icon" href="/favicon.jpg" type="image/jpeg" />
     </Head>
 
     <Body>

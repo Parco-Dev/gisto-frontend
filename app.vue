@@ -23,12 +23,9 @@
   .page-leave-active {
     transition: all 0.5s;
   }
-  .page-enter-from {
-    opacity: 0;
-    transform: translateX(-100vw);
-  }
+  .page-enter-from,
   .page-leave-to {
     opacity: 0;
-    transform: translateX(100vw);
+    transform: translateY(20px);
   }
 </style>

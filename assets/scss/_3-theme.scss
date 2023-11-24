@@ -156,6 +156,7 @@ body[data-template=home] {
 		// mix-blend-mode: difference;
 		.header-title {
 			color: $color-white;
+			transition: color .1s;
 			&:hover {
 				color: $color-dark-grey;
 			}
@@ -165,6 +166,7 @@ body[data-template=home] {
 				li {
 					a {
 						color: $color-white;
+						transition: color .1s;
 						&:hover {
 							color: $color-dark-grey;
 						}
@@ -290,6 +292,7 @@ body[data-template=home] {
 				a {
 					@extend %large;
 					color: $color-white;
+					transition: color .1s;
 					&[aria-current] {
 						color: $color-dark-grey;
 					}
@@ -594,15 +597,32 @@ body[data-template=home] {
 		}
 	}
 	li {
-		display: flex;
+		position: relative;
+		display: inline-flex;
 		@extend %small;
 		margin: 0px;
 		text-transform: capitalize;
 		cursor: pointer;
 		color: $color-white;
-		&.active {
+		transition: color .1s;
+		&:before {
+			z-index: -1;
+			content: '';
+			position: absolute;
+			display: block;
+			left: 0;
+			top: 0;
+			width: 0;
+			height: 100%;
 			background-color: #313131;
 			color: $color-white;
+			transition: width .15s;
+		}
+		&:not(.active):hover {
+			color: $color-dark-grey;
+		}
+		&.active:before {
+			width: 100%;
 		}
 	}
 }
@@ -1130,7 +1150,7 @@ body {
 body[data-template=default] {
 	.top-header {
 		mix-blend-mode: difference;
-    	background-color: $color-black;
+		background-color: $color-black;
 		z-index: 3;
 		@include media-breakpoint-down(sm) { 
 			height: 60px;
@@ -1148,7 +1168,7 @@ body[data-template=default] {
 			}
 		}
 	}
-	.site-header {
+	.site-header-project {
 		position: relative;
 		top: 0px;
 		@include media-breakpoint-down(sm) { 

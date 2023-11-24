@@ -186,7 +186,7 @@ const filters = useFilters();
 
   <div class="white-header"></div>
 
-  <header class="site-header">
+  <header class="site-header" :class="[isProject && 'site-header-project']">
 
     <NuxtLink
       to="/"
@@ -242,6 +242,12 @@ const filters = useFilters();
 .top-leave-to {
   opacity: 0;
   transform: translateY(-10px);
+}
+
+.top-header {
+  &-bio, &-filters, &-project {
+    position: fixed;
+  }
 }
 
 .header {

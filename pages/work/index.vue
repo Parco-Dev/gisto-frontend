@@ -16,7 +16,7 @@ const filteredWork = useFilteredWork();
 
 onMounted(() => {
   // Calculate minimum height for content
-  minHeight.value = '300px';
+  //minHeight.value = '300px';
 
   // Add scroll listener
   window.addEventListener('scroll', (e) => scrollFunction(e))

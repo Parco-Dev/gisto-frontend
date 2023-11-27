@@ -4,7 +4,10 @@ export default defineNuxtConfig({
   modules: ['@vueuse/nuxt', 'nuxt-kql', '@nuxtjs/google-fonts'],
 
   app: {
-    pageTransition: { name: 'page', mode: 'out-in' }
+    pageTransition: { 
+      name: 'page', 
+      mode: 'out-in' 
+    }
   },
 
   css: [
@@ -14,7 +17,7 @@ export default defineNuxtConfig({
 
   googleFonts: {
     families: {
-      Cousine: [400, 700],
+      'IBM+Plex+Mono': [400, 700],
     }
   },
 

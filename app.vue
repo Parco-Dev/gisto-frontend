@@ -19,6 +19,8 @@
 </template>
 
 <style lang="scss">
+
+  /*
   .page-enter-active,
   .page-leave-active {
     transition: all 0.5s;
@@ -28,8 +30,9 @@
     opacity: 0;
     transform: translateY(20px);
   }
+  */
 
-  /* .page-enter-active,
+  .page-enter-active,
   .page-leave-active {
     transition: all .35s;
 
@@ -71,5 +74,5 @@
       animation: wipe .8s ease-in-out 1;
       animation-delay: .6s;
     }
-  } */
+  } 
 </style>

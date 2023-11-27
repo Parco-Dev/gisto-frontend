@@ -116,6 +116,14 @@
 }
 
 /* GLOBAL */
+
+* {
+	&::selection {
+		background-color: $color-black;
+		color: $color-white;
+	}
+}
+
 html {
 	overflow-x: clip;
 }
@@ -339,7 +347,7 @@ body[data-template=home] {
 		}
 	}
 	.footer-studio-address {
-		width: 230px;
+		width: 250px;
 		margin-right: calc($spacer * 2);
 		@include media-breakpoint-down(sm) { 
 			margin-right: calc($spacer-xl * 2);
@@ -352,7 +360,7 @@ body[data-template=home] {
 		}
 	}
 	.footer-workshop-address {
-		width: 230px;
+		width: 250px;
 		margin-right: calc($spacer * 2);
 		@include media-breakpoint-down(sm) { 
 			margin-right: calc($spacer-xl * 2);
@@ -581,8 +589,6 @@ body[data-template=home] {
 
 /* WORK */
 
-
-
 .filters-group {
 	display: flex;
 	padding: 0px;
@@ -624,6 +630,12 @@ body[data-template=home] {
 		&.active:before {
 			width: 100%;
 		}
+	}
+}
+
+body[data-template=work] {
+	.white-header {
+		height: 140px;
 	}
 }
 
@@ -675,6 +687,16 @@ body[data-template=home] {
 			position: relative;
 			z-index: 0;
 			background-color: $color-white;
+			&:hover {
+				a {
+					p {
+						color: $color-dark-grey;
+						@include media-breakpoint-down(sm) { 
+							color: $color-black;
+						}
+					}
+				}
+			}
 			&.show-thumbnail {
 			// &:hover {
 				z-index: 1;
@@ -689,7 +711,7 @@ body[data-template=home] {
 						mix-blend-mode: normal;
 					}
 					p {
-						color: $color-white;
+						color: $color-dark-grey;
 						@include media-breakpoint-down(sm) { 
 							color: $color-black;
 						}
@@ -789,6 +811,9 @@ body[data-template=home] {
 body[data-template=about] {
 	.top-header {
 		// background-color: $color-white;
+	}
+	.white-header {
+		height: 140px;
 	}
 	.site-header {
 		// background-color: $color-white;
@@ -946,14 +971,14 @@ body[data-template=about] {
 			flex-wrap: nowrap;
 		}
 		.single-news {
-			margin-bottom: calc($spacer * 6);
+			margin-bottom: 0px;
 			padding: 0px calc($spacer / 4);
 			@include media-breakpoint-down(sm) { 
-				margin-bottom: calc($spacer-xl * 6);
+				margin-bottom: 0px;
 				padding: 0px calc($spacer-xl / 4);
 			}
 			@include media-breakpoint-down(sm) { 
-				margin-bottom: calc($spacer-sm * 6);
+				margin-bottom: 0px;
 				padding: 0px calc($spacer-sm / 4);
 				flex: 0 0 auto;
 				white-space: initial;
@@ -1211,13 +1236,14 @@ body[data-template=default] {
 		display: none;
 		@include media-breakpoint-down(sm) { 
 			display: block;
+			z-index: 10;
 		}
 		.project-info-button {
-			background-color: #262626;
+			background-color: $color-light-grey;
 			padding: calc($spacer-sm / 2);
 			cursor: pointer;
 			p {
-				color: $color-white;
+				color: $color-black;
 				margin-bottom: 0px;
 				.arrow {
 		
@@ -1225,7 +1251,24 @@ body[data-template=default] {
 			}
 		}
 		.project-info-content {
-			display: none;
+			// display: none;
+			background-color: $color-light-grey;
+			color: $color-black;
+			height: calc(100vh - 34px);
+			padding: $spacer-sm*2 calc($spacer-sm / 2);
+			overflow-y: auto;
+			.content-row {
+				margin-bottom: $spacer-sm;
+			}
+			.header-label {
+				margin-bottom: 0px;
+			}
+			.header-content {
+				p {
+					@extend %small;
+					margin-bottom: 0px;
+				}
+			}
 		}
 	}
 	.header-content {
@@ -1394,6 +1437,25 @@ body[data-template=default] {
 			}
 		}
 	}
+	.projects-navigation {
+		display: flex;
+		justify-content: flex-end;
+		width: 100%;
+		a {
+			display: flex;
+			flex-direction: column;
+			&.prev-link {
+				margin-right: auto;
+			}
+			&.next-link {
+				align-items: flex-end;
+			}
+			p {
+				margin-bottom: 0px;
+				@extend %small;
+			}
+		}
+	}
 	.project-files {
 		position: fixed;
 		top: calc($spacer / 4);
@@ -1403,7 +1465,7 @@ body[data-template=default] {
 		display: flex;
 		align-items: flex-end;
 		flex-direction: column;
-		font-family: 'Cousine', monospace;
+		font-family: 'IBM Plex Mono', monospace;
 		font-weight: 700;
 		@extend %ultrasmall;
 		@include media-breakpoint-down(sm) { 

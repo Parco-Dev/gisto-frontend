@@ -172,6 +172,7 @@ const useArrowNavigation = (e: KeyboardEvent) => {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #d9d9da;
 
   &-top {
     position: absolute;
@@ -201,7 +202,9 @@ const useArrowNavigation = (e: KeyboardEvent) => {
       max-width: 60vw;
       max-height: 80vh;
       height: auto;
-
+      @include media-breakpoint-down(sm) { 
+        max-width: 100%;
+      }
       iframe {
         height: 60vh;
         width: 90vh
@@ -213,6 +216,9 @@ const useArrowNavigation = (e: KeyboardEvent) => {
         max-width: 60vw;
         max-height: 80vh;
         height: auto;
+        @include media-breakpoint-down(sm) { 
+          max-width: 100%;
+        }
       }
     }
     .type-image {
@@ -220,6 +226,9 @@ const useArrowNavigation = (e: KeyboardEvent) => {
         max-width: 60vw;
         max-height: 80vh;
         height: auto;
+        @include media-breakpoint-down(sm) { 
+          max-width: 100%;
+        }
       }
     }
   }

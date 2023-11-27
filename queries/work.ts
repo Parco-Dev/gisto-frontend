@@ -7,6 +7,7 @@ export function getProjectsQuery(): KirbyQuerySchema {
       url: true,
       id: true,
       title: true,
+      intendedTemplate: true,
       // text: 'page.text.kirbytext',
       children: {
         query: `page.children.listed`,

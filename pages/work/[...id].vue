@@ -92,8 +92,16 @@ setProject(page);
 
   <Lightbox />
 
-  <NuxtLink v-if="page?.prev" :to="`/work/${page.prev.slug}`">Previous Project</NuxtLink>
-  <NuxtLink v-if="page?.next" :to="`/work/${page.next.slug}`">Next Project</NuxtLink>
+  <div class="projects-navigation">
+    <NuxtLink v-if="page?.prev" :to="`/work/${page.prev.slug}`" class="prev-link">
+      <p>← Prev</p>
+      <p v-html="page.prev.title"></p>
+    </NuxtLink>
+    <NuxtLink v-if="page?.next" :to="`/work/${page.next.slug}`" class="next-link">
+      <p>Next →</p>
+      <p v-html="page.next.title"></p>
+    </NuxtLink>
+  </div>
 
 </div>
 </template>

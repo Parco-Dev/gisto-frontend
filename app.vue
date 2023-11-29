@@ -20,7 +20,7 @@
 
 <style lang="scss">
 
-  /*
+  
   .page-enter-active,
   .page-leave-active {
     transition: all 0.5s;
@@ -28,10 +28,10 @@
   .page-enter-from,
   .page-leave-to {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(5px);
   }
-  */
-
+ 
+/* 
   .page-enter-active,
   .page-leave-active {
     transition: all .35s;
@@ -74,5 +74,5 @@
       animation: wipe .8s ease-in-out 1;
       animation-delay: .6s;
     }
-  } 
+  }  */
 </style>

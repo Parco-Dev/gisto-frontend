@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { getProjectQuery } from '~/queries'
+import { getProjectQuery } from '~/queries';
+import { BASE_DELAY } from '~/data/constants';
 
 const kirbyPath = useRoute().path;
 const { queryApi, queryParams } = useQueryParams(getProjectQuery(kirbyPath));
@@ -15,14 +16,14 @@ setProject(page);
 <div class="content single-project">
 
   <div class="project-title">
-    <p>{{ page?.title }}</p>
+    <Text :text="page.title" :reveal="true" :delay="BASE_DELAY" :invert="true" />
   </div>
 
   <div class="project-header">
     <div class="project-subtitle">
       <div class="row">
         <div class="col-lg-8 col-12">
-          <p v-html="page.subtitle"></p>
+          <Text :text="page.subtitle" :reveal="true" :delay="BASE_DELAY + 50" />
         </div>
         <div class="col-lg-4 col-12"></div>
       </div>

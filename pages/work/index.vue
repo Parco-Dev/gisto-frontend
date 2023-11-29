@@ -1,22 +1,19 @@
 <script setup lang="ts">
-import { getProjectsQuery } from '~/queries'
+import { getProjectsQuery } from '~/queries';
+import { BASE_DELAY } from '~/data/constants';
 
 const { queryApi, queryParams } = useQueryParams(getProjectsQuery());
 const { data } = await useFetch(queryApi, queryParams);
 const page = (data?.value as any)?.result;
 
-const minHeight = ref('');
 const hoveredProject = ref(-1);
 
 setPage(page);
-
 setWork(page.children);
 
 const filteredWork = useFilteredWork();
 
 onMounted(() => {
-  // Calculate minimum height for content
-  //minHeight.value = '300px';
 
   // Add scroll listener
   window.addEventListener('scroll', (e) => scrollFunction(e))
@@ -37,21 +34,21 @@ const scrollFunction = (e: any) => {
 </script>
 
 <template>
-<div class="content page-work" :style="{minHeight}">
+<div class="content page-work">
 
   <div class="projects-header">
     <div class="row">
         <div class="col-lg-1 col-12 column-button" @click="setFilteredWork('year')">
-          <p>Year <IconSort /></p>
+          <p><Text text="Year" :reveal="true" :delay="BASE_DELAY" /> <IconSort /></p>
         </div>
         <div class="col-lg-5 col-12 column-button" @click="setFilteredWork('name')">
-          <p>Name <IconSort /></p>
+          <p><Text text="Name" :reveal="true" :delay="BASE_DELAY" /> <IconSort /></p>
         </div>
         <div class="col-lg-3 col-12 column-button" @click="setFilteredWork('place')">
-          <p>Place <IconSort /></p>
+          <p><Text text="Place" :reveal="true" :delay="BASE_DELAY" /> <IconSort /></p>
         </div>
         <div class="col-lg-3 col-12 column-button" @click="setFilteredWork('client')">
-          <p>Client <IconSort /></p>
+          <p><Text text="Client" :reveal="true" :delay="BASE_DELAY" /> <IconSort /></p>
         </div>
       </div>
   </div>
@@ -68,20 +65,20 @@ const scrollFunction = (e: any) => {
         <div class="row">
           <div class="col-lg-1 col-3 project-year">
             <div v-if="project.ongoing === 'true'">
-              <p>Ongoing</p>
+              <Text text="Ongoing" :reveal="true" :delay="BASE_DELAY + index * 15" />
             </div>
             <div v-else>
-              <p v-html="project.year"></p>
+              <Text :text="project.year" :reveal="true" :delay="BASE_DELAY + index * 15" />
             </div>
           </div>
           <div class="col-lg-5 col-9 project-title">
-            <p @mouseenter="showImage(index)" @mouseleave="hideImage()">{{ project.title }}</p>
+            <Text :text="project.title" :reveal="true" :delay="BASE_DELAY + 50 + index * 15" @mouseenter="showImage(index)" @mouseleave="hideImage()" />
           </div>
           <div class="col-lg-3 col-12 project-place">
-            <p v-html="project.place"></p>
+            <Text :text="project.place" :reveal="true" :delay="BASE_DELAY + 100 + index * 15" />
           </div>
           <div class="col-lg-3 col-12 project-client">
-            <p v-html="project.client"></p>
+            <Text :text="project.client" :reveal="true" :delay="BASE_DELAY + 150 + index * 15" />
           </div>
         </div>
       </a>

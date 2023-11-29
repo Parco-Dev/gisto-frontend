@@ -7,7 +7,7 @@ export const aboutQuery: KirbyQuerySchema = {
     id: true,
     isListed: true,
     intendedTemplate: true,
-    about_text: 'page.about_text.kirbytext',
+    about_text: true,
     email: 'page.email',
     social: {
       query: 'page.social.toStructure',
@@ -25,7 +25,7 @@ export const aboutQuery: KirbyQuerySchema = {
         alt: "file.alt.kirbytext"
       }
     },
-    text: 'page.text.kirbytext',
+    text: true,
     collaborations: 'page.collaborations.kirbytext',
     press: 'page.press.kirbytext',
     news: {

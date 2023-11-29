@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { homeQuery } from '~/queries';
+import { BASE_DELAY } from '~/data/constants';
 
 const { queryApi, queryParams } = useQueryParams(homeQuery);
 const { data } = await useFetch(queryApi, queryParams);
@@ -36,7 +37,7 @@ const onMouseMove = (e: any) => {
 <template>
   <div class="content featured-projects-list">
 
-    <div v-for="project in featured" :key="project.id" :class="`featured-project columns-${project.columns}`">
+    <div v-for="(project, index) in featured" :key="project.id" :class="`featured-project columns-${project.columns}`">
       <a :href="`/work/${project.url}`">
         <img
           class="project-image"
@@ -47,7 +48,10 @@ const onMouseMove = (e: any) => {
           @mousemove="(e) => onMouseMove(e)"
         />
         <div class="project-info">
-          <p><span class="project-title">{{ project.title }}</span> {{ project.excerpt }}</p>
+          <p>
+            <Text class-name="project-title" :text="project.title" :reveal="true" :delay="BASE_DELAY + index * 15" />&nbsp;
+            <Text :text="project.excerpt" :reveal="true" reveal-mode="opacity" :delay="BASE_DELAY + 200 + index * 15" />
+          </p>
         </div>
       </a>
     </div>

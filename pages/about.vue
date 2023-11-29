@@ -53,7 +53,9 @@ setPage(page);
   <div class="about-content">
     <div class="row">
       <div class="col-lg-8 col-12">
-        <img :src="page.about_image?.[0]?.url" :alt="page.about_image?.[0]?.alt" />
+        <div class="about-image">
+          <Image :src="page.about_image?.url" :alt="page.about_image?.alt" :load-src="page.about_image_load?.url" :delay="250" />
+        </div>
         <Text :text="page.text" :reveal="true" :delay="BASE_DELAY" />
       </div>
       <div class="col-lg-4 col-12"></div>
@@ -78,7 +80,7 @@ setPage(page);
 
   <div class="about-news">
     <div v-for="news in page?.news" :key="news.id" :class="`single-news columns-${news.columns}`">
-      <img :src="news.news_image?.[0]?.url" :alt="news.news_image?.[0]?.alt" />
+      <img :src="news.news_image?.url" :alt="news.news_image?.alt" />
       <div class="news-info">
         <p><span class="news-title">{{ news.title }}</span> {{ news.text }}</p>
       </div>
@@ -86,7 +88,7 @@ setPage(page);
       <ClientOnly>
       <div class="news-links">
         <a v-for="link in news.links" :key="link.id" :href="`${news.url}`" class="news-link">
-          <p class="link-text"><span v-html="link.link_text"></span> ↗</p>
+          <p class="link-text"><span v-html="link?.link_text"></span> ↗</p>
         </a>
       </div>
       </ClientOnly>
@@ -97,6 +99,7 @@ setPage(page);
           <p class="download-text"><span v-html="download.name_download"></span> ↗</p>
         </a>
       </div>
+      </ClientOnly>
     </div>
   </div>
 
@@ -104,3 +107,9 @@ setPage(page);
 
 </div>
 </template>
+
+<style scoped lang="scss">
+.about-image {
+  position: relative;
+}
+</style>

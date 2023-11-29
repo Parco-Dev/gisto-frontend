@@ -8,8 +8,6 @@ const page = (data?.value as any)?.result;
 
 setPage(page);
 
-const homeIcon = page?.home_icon?.[0]; 
-
 const featured = page?.featured.map((item: any) => {
   return {
     ...item.project[0],
@@ -34,17 +32,16 @@ const onMouseMove = (e: any) => {
 
 <template>
   <div class="content featured-projects-list">
-
     <div v-for="(project, index) in featured" :key="project.id" :class="`featured-project columns-${project.columns}`">
       <a :href="`/work/${project.url}`">
-        <img
+        <div
           class="project-image"
-          :src="project.main_image?.[0]?.url"
-          :alt="project.main_image?.[0]?.alt"
           @mouseenter="onMouseEnter()"
           @mouseleave="onMouseLeave()"
           @mousemove="(e) => onMouseMove(e)"
-        />
+        >
+          <Image :src="project.main_image?.url" :load-src="project.load_image?.url" :alt="project.main_image?.alt" :delay="index * 15" />
+        </div>
         <div class="project-info">
           <p>
             <Text class-name="project-title" :text="project.title" :reveal="true" :delay="BASE_DELAY + index * 15" />&nbsp;
@@ -55,7 +52,7 @@ const onMouseMove = (e: any) => {
     </div>
     
     <div class="background-icon">
-      <img :src="homeIcon?.url" :alt="homeIcon?.alt" />
+      <img :src="page.home_icon?.url" :alt="page.home_icon?.alt" />
     </div>
     
     <CursorView />
@@ -66,7 +63,9 @@ const onMouseMove = (e: any) => {
 </template>
 
 <style scoped lang="scss">
-.project-image {
-  cursor: pointer;
+
+.featured-project a {
+  position: relative;
 }
+
 </style>

@@ -8,12 +8,8 @@ export const homeQuery: KirbyQuerySchema = {
     isListed: true,
     intendedTemplate: true,
     home_icon: {
-      query: "page.home_icon.toFiles",
-      select: {
-        url: true,
-        niceSize: true,
-        alt: "file.alt.kirbytext"
-      }
+      query: "page.home_icon.toFiles.first",
+      select: [ 'url', 'alt' ],
     },
     featured: {
       query: 'page.featured.toStructure',
@@ -25,14 +21,14 @@ export const homeQuery: KirbyQuerySchema = {
             id: true,
             url: 'page.slug',
             title: true,
-            excerpt: 'page.excerpt',
+            excerpt: true,
+            load_image: {
+              query: "page.main_image.toFiles.first.resize(30)",
+              select: [ 'url' ],
+            },
             main_image: {
-              query: "page.main_image.toFiles",
-              select: {
-                url: true,
-                niceSize: true,
-                alt: "file.alt.kirbytext"
-              }
+              query: "page.main_image.toFiles.first",
+              select: [ 'url', 'alt' ],
             },
           }
         }

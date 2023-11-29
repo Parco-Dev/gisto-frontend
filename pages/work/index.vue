@@ -16,7 +16,7 @@ const filteredWork = useFilteredWork();
 onMounted(() => {
 
   // Add scroll listener
-  window.addEventListener('scroll', (e) => scrollFunction(e))
+  // window.addEventListener('scroll', (e) => scrollFunction(e))
 })
 
 const showImage = (index: number) => {
@@ -27,9 +27,9 @@ const hideImage = () => {
   hoveredProject.value = -1;
 }
 
-const scrollFunction = (e: any) => {
-  // console.log(e.target.body);
-}
+// const scrollFunction = (e: any) => {
+//   console.log(e.target.body);
+// }
 
 </script>
 

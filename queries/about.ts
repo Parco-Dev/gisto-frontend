@@ -11,10 +11,7 @@ export const aboutQuery: KirbyQuerySchema = {
     email: 'page.email',
     social: {
       query: 'page.social.toStructure',
-      select: {
-        url: true,
-        name: true
-      }
+      select: [ 'url', 'name' ],
     },
     jobs: 'page.jobs.kirbytext',
     about_image: {
@@ -57,11 +54,7 @@ export const aboutQuery: KirbyQuerySchema = {
             name_download: 'structureItem.name_download.kirbytext',
             link_download: {
               query: 'structureItem.link_download.toFiles',
-              select: {
-                url: true,
-                niceSize: true,
-                alt: "file.alt.kirbytext"
-              }
+              select: [ 'url', 'alt' ],
             }
           }
         }

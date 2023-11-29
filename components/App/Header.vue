@@ -207,7 +207,7 @@ const projectInfoMobile = () => {
       class="header-title"
       :aria-current="route.path == '/' ? 'page' : undefined"
     >
-      {{ site.title }}
+      <Text :text="site.title" :reveal="true" :delay="50" :invert="true" />
     </NuxtLink>
 
     <nav class="header-nav">
@@ -216,24 +216,16 @@ const projectInfoMobile = () => {
           <NuxtLink 
             to="/work"
             :aria-current="route.path.startsWith('/work') ? 'page' : undefined">
-            Work
+            <Text text="Work" :reveal="true" :delay="100" :invert="true" />
           </NuxtLink>
         </li>
         <li class="header-item">
           <NuxtLink 
           to="/about"
           :aria-current="route.path.startsWith('/about') ? 'page' : undefined">
-            About
+          <Text text="About" :reveal="true" :delay="150" :invert="true" />
           </NuxtLink>
         </li>
-        <!-- <li v-for="page in pages" :key="page.id" class="header-item">
-          <NuxtLink
-            :to="`/${page.id}`"
-            :aria-current="route.path.startsWith(`/${page.id}`) ? 'page' : undefined"
-          >
-            {{page.title}}
-          </NuxtLink>
-        </li> -->
       </ul>
 
     </nav>
@@ -261,6 +253,7 @@ const projectInfoMobile = () => {
   &-bio, &-filters, &-project {
     position: fixed;
     width: 100%;
+    animation: fade-from-top .75s ease-in-out 1;
   }
 }
 
@@ -276,5 +269,11 @@ const projectInfoMobile = () => {
       text-decoration: underline;
     }
   }
+}
+
+@keyframes fade-from-top {
+  0%   { opacity: 0; transform: translateY(-10px); }
+  50%  { opacity: 0; transform: translateY(-10px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 </style>

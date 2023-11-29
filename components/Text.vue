@@ -53,7 +53,7 @@ span {
   }
 
   &.hidden:after {
-    width: 100%;
+    width: 101%;
   }
 
   &.hidden-opacity {

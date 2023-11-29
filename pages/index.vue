@@ -8,8 +8,6 @@ const page = (data?.value as any)?.result;
 
 setPage(page);
 
-console.log(page);
-
 const homeIcon = page?.home_icon?.[0]; 
 
 const featured = page?.featured.map((item: any) => {

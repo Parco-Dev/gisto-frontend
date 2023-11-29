@@ -79,7 +79,7 @@ export default defineNuxtConfig({
   },
 
   // ENABLED: SERVER SIDE RENDERING
-  ssr: false,
+  ssr: true,
 
   // ENABLED: SKIP DEFAULT NUXT LOADING PAGE
   spaLoadingTemplate: 'loading.html',

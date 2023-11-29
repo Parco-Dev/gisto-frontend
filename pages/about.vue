@@ -18,7 +18,7 @@ setPage(page);
 <div class="content page-about">
 
   <div class="about-text">
-    <Text :text="page?.about_text" :reveal="true" :delay="800" />
+    <Text :text="page.about_text" :reveal="true" :delay="800" />
   </div>
 
   <div class="about-contacts">
@@ -82,11 +82,16 @@ setPage(page);
       <div class="news-info">
         <p><span class="news-title">{{ news.title }}</span> {{ news.text }}</p>
       </div>
+
+      <ClientOnly>
       <div class="news-links">
         <a v-for="link in news.links" :key="link.id" :href="`${news.url}`" class="news-link">
           <p class="link-text"><span v-html="link.link_text"></span> ↗</p>
         </a>
       </div>
+      </ClientOnly>
+
+      <ClientOnly>
       <div class="news-downloads">
         <a v-for="download in news.downloads" :key="download.id" :href="`${download.link_download?.[0]?.url}`" class="download-link">
           <p class="download-text"><span v-html="download.name_download"></span> ↗</p>

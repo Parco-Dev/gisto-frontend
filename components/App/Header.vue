@@ -47,7 +47,7 @@ const projectInfoMobile = () => {
 <template>
 
   <div v-if="isProject" class="top-header-project top-header-project-mobile">
-    <div @click="projectInfoMobile()" class="project-info-button">
+    <div class="project-info-button" @click="projectInfoMobile()">
       <p>Project info <span class="arrow">↓</span></p>
     </div>
     <div v-if="projectInfoMobileVisible" class="project-info-content">
@@ -154,6 +154,7 @@ const projectInfoMobile = () => {
     </div>
     </Transition>
 
+    <ClientOnly>
     <Transition name="top" mode="out-in">
     <div v-if="isProject" class="top-header-project top-header-project-desktop">
       <div class="row">
@@ -193,8 +194,8 @@ const projectInfoMobile = () => {
         </div>
       </div>
     </div>
-   </Transition>    
-
+    </Transition>    
+    </ClientOnly>
   </div>
 
   <div class="white-header"></div>

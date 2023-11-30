@@ -1,11 +1,6 @@
 <script setup lang="ts">
 const route = useRoute()
 const site = useSite()
-
-// const pages = computed(() =>
-//   (site.value?.children ?? []).filter((i: any) => i.isListed)
-// ).value;
-
 const page = usePage();
 const project = useProject() as any;
 
@@ -111,9 +106,7 @@ const projectInfoMobile = () => {
     <Transition name="top" mode="out-in">
     <div v-if="isHomePage || isAboutPage" class="top-header-bio">
       <div class="row">
-        <div class="col-lg-10 col-12">
-          <div v-router-links v-html="site.long_bio" ></div>
-        </div>
+        <div v-router-links class="col-lg-10 col-12" v-html="site.long_bio"></div>
         <div class="col-lg-2 col-12"></div>
       </div>
     </div>

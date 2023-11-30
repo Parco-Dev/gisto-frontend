@@ -14,7 +14,6 @@ setWork(page.children);
 const filteredWork = useFilteredWork();
 
 onMounted(() => {
-
   // Add scroll listener
   // window.addEventListener('scroll', (e) => scrollFunction(e))
 })
@@ -83,7 +82,7 @@ const hideImage = () => {
         </div>
       </a>
       <div class="single-thumbnail">
-        <img :src="project.main_image?.[0]?.url" :alt="project.main_image?.[0]?.alt" />
+        <img v-if="project.main_image?.url_1280" :src="project.main_image.url_1280" :alt="project.main_image.alt" />
       </div>
     </div>
     <div></div>
@@ -91,7 +90,7 @@ const hideImage = () => {
 
   <div class="mobile-projects-images">
     <div v-for="(project, index) in filteredWork" :key="project.id" :data-project="`project-${index+1}`" class="single-thumbnail">
-      <img :src="project.main_image?.[0]?.url" :alt="project.main_image?.[0]?.alt" />
+      <img v-if="project.main_image?.url_1280" :src="project.main_image.url_1280" :alt="project.main_image.alt" />
     </div>
   </div>
 

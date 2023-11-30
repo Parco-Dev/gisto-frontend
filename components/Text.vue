@@ -34,7 +34,7 @@ if (props.reveal && props.delay) {
 span {
   display: inline;
   position: relative;
-  transition: all .35s ease-in-out;
+  transition: width .35s ease-in-out, opacity .35s ease-in-out;
 
   &:after {
     content: '';

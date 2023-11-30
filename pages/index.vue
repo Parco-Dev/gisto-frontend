@@ -40,7 +40,7 @@ const onMouseMove = (e: any) => {
           @mouseleave="onMouseLeave()"
           @mousemove="(e) => onMouseMove(e)"
         >
-          <Image :src="project.main_image?.url" :load-src="project.load_image?.url" :alt="project.main_image?.alt" :delay="index * 15" />
+          <Image :image="project.main_image" :delay="index * 15" class-name="home-image" />
         </div>
         <div class="project-info">
           <p>

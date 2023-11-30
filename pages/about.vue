@@ -54,7 +54,7 @@ setPage(page);
     <div class="row">
       <div class="col-lg-8 col-12">
         <div class="about-image">
-          <Image :src="page.about_image?.url" :alt="page.about_image?.alt" :load-src="page.about_image_load?.url" :delay="250" />
+          <Image :image="page.about_image" class-name="image-about" :delay="BASE_DELAY + 250" />
         </div>
         <Text :text="page.text" :reveal="true" :delay="BASE_DELAY" />
       </div>

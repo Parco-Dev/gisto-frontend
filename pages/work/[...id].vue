@@ -31,14 +31,14 @@ setProject(page);
   </div>
 
   <div class="project-blocks">
-    <div v-for="block in page.content" :key="block.id" class="project-block">
+    <div v-for="(block, index) in page.content" :key="block.id" class="project-block">
       <div v-if="block.type === 'fullwidth_images'" class="single-module module-fullwidth-image">
-        <img :src="constructImageUrl(block.content.images?.[0])" />
+        <Image v-if="block.image" :image="block.image" class-name="project-image" :delay="15 * index" />
         <div class="caption">
           <div class="row">
             <div class="col-lg-4 col-3"></div>
             <div class="col-lg-8 col-9">
-              <p v-html="block.content.caption"></p>
+              <Text :text="block.caption" :reveal="true" :delay="BASE_DELAY + 15 * index" />
             </div>
           </div>
         </div>
@@ -46,21 +46,21 @@ setProject(page);
       <div v-else-if="block.type === 'double_images'" class="single-module module-double-images">
         <div class="row double-image-column-container">
           <div class="col-lg-6 col-9 double-image-column">
-            <img :src="constructImageUrl(block.content.image1?.[0])" />
+            <Image v-if="block.image1" :image="block.image1" class-name="project-image" :delay="15 * index" />
             <div class="caption">
               <div class="row">
                 <div class="col-lg-12 col-12">
-                  <p v-html="block.content.caption1"></p>
+                  <Text :text="block.caption1" :reveal="true" :delay="BASE_DELAY + 15 * index" />
                 </div>
               </div>
             </div>
           </div>
           <div class="col-lg-6 col-9 double-image-column">
-            <img :src="constructImageUrl(block.content.image2?.[0])" />
+            <Image v-if="block.image2" :image="block.image2" class-name="project-image" :delay="15 * index" />
             <div class="caption">
               <div class="row">
                 <div class="col-lg-12 col-12">
-                  <p v-html="block.content.caption2"></p>
+                  <Text :text="block.caption2" :reveal="true" :delay="BASE_DELAY + 15 * index" />
                 </div>
               </div>
             </div>
@@ -70,7 +70,7 @@ setProject(page);
       <div v-else class="single-module module-text">
         <div class="row">
           <div class="col-lg-8 col-12">
-            <p v-html="block.content.paragraph"></p>  
+            <Text :text="block.paragraph" :reveal="true" :delay="BASE_DELAY + 15 * index" />
           </div>
           <div class="col-lg-4 col-12"></div>
         </div>     
@@ -81,10 +81,10 @@ setProject(page);
   <div class="project-credits">
     <div v-for="credit in page?.credits" :key="credit.id" class="credits-group">
       <div class="credits-title">
-        <p v-html="credit.credits_title"></p>
+        <div v-html="credit.credits_title"></div>
       </div>
       <div class="credits-content">
-        <p v-html="credit.credits_content"></p>
+        <div v-html="credit.credits_content"></div>
       </div>
     </div>
   </div>
@@ -106,3 +106,17 @@ setProject(page);
 
 </div>
 </template>
+
+<style scoped lang="scss">
+.single-module {
+  position: relative;
+}
+
+.double-image-column {
+  position: relative;
+
+  .absolute {
+    padding: 0px 2.5px;
+  }
+}
+</style>

@@ -1,4 +1,5 @@
 import type { KirbyQuerySchema } from 'kirby-fest'
+import { imageQuery } from './image'
 
 export const homeQuery: KirbyQuerySchema = {
   query: 'page("home")',
@@ -28,7 +29,7 @@ export const homeQuery: KirbyQuerySchema = {
             },
             main_image: {
               query: "page.main_image.toFiles.first",
-              select: [ 'url', 'alt' ],
+              select: imageQuery,
             },
           }
         }

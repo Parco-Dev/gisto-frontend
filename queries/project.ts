@@ -1,4 +1,5 @@
 import type { KirbyQuerySchema } from 'kirby-fest'
+import { imageQuery } from './image';
 
 export function getProjectQuery(pageId: string): KirbyQuerySchema {
   return {
@@ -23,78 +24,67 @@ export function getProjectQuery(pageId: string): KirbyQuerySchema {
       },
       main_image: {
         query: "page.image",
-        select: {
-          url: true,
-          niceSize: true,
-          alt: "file.alt.kirbytext"
-        }
+        select: imageQuery,
       },
       category: 'page.category.split',
       type_of_work: 'page.type_of_work.split',
-      content: 'page.contentblocks.toBlocks',
+
+      content: {
+        query: 'page.contentblocks.toBlocks',
+        select: {
+          image: {
+            query: 'block.content.images.toFiles.first',
+            select: imageQuery,
+          },
+          image1:{
+            query:  'block.content.image1.toFiles.first',
+            select: imageQuery,
+          },
+          image2:{
+            query:  'block.content.image2.toFiles.first',
+            select: imageQuery,
+          },
+          caption: 'block.content.caption',
+          caption1: 'block.content.caption1',
+          caption2: 'block.content.caption2',
+          paragraph: 'block.content.paragraph',
+          id: true,
+          type: true,
+        },
+      },
+
+      content_blocks: 'page.contentblocks.toBlocks',
       credits: {
         query: 'page.credits.toStructure',
-        select: {
-          id: true,
-          credits_title: true,
-          credits_content: true,
-        }
+        select: [ 'id', 'credits_title', 'credits_content' ],
       },
       photo_dump: {
         query: "page.photo_dump.toFiles",
-        select: {
-          url: true,
-          name: true,
-          extension: true,
-          type: true,
-          niceSize: true,
-          alt: "file.alt.kirbytext"
-        }
+        select: [ 'url', 'name', 'extension', 'type', 'alt' ]
       },
       drawings_diagrams: {
         query: "page.drawings_diagrams.toFiles",
-        select: {
-          url: true,
-          name: true,
-          extension: true,
-          type: true,
-          niceSize: true,
-          alt: "file.alt.kirbytext"
-        }
+        select: [ 'url', 'name', 'extension', 'type', 'alt' ]
       },
       models: {
         query: "page.models.toFiles",
-        select: {
-          url: true,
-          name: true,
-          extension: true,
-          type: true,
-          niceSize: true,
-          alt: "file.alt.kirbytext"
-        }
+        select: [ 'url', 'name', 'extension', 'type', 'alt' ]
       },
       video: {
         query: 'page.video.toStructure',
         select: {
           id: true,
           media: {
-            query: "structureItem.media.toFiles",
-            select: ["title", "url", "name", "extension", "type"],
+            query: 'structureItem.media.toFiles',
+            select: [ 'title', 'url', 'name', 'extension', 'type' ],
           },
           embeds: true,
           title: true
         }
       },
       graphics: {
-        query: "page.graphics.toFiles",
-        select: {
-          url: true,
-          name: true,
-          extension: true,
-          type: true,
-          niceSize: true,
-          alt: "file.alt.kirbytext"
-        }
+        query: 'page.graphics.toFiles',
+        select: [ 'url', 'name', 'extension', 'type', 'alt' ]
       },
     },
   }

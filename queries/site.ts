@@ -13,10 +13,7 @@ export const siteQuery: KirbyQuerySchema = {
     legal: 'site.legal.kirbytext',
     pages: {
       query: 'site.children.listed',
-      select: {
-        title: true,
-        url: true
-      }
+      select: [ 'title', 'url' ],
     },
     projects: {
       query: 'page("work").children.listed',

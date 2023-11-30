@@ -1,4 +1,5 @@
 import type { KirbyQuerySchema } from 'kirby-fest'
+import { imageQuery } from './image'
 
 export const aboutQuery: KirbyQuerySchema = {
   query: 'page("about")',
@@ -16,11 +17,7 @@ export const aboutQuery: KirbyQuerySchema = {
     jobs: 'page.jobs.kirbytext',
     about_image: {
       query: "page.aboutimage.toFiles.first",
-      select: [ 'url', 'alt' ],
-    },
-    about_image_load: {
-      query: "page.aboutimage.toFiles.first.resize(30)",
-      select: [ 'url' ],
+      select: imageQuery,
     },
     text: true,
     collaborations: 'page.collaborations.kirbytext',

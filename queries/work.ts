@@ -1,4 +1,5 @@
 import type { KirbyQuerySchema } from 'kirby-fest'
+import { imageQuery } from './image'
 
 export function getProjectsQuery(): KirbyQuerySchema {
   return {
@@ -22,12 +23,8 @@ export function getProjectsQuery(): KirbyQuerySchema {
           category: true,
           type_of_work: true,
           main_image: {
-            query: "page.main_image.toFiles",
-            select: {
-              url: true,
-              niceSize: true,
-              alt: "file.alt.kirbytext"
-            }
+            query: "page.main_image.toFiles.first",
+            select: imageQuery,
           },
         }
       }

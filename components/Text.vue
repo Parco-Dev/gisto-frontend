@@ -25,6 +25,7 @@ if (props.reveal && props.delay) {
       reveal && !show && revealMode === undefined && 'hidden',
       reveal && !show && revealMode === 'opacity' && 'hidden-opacity',
       invert && 'invert',
+      'animated-text'
     ]"
     v-html="text"
   />

@@ -1211,12 +1211,12 @@ body[data-template=default] {
 		}
 		.top-header-project {
 			.header-content {
-				p {
+				p, span {
 					color: $color-white;
 				}
 			}
 			.header-label {
-				p {
+				p, span {
 					color: $color-white;
 				}
 			}
@@ -1294,7 +1294,7 @@ body[data-template=default] {
 				margin-bottom: 0px;
 			}
 			.header-content {
-				p {
+				p, span {
 					@extend %small;
 					margin-bottom: 0px;
 				}
@@ -1302,20 +1302,25 @@ body[data-template=default] {
 		}
 	}
 	.header-content {
-		p {
+		p, span {
 			@extend %small;
 			margin-bottom: 0px;
 		}
 	}
 	.header-label {
-		p {
+		p, span {
 			margin-bottom: 0px;
 		}
 	}
 	.header-taxonomies {
-		p {
+		p, span {
 			text-transform: capitalize;
 		}
+	}
+	.header-category,
+	.header-type-of-work {
+		display: flex;
+		gap: $spacer;
 	}
 }
 

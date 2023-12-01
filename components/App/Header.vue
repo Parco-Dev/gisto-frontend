@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { BASE_DELAY } from '~/data/constants';
+
 const route = useRoute()
 const site = useSite()
 const page = usePage();
@@ -106,7 +108,9 @@ const projectInfoMobile = () => {
     <Transition name="top" mode="out-in">
     <div v-if="isHomePage || isAboutPage" class="top-header-bio">
       <div class="row">
-        <div v-router-links class="col-lg-10 col-12" v-html="site.long_bio"></div>
+        <div v-router-links class="col-lg-10 col-12">
+          <Text :text="site.long_bio" :reveal="true" :delay="BASE_DELAY" :invert="true" />
+        </div>
         <div class="col-lg-2 col-12"></div>
       </div>
     </div>
@@ -115,33 +119,45 @@ const projectInfoMobile = () => {
     <Transition name="top" mode="out-in">
     <div v-if="isWorkPage" class="top-header-filters">
       <div class="filters-group category-list">
-        <p class="taxonomy-label">Categories:</p>
+        <p class="taxonomy-label">
+          <Text text="Categories:" :reveal="true" :delay="BASE_DELAY" :invert="true" />
+        </p>
         <ul>
           <li
             :class="{ active: !filters?.category }"
             @click="setFilter('category', null), setFilteredWork()"
-          >All</li>
+          >
+            <Text text="All" :reveal="true" :delay="BASE_DELAY" :invert="true" />
+          </li>
           <li
-            v-for="category in projectCategories"
+            v-for="(category, index) in projectCategories"
             :key="category"
             :class="{ active: filters?.category === category }"
             @click="setFilter('category', category); setFilteredWork()"
-          >{{ category }}</li>
+          >
+            <Text :text="category" :reveal="true" :delay="BASE_DELAY + 15 * index" :invert="true" />
+          </li>
         </ul>
       </div>
       <div class="filters-group type-of-work-list">
-        <p class="taxonomy-label">Type of Work:</p>
+        <p class="taxonomy-label">
+          <Text text="Type of work:" :reveal="true" :delay="BASE_DELAY" :invert="true" />
+        </p>
         <ul>
           <li
             :class="{ active: !filters?.workType }"
             @click="setFilter('workType', null); setFilteredWork()"
-          >All</li>
+          >
+            <Text text="All" :reveal="true" :delay="BASE_DELAY" :invert="true" />
+          </li>
           <li
-            v-for="workType in projectWorkTypes"
+            v-for="(workType, index) in projectWorkTypes"
             :key="workType"
             :class="{ active: filters?.workType === workType }"
             @click="setFilter('workType', workType); setFilteredWork()"
-          >{{ workType }}</li>
+          >
+            <Text :text="workType" :reveal="true" :delay="BASE_DELAY + 15 * index" :invert="true" />
+          </li>
         </ul>
       </div>
     </div>
@@ -153,36 +169,36 @@ const projectInfoMobile = () => {
       <div class="row">
         <div class="col-lg-1 col-12">
           <div class="header-content">
-            <p v-html="project?.year"></p>
+            <Text :text="project?.year" :reveal="true" :delay="BASE_DELAY" :invert="true" />
           </div>
           <div class="header-label">
-            <p>Year</p>
+            <Text text="Year" :reveal="true" :delay="BASE_DELAY" :invert="true" />
           </div>
         </div>
         <div class="col-lg-3 col-12">
           <div class="header-content">
-            <p v-html="project?.place"></p>
+            <Text :text="project?.place" :reveal="true" :delay="BASE_DELAY + 15" :invert="true" />
           </div>
           <div class="header-label">
-            <p>Place</p>
+            <Text text="Place" :reveal="true" :delay="BASE_DELAY + 15" :invert="true" />
           </div>
         </div>
         <div class="col-lg-4 col-12">
           <div class="header-content">
-            <p v-html="project?.client"></p>
+            <Text :text="project?.client" :reveal="true" :delay="BASE_DELAY + 30" :invert="true" />
           </div>
           <div class="header-label">
-            <p>Client</p>
+            <Text text="Client" :reveal="true" :delay="BASE_DELAY + 30" :invert="true" />
           </div>
         </div>
         <div class="col-lg-4 col-12">
           <div class="header-content header-taxonomies">
-            <p v-for="category in project?.category" :key="category" class="single-category">
-              {{ category }}
-            </p>
-            <p v-for="typeOfWork in project?.type_of_work" :key="typeOfWork" class="single-type-of-work">
-              {{ typeOfWork }}
-            </p>
+            <div class="header-category">
+              <Text v-for="category in project?.category" :key="category" :text="category" :reveal="true" :delay="BASE_DELAY + 45" :invert="true" />
+            </div>
+            <div class="header-type-of-work">
+              <Text v-for="typeOfWork in project?.type_of_work" :key="typeOfWork" :text="typeOfWork" :reveal="true" :delay="BASE_DELAY + 45" :invert="true" />
+            </div>
           </div>
         </div>
       </div>
@@ -238,8 +254,20 @@ const projectInfoMobile = () => {
 
 .top-enter-from,
 .top-leave-to {
-  opacity: 0;
-  transform: translateY(-10px);
+  /* opacity: 0;
+  transform: translateY(-10px); */
+}
+
+.top-leave-to {
+  .animated-text {
+    opacity: 0;
+    &:after {
+      width: 101%;
+    }
+  }
+  li.active:before {
+    width: 0%;
+  }
 }
 
 .top-header {

@@ -81,10 +81,10 @@ setProject(page);
   <div class="project-credits">
     <div v-for="credit in page?.credits" :key="credit.id" class="credits-group">
       <div class="credits-title">
-        <div v-html="credit.credits_title"></div>
+        <Text :text="credit.credits_title" :reveal="true" :delay="BASE_DELAY" />
       </div>
       <div class="credits-content">
-        <div v-html="credit.credits_content"></div>
+        <Text :text="credit.credits_content" :reveal="true" :delay="BASE_DELAY + 15" />
       </div>
     </div>
   </div>

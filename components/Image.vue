@@ -49,7 +49,7 @@ if (process.client) {
     <div v-if="image?.url_load && !imageShown" class="image-blur">
       <img :src="image.url_load" />
     </div>
-    <div v-if="image && imageLoaded" :class="[className, !imageShown && 'absolute']">
+    <div v-if="image && imageLoaded" :class="[className, !imageShown && 'absolute', 'animated-image']">
       <img
         :src="image.url_720"
         :srcset="`${image.url_720} 720w,
@@ -63,12 +63,15 @@ if (process.client) {
 
 <style scoped lang="scss">
 
+.animated-image {
+  opacity: 1;
+  transition: opacity .25s;
+}
+
 .home-image, .project-image, .image-about {
   z-index: 2;
   position: relative;
   clip-path: inset(0 0 0 0);
-  opacity: 1;
-
   animation: slide-to-left 0.35s ease-in-out 1;
   cursor: pointer;
 
@@ -81,7 +84,6 @@ if (process.client) {
   width: 100%;
   height: 100%;
 }
-
 
 .image-blur {
   z-index: 2;

@@ -21,7 +21,20 @@
 }
 .page-enter-from,
 .page-leave-to {
-  opacity: 0;
-  transform: translateY(5px);
+  /* opacity: 0;
+  transform: translateY(5px); */
+}
+
+.page-leave-to {
+  .animated-image {
+    opacity: 0 !important;
+  }
+
+  .animated-text {
+    opacity: 0;
+    &:after {
+      width: 101%;
+    }
+  }
 }
 </style>

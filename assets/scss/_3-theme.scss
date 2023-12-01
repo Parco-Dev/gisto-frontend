@@ -657,7 +657,7 @@ body[data-template=home] {
 
 body[data-template=work] {
 	.white-header {
-		height: 140px;
+		height: 136px;
 		@include media-breakpoint-down(sm) { 
 			height: 120px;
 		}
@@ -842,7 +842,7 @@ body[data-template=about] {
 		// background-color: $color-white;
 	}
 	.white-header {
-		height: 140px;
+		height: 136px;
 	}
 	.site-header {
 		// background-color: $color-white;
@@ -1193,7 +1193,7 @@ body {
 		top: 0px;
 		left: 0px;
 		width: 100vw;
-		height: 150px;
+		height: 136px;
 		z-index: 1;
 		@include media-breakpoint-down(sm) { 
 			height: 120px;
@@ -1236,7 +1236,7 @@ body[data-template=default] {
 		top: 0px;
 		left: 0px;
 		width: 100vw;
-		height: 150px;
+		height: 136px;
 		z-index: 1;
 		@include media-breakpoint-down(sm) { 
 			height: 120px;

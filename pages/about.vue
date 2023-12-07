@@ -87,15 +87,15 @@ setPage(page);
 
       <ClientOnly>
       <div class="news-links">
-        <a v-for="link in news.links" :key="link.id" :href="`${news.url}`" class="news-link">
+        <span v-for="link in news.links" :key="link.id" class="news-link">
           <p class="link-text"><span v-html="link?.link_text"></span> ↗</p>
-        </a>
+        </span>
       </div>
       </ClientOnly>
 
       <ClientOnly>
       <div class="news-downloads">
-        <a v-for="download in news.downloads" :key="download.id" :href="`${download.link_download?.[0]?.url}`" class="download-link">
+        <a v-for="download in news.downloads" :key="download.id" :href="`${download.link_download?.[0]?.url}`" class="download-link" target="_blank">
           <p class="download-text"><span v-html="download.name_download"></span> ↗</p>
         </a>
       </div>

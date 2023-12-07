@@ -19,8 +19,8 @@ export const setFilteredWork = (sort?: string) => {
 
   // First, filter list of work depending on active filters
   filtered = useWork().value;
-  if (filters.value.category) filtered = filtered.filter((p: any) => p.category == filters.value.category)
-  if (filters.value.workType) filtered = filtered.filter((p: any) => p.type_of_work == filters.value.workType)
+  if (filters.value.category) filtered = filtered.filter((p: any) => p.category.includes(filters.value.category))
+  if (filters.value.workType) filtered = filtered.filter((p: any) => p.type_of_work.includes(filters.value.workType))
 
   // Then, sort list of filtered work depending on selected sorting
   switch (sort) {

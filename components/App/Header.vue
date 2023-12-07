@@ -11,22 +11,6 @@ const isAboutPage = computed(() => route.path === '/about');
 const isWorkPage = computed(() => route.path === '/work');
 const isProject = computed(() => route.path.startsWith('/work/'));
 
-const projectCategories = ref([] as string[]);
-const projectWorkTypes = ref([] as string[]);
-
-site.value.projects?.forEach((project: any) => {
-  project.category?.forEach((val: string) => {
-    if (!projectCategories.value.includes(val)) {
-      projectCategories.value.push(val);
-    }
-  })
-  project.type_of_work?.forEach((val: string) => {
-    if (!projectWorkTypes.value.includes(val)) {
-      projectWorkTypes.value.push(val);
-    }
-  })
-});
-
 const filters = useFilters();
 
 const projectInfoMobileVisible = ref(false);
@@ -130,7 +114,7 @@ const projectInfoMobile = () => {
             <Text text="All" :reveal="true" :delay="BASE_DELAY" :invert="true" />
           </li>
           <li
-            v-for="(category, index) in projectCategories"
+            v-for="(category, index) in site.categories"
             :key="category"
             :class="{ active: filters?.category === category }"
             @click="setFilter('category', category); setFilteredWork()"
@@ -151,7 +135,7 @@ const projectInfoMobile = () => {
             <Text text="All" :reveal="true" :delay="BASE_DELAY" :invert="true" />
           </li>
           <li
-            v-for="(workType, index) in projectWorkTypes"
+            v-for="(workType, index) in site.workTypes"
             :key="workType"
             :class="{ active: filters?.workType === workType }"
             @click="setFilter('workType', workType); setFilteredWork()"

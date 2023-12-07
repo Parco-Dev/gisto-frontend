@@ -15,6 +15,8 @@ export const siteQuery: KirbyQuerySchema = {
       query: 'site.children.listed',
       select: [ 'title', 'url' ],
     },
+    categories: 'page("work").categories.split',
+    workTypes: 'page("work").types_of_work.split',
     projects: {
       query: 'page("work").children.listed',
       select: {

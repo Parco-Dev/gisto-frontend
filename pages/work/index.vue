@@ -43,11 +43,11 @@ const hideImage = () => {
         <div class="col-lg-5 col-12 column-button" @click="setFilteredWork('name')">
           <p><Text text="Name" :reveal="true" :delay="BASE_DELAY" /> <IconSort /></p>
         </div>
-        <div class="col-lg-3 col-12 column-button" @click="setFilteredWork('place')">
-          <p><Text text="Place" :reveal="true" :delay="BASE_DELAY" /> <IconSort /></p>
-        </div>
         <div class="col-lg-3 col-12 column-button" @click="setFilteredWork('client')">
           <p><Text text="Client" :reveal="true" :delay="BASE_DELAY" /> <IconSort /></p>
+        </div>
+        <div class="col-lg-3 col-12 column-button" @click="setFilteredWork('place')">
+          <p><Text text="Place" :reveal="true" :delay="BASE_DELAY" /> <IconSort /></p>
         </div>
       </div>
   </div>
@@ -73,11 +73,11 @@ const hideImage = () => {
           <div class="col-lg-5 col-9 project-title">
             <Text :text="project.title" :reveal="true" :delay="BASE_DELAY + 50 + index * 15" @mouseenter="showImage(index)" @mouseleave="hideImage()" />
           </div>
-          <div class="col-lg-3 col-12 project-place">
-            <Text :text="project.place" :reveal="true" :delay="BASE_DELAY + 100 + index * 15" />
-          </div>
           <div class="col-lg-3 col-12 project-client">
             <Text :text="project.client" :reveal="true" :delay="BASE_DELAY + 150 + index * 15" />
+          </div>
+          <div class="col-lg-3 col-12 project-place">
+            <Text :text="project.place" :reveal="true" :delay="BASE_DELAY + 100 + index * 15" />
           </div>
         </div>
       </a>

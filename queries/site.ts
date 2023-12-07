@@ -5,8 +5,8 @@ export const siteQuery: KirbyQuerySchema = {
   select: {
     title: true,
     description: true,
-    long_bio: 'site.long_bio.kirbytext',
-    short_bio: 'site.short_bio.kirbytext',
+    long_bio: 'site.long_bio',
+    short_bio: 'site.short_bio',
     studio_address: 'site.studio_address.kirbytext',
     workshop_address: 'site.workshop_address.kirbytext',
     social: 'site.social.kirbytext',
@@ -15,6 +15,8 @@ export const siteQuery: KirbyQuerySchema = {
       query: 'site.children.listed',
       select: [ 'title', 'url' ],
     },
+    categories: 'page("work").categories.split',
+    workTypes: 'page("work").types_of_work.split',
     projects: {
       query: 'page("work").children.listed',
       select: {

@@ -6,6 +6,7 @@ const cursorWidth = ref(0);
 
 // const page = usePage().value;
 const cursor = useCursor();
+const { isMobile } = useDevice();
 
 watch(cursor.value, () => {
   // Show cursor
@@ -28,6 +29,7 @@ watch(cursor.value, () => {
 
 <template>
   <div
+    v-if="!isMobile"
     class="cursor"
     :style="{
       left: `${cursor.position.x}px`,

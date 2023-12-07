@@ -115,7 +115,7 @@ const useArrowNavigation = (e: KeyboardEvent) => {
       @mousemove="(e) => onMouseMove(e)"
     >
 
-      <div class="lightbox-top">
+      <div v-if="fileIndex === index" class="lightbox-top">
         <h6 v-if="file.name" class="lightbox-file-title">{{file.name}}</h6>
         <h6 v-else-if="file.title" class="lightbox-file-title">{{file.title}}</h6>
         <h6 v-else-if="file.media?.length" class="lightbox-file-title">{{file.media[0].name}}</h6>
@@ -172,7 +172,7 @@ const useArrowNavigation = (e: KeyboardEvent) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #d9d9da;
+  /* background-color: #d9d9da; */
 
   &-top {
     position: absolute;

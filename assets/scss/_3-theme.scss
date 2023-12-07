@@ -789,7 +789,7 @@ body[data-template=work] {
 				pointer-events: none;
 				width: 100vw;
 				height: 100vh;
-				padding: calc($spacer * 12);
+				padding: calc($spacer * 16);
 				// background-color: $color-white;
 				@include media-breakpoint-down(sm) { 
 					padding: calc($spacer-xl * 6);

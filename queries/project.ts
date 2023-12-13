@@ -86,6 +86,10 @@ export function getProjectQuery(pageId: string): KirbyQuerySchema {
         query: 'page.graphics.toFiles',
         select: [ 'url', 'name', 'extension', 'type', 'alt' ]
       },
+      links: {
+        query: 'page.links.toStructure',
+        select: [ 'url', 'name' ],
+      },
     },
   }
 }

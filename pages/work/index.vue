@@ -26,18 +26,25 @@ const hideImage = () => {
   hoveredProject.value = -1;
 }
 
-const scrollFunction = (e: any) => {
-  console.log(e.target.body);
-  console.log("scroll!");
-  // const scrollPosition = hoveredProject.projectList.scrollTop;
-  // console.log(scrollPosition);
-  /*
-  const scrollPosition = hoveredProject.projectList.scrollTop;
-  const closestProjectIndex = Math.floor((scrollPosition + 200) / projectHeight);
-  const thumbnailPosition = closestProjectIndex * thumbnailWidth;
-  this.$refs.thumbnailsRow.style.transform = `translateX(${-thumbnailPosition}px)`;
-  */
-}
+const scrollFunction = (e: Event) => {
+  const pageWorkElement = e.target as HTMLElement;
+  const projects = document.querySelectorAll('.single-project');
+  const scroll = pageWorkElement.scrollTop;
+  projects.forEach((project) => {
+    const projectRect = project.getBoundingClientRect();
+    const projectTop = projectRect.top;
+    if (projectTop >= 120 && projectTop <= 140) {
+      const dataProject = project.getAttribute('data-project');
+      // console.log(`Active Project (data-project): ${dataProject}`);
+      const mobileProjectsImages = document.querySelector('.mobile-projects-images');
+      const correspondingImage = mobileProjectsImages.querySelector(`[data-project="${dataProject}"]`);
+      if (correspondingImage) {
+        console.log(`${dataProject}`);
+        correspondingImage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  });
+};
 
 </script>
 

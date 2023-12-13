@@ -14,8 +14,8 @@ setWork(page.children);
 const filteredWork = useFilteredWork();
 
 onMounted(() => {
-  // Add scroll listener
-  // window.addEventListener('scroll', (e) => scrollFunction(e))
+  const pageWorkElement = document.getElementsByClassName("page-work")[0];
+  pageWorkElement.addEventListener('scroll', (e) => scrollFunction(e));
 })
 
 const showImage = (index: number) => {
@@ -26,9 +26,18 @@ const hideImage = () => {
   hoveredProject.value = -1;
 }
 
-// const scrollFunction = (e: any) => {
-//   console.log(e.target.body);
-// }
+const scrollFunction = (e: any) => {
+  console.log(e.target.body);
+  console.log("scroll!");
+  // const scrollPosition = hoveredProject.projectList.scrollTop;
+  // console.log(scrollPosition);
+  /*
+  const scrollPosition = hoveredProject.projectList.scrollTop;
+  const closestProjectIndex = Math.floor((scrollPosition + 200) / projectHeight);
+  const thumbnailPosition = closestProjectIndex * thumbnailWidth;
+  this.$refs.thumbnailsRow.style.transform = `translateX(${-thumbnailPosition}px)`;
+  */
+}
 
 </script>
 

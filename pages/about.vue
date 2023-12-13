@@ -37,7 +37,7 @@ setPage(page);
         <div class="contact-social">
           <div><Text class-name="label" text="Social" :reveal="true" :delay="BASE_DELAY + 100" /></div>
           <div class="social-list">
-            <a v-for="social in page.social" :key="social.url" :href="`${social.url}`">
+            <a v-for="social in page.social" :key="social.url" :href="`${social.url}`" target="_blank">
               <Text :text="social.name" :reveal="true" :delay="BASE_DELAY + 100" />
             </a>
           </div>

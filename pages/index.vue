@@ -52,7 +52,7 @@ const onMouseMove = (e: any) => {
     </div>
     
     <div class="background-icon">
-      <img :src="page.home_icon?.url" :alt="page.home_icon?.alt" />
+      <img :src="page?.home_icon?.url" :alt="page?.home_icon?.alt" />
     </div>
     
     <CursorView />

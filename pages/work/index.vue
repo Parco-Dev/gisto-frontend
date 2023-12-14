@@ -2,10 +2,10 @@
 import { getProjectsQuery } from '~/queries';
 import { BASE_DELAY } from '~/data/constants';
 
+const { isMobile } = useDevice();
 const { queryApi, queryParams } = useQueryParams(getProjectsQuery());
 const { data } = await useFetch(queryApi, queryParams);
 const page = (data?.value as any)?.result;
-
 const hoveredProject = ref(-1);
 
 setPage(page);
@@ -15,10 +15,21 @@ const filteredWork = useFilteredWork();
 
 onMounted(() => {
   if (process.client) {
-    const pageWorkElement = document.getElementsByClassName("page-work")[0];
-    pageWorkElement?.addEventListener('scroll', (e) => scrollFunction(e));
+    // Added 1s timeout to avoid element to be null when coming from a different page
+    setTimeout(() => {
+      const element = document.querySelector(".page-work");
+      element?.addEventListener('scroll', scrollFunction);
+    }, 1000)
   }
 })
+
+onUnmounted(() => {
+  if (process.client) {
+    const element = document.querySelector(".page-work");
+    element?.removeEventListener('scroll', scrollFunction);
+  }
+})
+
 
 const showImage = (index: number) => {
   hoveredProject.value = index;
@@ -28,26 +39,18 @@ const hideImage = () => {
   hoveredProject.value = -1;
 }
 
-const scrollFunction = (e: Event) => {
-  if (process.client) {
-    const pageWorkElement = e.target as HTMLElement;
-    const projects = document.querySelectorAll('.single-project');
-    const scroll = pageWorkElement.scrollTop;
-    projects.forEach((project) => {
-      const projectRect = project.getBoundingClientRect();
-      const projectTop = projectRect.top;
-      if (projectTop >= 120 && projectTop <= 140) {
-        const dataProject = project.getAttribute('data-project');
-        // console.log(`Active Project (data-project): ${dataProject}`);
-        const mobileProjectsImages = document.querySelector('.mobile-projects-images');
-        const correspondingImage = mobileProjectsImages.querySelector(`[data-project="${dataProject}"]`);
-        if (correspondingImage) {
-          console.log(`${dataProject}`);
-          correspondingImage.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }
-    });
-  }
+const scrollFunction = () => {
+    const target = document.querySelector(".page-work");
+    const list = document.querySelector('.projects-list');
+    const images = document.querySelector('.mobile-projects-images');
+
+    if (!target || !list || !images) return;
+
+    const listRange = target.scrollHeight - target.clientHeight;
+    const imageRange = images.scrollWidth - images.clientWidth;
+    const scrollY = target.scrollTop;
+
+    images.scrollLeft = scrollY / listRange * imageRange;
 };
 
 </script>
@@ -108,7 +111,7 @@ const scrollFunction = (e: Event) => {
     <div></div>
   </div>
 
-  <div class="mobile-projects-images">
+  <div v-if="isMobile" class="mobile-projects-images">
     <div v-for="(project, index) in filteredWork" :key="project.id" :data-project="`project-${index+1}`" class="single-thumbnail">
       <a :href="`/work/${project.url}`">
         <img v-if="project.main_image?.url_1280" :src="project.main_image.url_1280" :alt="project.main_image.alt" />

@@ -26,8 +26,9 @@ export function setPage<T extends Record<string, any>>(page?: T) {
   const title = page.title
     ? `${page.title} – ${site.value.title}`
     : site.value.title
-  const description = page.description || site.value.description
+  const description = page.excerpt || site.value.short_bio
   const url = joinURL(siteUrl, useRoute().path)
+  const image = page.main_image?.url || page.about_image?.url || page.home_icon?.url
 
   useHead({
     bodyAttrs: {
@@ -41,12 +42,14 @@ export function setPage<T extends Record<string, any>>(page?: T) {
     title,
     description,
     ogTitle: title,
-    ogDescription: description,
+    ogDescription: description.replace('<p>', '').replace('</p>', ''),
     ogUrl: url,
     ogType: 'website',
+    ogImage: image,
     twitterTitle: title,
-    twitterDescription: description,
+    twitterDescription: description.replace('<p>', '').replace('</p>', ''),
     twitterCard: 'summary',
+    twitterImage: image
   })
 
   pageState.value = 'resolved'

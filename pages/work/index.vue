@@ -2,10 +2,10 @@
 import { getProjectsQuery } from '~/queries';
 import { BASE_DELAY } from '~/data/constants';
 
+const { isMobile } = useDevice();
 const { queryApi, queryParams } = useQueryParams(getProjectsQuery());
 const { data } = await useFetch(queryApi, queryParams);
 const page = (data?.value as any)?.result;
-
 const hoveredProject = ref(-1);
 
 setPage(page);
@@ -14,9 +14,22 @@ setWork(page.children);
 const filteredWork = useFilteredWork();
 
 onMounted(() => {
-  // Add scroll listener
-  // window.addEventListener('scroll', (e) => scrollFunction(e))
+  if (process.client) {
+    // Added 1s timeout to avoid element to be null when coming from a different page
+    setTimeout(() => {
+      const element = document.querySelector(".page-work");
+      element?.addEventListener('scroll', scrollFunction);
+    }, 1000)
+  }
 })
+
+onUnmounted(() => {
+  if (process.client) {
+    const element = document.querySelector(".page-work");
+    element?.removeEventListener('scroll', scrollFunction);
+  }
+})
+
 
 const showImage = (index: number) => {
   hoveredProject.value = index;
@@ -26,9 +39,19 @@ const hideImage = () => {
   hoveredProject.value = -1;
 }
 
-// const scrollFunction = (e: any) => {
-//   console.log(e.target.body);
-// }
+const scrollFunction = () => {
+    const target = document.querySelector(".page-work");
+    const list = document.querySelector('.projects-list');
+    const images = document.querySelector('.mobile-projects-images');
+
+    if (!target || !list || !images) return;
+
+    const listRange = target.scrollHeight - target.clientHeight;
+    const imageRange = images.scrollWidth - images.clientWidth;
+    const scrollY = target.scrollTop;
+
+    images.scrollLeft = scrollY / listRange * imageRange;
+};
 
 </script>
 
@@ -88,9 +111,11 @@ const hideImage = () => {
     <div></div>
   </div>
 
-  <div class="mobile-projects-images">
+  <div v-if="isMobile" class="mobile-projects-images">
     <div v-for="(project, index) in filteredWork" :key="project.id" :data-project="`project-${index+1}`" class="single-thumbnail">
-      <img v-if="project.main_image?.url_1280" :src="project.main_image.url_1280" :alt="project.main_image.alt" />
+      <a :href="`/work/${project.url}`">
+        <img v-if="project.main_image?.url_1280" :src="project.main_image.url_1280" :alt="project.main_image.alt" />
+      </a>
     </div>
   </div>
 

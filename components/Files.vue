@@ -23,6 +23,10 @@ const groups = [
     title: 'Graphics',
     files: page.graphics,
   },
+  {
+    title: 'Links',
+    files: page.links,
+  },
 ].filter(group => group.files.length)
 
 const isFilesOpen = useFilesList();

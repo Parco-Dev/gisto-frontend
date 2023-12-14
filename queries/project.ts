@@ -9,7 +9,7 @@ export function getProjectQuery(pageId: string): KirbyQuerySchema {
       id: true,
       title: true,
       text: 'page.text.kirbytext',
-      excerpt: 'page.excerpt.kirbytext',
+      excerpt: true,
       subtitle: 'page.subtitle.kirbytext',
       year: true,
       place: true,
@@ -85,6 +85,10 @@ export function getProjectQuery(pageId: string): KirbyQuerySchema {
       graphics: {
         query: 'page.graphics.toFiles',
         select: [ 'url', 'name', 'extension', 'type', 'alt' ]
+      },
+      links: {
+        query: 'page.links.toStructure',
+        select: [ 'url', 'name' ],
       },
     },
   }

@@ -1496,6 +1496,12 @@ body[data-template=default] {
 		a {
 			display: flex;
 			flex-direction: column;
+			&:hover {
+				color: $color-dark-grey;
+				p {
+					color: $color-dark-grey;
+				}
+			}
 			&.prev-link {
 				margin-right: auto;
 			}

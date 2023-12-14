@@ -5,7 +5,7 @@ const cursorText = ref(null);
 const cursorWidth = ref(0);
 
 // const page = usePage().value;
-const cursor = useCursor();
+const cursor = useCursor() ??{};
 const { isMobile } = useDevice();
 
 watch(cursor.value, () => {

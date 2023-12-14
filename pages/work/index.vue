@@ -14,8 +14,10 @@ setWork(page.children);
 const filteredWork = useFilteredWork();
 
 onMounted(() => {
-  const pageWorkElement = document.getElementsByClassName("page-work")[0];
-  pageWorkElement.addEventListener('scroll', (e) => scrollFunction(e));
+  if (process.client) {
+    const pageWorkElement = document.getElementsByClassName("page-work")[0];
+    pageWorkElement?.addEventListener('scroll', (e) => scrollFunction(e));
+  }
 })
 
 const showImage = (index: number) => {
@@ -27,23 +29,25 @@ const hideImage = () => {
 }
 
 const scrollFunction = (e: Event) => {
-  const pageWorkElement = e.target as HTMLElement;
-  const projects = document.querySelectorAll('.single-project');
-  const scroll = pageWorkElement.scrollTop;
-  projects.forEach((project) => {
-    const projectRect = project.getBoundingClientRect();
-    const projectTop = projectRect.top;
-    if (projectTop >= 120 && projectTop <= 140) {
-      const dataProject = project.getAttribute('data-project');
-      // console.log(`Active Project (data-project): ${dataProject}`);
-      const mobileProjectsImages = document.querySelector('.mobile-projects-images');
-      const correspondingImage = mobileProjectsImages.querySelector(`[data-project="${dataProject}"]`);
-      if (correspondingImage) {
-        console.log(`${dataProject}`);
-        correspondingImage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (process.client) {
+    const pageWorkElement = e.target as HTMLElement;
+    const projects = document.querySelectorAll('.single-project');
+    const scroll = pageWorkElement.scrollTop;
+    projects.forEach((project) => {
+      const projectRect = project.getBoundingClientRect();
+      const projectTop = projectRect.top;
+      if (projectTop >= 120 && projectTop <= 140) {
+        const dataProject = project.getAttribute('data-project');
+        // console.log(`Active Project (data-project): ${dataProject}`);
+        const mobileProjectsImages = document.querySelector('.mobile-projects-images');
+        const correspondingImage = mobileProjectsImages.querySelector(`[data-project="${dataProject}"]`);
+        if (correspondingImage) {
+          console.log(`${dataProject}`);
+          correspondingImage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       }
-    }
-  });
+    });
+  }
 };
 
 </script>

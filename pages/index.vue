@@ -31,35 +31,35 @@ const onMouseMove = (e: any) => {
 </script>
 
 <template>
-  <div class="content featured-projects-list">
-    <div v-for="(project, index) in featured" :key="project.id" :class="`featured-project columns-${project.columns}`">
-      <a :href="`/work/${project.url}`">
-        <div
-          class="project-image"
-          @mouseenter="onMouseEnter()"
-          @mouseleave="onMouseLeave()"
-          @mousemove="(e) => onMouseMove(e)"
-        >
-          <Image :image="project.main_image" :delay="index * 15" class-name="home-image" />
-        </div>
-        <div class="project-info">
-          <p>
-            <Text class-name="project-title" :text="project.title" :reveal="true" :delay="BASE_DELAY + index * 15" />&nbsp;
-            <Text :text="project.excerpt" :reveal="true" reveal-mode="opacity" :delay="BASE_DELAY + 200 + index * 15" />
-          </p>
-        </div>
-      </a>
-    </div>
-    
-    <div class="background-icon">
-      <img :src="page?.home_icon?.url" :alt="page?.home_icon?.alt" />
-    </div>
-    
-    <CursorView />
+  <div class="projects-container">
+    <div class="content featured-projects-list">
+      <div v-for="(project, index) in featured" :key="project.id" :class="`featured-project columns-${project.columns}`">
+        <a :href="`/work/${project.url}`">
+          <div
+            class="project-image"
+            @mouseenter="onMouseEnter()"
+            @mouseleave="onMouseLeave()"
+            @mousemove="(e) => onMouseMove(e)"
+          >
+            <Image :image="project.main_image" :delay="index * 15" class-name="home-image" />
+          </div>
+          <div class="project-info">
+            <p>
+              <Text class-name="project-title" :text="project.title" :reveal="true" :delay="BASE_DELAY + index * 15" />&nbsp;
+              <Text :text="project.excerpt" :reveal="true" reveal-mode="opacity" :delay="BASE_DELAY + 200 + index * 15" />
+            </p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="background-icon">
+        <img :src="page?.home_icon?.url" :alt="page?.home_icon?.alt" />
+      </div>
+      
+      <CursorView />
 
+    </div>
   </div>
-
-  
 </template>
 
 <style scoped lang="scss">

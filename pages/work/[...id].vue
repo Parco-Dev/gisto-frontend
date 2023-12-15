@@ -10,10 +10,14 @@ const page = (data?.value as any)?.result;
 setPage(page);
 setProject(page);
 
+onMounted(() => {
+  
+})
+
 </script>
 
 <template>
-<div class="content single-project">
+<div class="content single-project single-project-page">
 
   <div class="project-title">
     <Text :text="page.title" :reveal="true" :delay="BASE_DELAY" :invert="true" />

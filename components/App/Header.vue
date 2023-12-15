@@ -28,7 +28,7 @@ const projectInfoMobile = () => {
 <template>
 
   <div v-if="isProject" class="top-header-project top-header-project-mobile">
-    <div class="project-info-button" @click="projectInfoMobile()">
+    <div class="project-info-button" @click="projectInfoMobile()" >
       <p>Project info <span class="arrow">↓</span></p>
     </div>
     <div v-if="projectInfoMobileVisible" class="project-info-content">

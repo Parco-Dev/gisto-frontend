@@ -14,8 +14,8 @@ const isProject = computed(() => route.path.startsWith('/work/'));
 const whiteHeaderHeight = useProjectHeader();
 
 const filters = useFilters();
-
 const projectInfoMobileVisible = ref(false);
+const siteHeader = ref(null as any);
 
 const projectInfoMobile = () => {
   if (projectInfoMobileVisible.value == true) {
@@ -23,6 +23,23 @@ const projectInfoMobile = () => {
   } else {
     projectInfoMobileVisible.value = true;
   }
+}
+
+// Auto-scroll navigation when page is loaded
+onMounted(() => {
+  if (process.client && siteHeader.value) {
+    if (isHomePage.value || isProject.value) siteHeader.value.scrollLeft = 0;
+    else if (isWorkPage.value) siteHeader.value.scrollLeft = 120;
+    else if (isAboutPage.value) siteHeader.value.scrollLeft = 200;
+  }
+})
+
+// Auto-scroll navigation on click
+const scrollNavPosition = (event: { target: any; }) => {
+  siteHeader.value.scrollTo({
+    left: event.target.offsetLeft - 100,
+    behavior: 'smooth'
+  })
 }
 
 </script>
@@ -195,12 +212,13 @@ const projectInfoMobile = () => {
 
   <div class="white-header" :style="{height: isProject ? `${whiteHeaderHeight - (isMobile ? 30 : 60)}px` : undefined}"></div>
 
-  <header class="site-header" :class="[isProject && 'site-header-project']">
+  <header ref="siteHeader" class="site-header" :class="[isProject && 'site-header-project']">
 
     <NuxtLink
       to="/"
       class="header-title"
       :aria-current="route.path == '/' ? 'page' : undefined"
+      @click="(e) => scrollNavPosition(e)"
     >
       <Text :text="site.title" :reveal="true" :delay="50" :invert="true" />
     </NuxtLink>
@@ -210,15 +228,19 @@ const projectInfoMobile = () => {
         <li class="header-item">
           <NuxtLink 
             to="/work"
-            :aria-current="route.path.startsWith('/work') ? 'page' : undefined">
+            :aria-current="route.path.startsWith('/work') ? 'page' : undefined"
+            @click="(e) => scrollNavPosition(e)"
+          >
             <Text text="Work" :reveal="true" :delay="100" :invert="true" />
           </NuxtLink>
         </li>
         <li class="header-item">
           <NuxtLink 
-          to="/about"
-          :aria-current="route.path.startsWith('/about') ? 'page' : undefined">
-          <Text text="About" :reveal="true" :delay="150" :invert="true" />
+            to="/about"
+            :aria-current="route.path.startsWith('/about') ? 'page' : undefined"
+            @click="(e) => scrollNavPosition(e)"
+          >
+            <Text text="About" :reveal="true" :delay="150" :invert="true" />
           </NuxtLink>
         </li>
       </ul>
@@ -236,12 +258,6 @@ const projectInfoMobile = () => {
 
 .top-enter-active {
   transition-delay: 0.5s;
-}
-
-.top-enter-from,
-.top-leave-to {
-  /* opacity: 0;
-  transform: translateY(-10px); */
 }
 
 .top-leave-to {

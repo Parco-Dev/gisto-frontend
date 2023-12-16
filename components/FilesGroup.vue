@@ -5,13 +5,21 @@ const props = defineProps<{ group: { title: string, files: any, index: number } 
 const groupIndex = useLightboxGroupIndex();
 const slideIndex = useLightboxSlideIndex();
 const content = useLightboxContent();
+const { isMobile } = useDevice();
 
 const toggleGroup = () => {
   // If group is not active, open files list and update lightbox content
   if (props.group.index !== groupIndex.value) {
     setLightboxGroupIndex(props.group.index);
-    setLightboxSlideIndex(0);
+    setLightboxSlideIndex(-1);
     loadFiles(content.value?.[groupIndex.value]);
+    openLightbox(0)
+
+    // On mobile, open directly lightbox
+    if (isMobile) {
+      setFilesList(false);
+      openLightbox(0);
+    }
   } 
   // If group is already active, close lightbox, files list and reset content
   else {

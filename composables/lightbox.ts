@@ -53,3 +53,16 @@ export const loadFiles = (group: any) => {
     })
   }
 }
+
+export const toggleFilesList = (groups?: any) => {
+
+  // If files list is open, close and reset lightbox
+  if (useFilesList().value) {
+    closeLightbox();
+  }
+  else if (groups) {
+    setLightboxContent(groups)
+  }
+
+  setFilesList(!useFilesList().value);
+}

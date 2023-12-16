@@ -278,6 +278,9 @@ const scrollNavPosition = (event: { target: any; }) => {
     width: 100%;
     animation: fade-from-top .75s ease-in-out 1;
   }
+  &-project-mobile {
+    border-bottom: 2px solid white;
+  }
 }
 
 .header {

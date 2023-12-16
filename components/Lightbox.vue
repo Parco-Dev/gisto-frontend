@@ -4,6 +4,7 @@ const content = useLightboxContent();
 const isLightbox = useLightbox();
 const fileIndex = useLightboxSlideIndex();
 const groupIndex = useLightboxGroupIndex();
+const { isMobile } = useDevice();
 
 const prevGroup = () => {
   setLightboxGroupIndex(
@@ -104,9 +105,9 @@ const useArrowNavigation = (e: KeyboardEvent) => {
 </script>
 
 <template>
-  <div v-if="isLightbox" class="lightbox">
+  <div v-if="isLightbox" :class="['lightbox', isMobile && 'lightbox-background']">
 
-    <div class="overlay-close" @click="reset()"></div>
+    <div v-if="!isMobile" class="overlay-close" @click="reset()"></div>
 
     <div
       v-for="(file, index) in content[groupIndex]?.files"
@@ -158,9 +159,14 @@ const useArrowNavigation = (e: KeyboardEvent) => {
         <img :src="file.url_1280" />
       </div>
     
+      <div v-if="fileIndex === index && isMobile" class="mobile-arrows">
+        <div class="arrow arrow-left">&larr; Prev</div>
+        <div class="arrow arrow-right">Next &rarr;</div>
+      </div>
     </div>
 
     <CursorView />
+
   </div>
 </template>
 
@@ -171,11 +177,14 @@ const useArrowNavigation = (e: KeyboardEvent) => {
   left: 0px;
   width: 100vw;
   height: 100vh;
-  z-index: 9998;
+  z-index: 9;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background-color: #d9d9da; */
+
+  &-background {
+    background-color: #d9d9da;
+  }
 
   &-top {
     position: absolute;
@@ -207,6 +216,9 @@ const useArrowNavigation = (e: KeyboardEvent) => {
       height: auto;
       @include media-breakpoint-down(sm) { 
         max-width: 100%;
+        min-width: 80%;
+        min-width: 200px;
+        min-height: 200px;
       }
       iframe {
         height: 60vh;
@@ -215,6 +227,7 @@ const useArrowNavigation = (e: KeyboardEvent) => {
     }
 
     .type-video {
+      min-width: 200px;
       video {
         max-width: 60vw;
         max-height: 80vh;
@@ -225,6 +238,7 @@ const useArrowNavigation = (e: KeyboardEvent) => {
       }
     }
     .type-image {
+      min-width: 200px;
       img {
         max-width: 60vw;
         max-height: 80vh;
@@ -240,6 +254,21 @@ const useArrowNavigation = (e: KeyboardEvent) => {
     position: absolute;
     width: 100%;
     height: 100%;
+  }
+
+  .mobile-arrows {
+    display: flex;
+    justify-content: space-between;
+
+    .arrow {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+      pointer-events: none;
+      height: calc(1em + 4px);
+      white-space: nowrap;
+    }
   }
 }
 </style>

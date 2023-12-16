@@ -1,6 +1,9 @@
 <script setup lang="ts">
 
 const page = usePage().value;
+const isFilesOpen = useFilesList();
+const isLightboxOpen = useLightbox();
+const { isMobile } = useDevice();
 
 const groups = [
   {
@@ -29,21 +32,6 @@ const groups = [
   },
 ].filter(group => group.files.length)
 
-const isFilesOpen = useFilesList();
-
-const toggleFilesList = () => {
-
-  // If files list is open, close and reset lightbox
-  if (isFilesOpen.value) {
-    closeLightbox();
-  }
-  else {
-    setLightboxContent(groups)
-  }
-
-  setFilesList(!isFilesOpen.value);
-}
-
 </script>
 
 <template>
@@ -51,10 +39,12 @@ const toggleFilesList = () => {
 
   <div
     class="project-files-button"
-    @click="toggleFilesList()"
-    >
-    <IconFolder :is-open="isFilesOpen" />
-    <p>More</p>
+    @click="isLightboxOpen && isMobile ? closeLightbox() : toggleFilesList(groups)"
+  >
+    <div v-if="isLightboxOpen && isMobile" class="icon-close"></div>
+    <IconFolder v-else :is-open="isFilesOpen" />
+
+    <p v-html="isLightboxOpen && isMobile ? 'Close' : 'More'"></p>
   </div>
 
   <div v-if="isFilesOpen" class="project-files-content">
@@ -64,4 +54,28 @@ const toggleFilesList = () => {
 </template>
 
 <style scoped lang="scss">
+.icon-close {
+  width:  1em;
+  height: 1em;
+  position: relative;
+  margin-top: .1em;
+  margin-left: .6em;
+
+  &::after,
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    transform-origin: 50% 50%;
+    border-left: 1px solid black;
+  }
+  &::after {
+    transform: rotate(45deg);
+  }
+  &::before {
+    transform: rotate(-45deg);
+  }
+}
 </style>

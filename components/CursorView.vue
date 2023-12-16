@@ -56,6 +56,5 @@ watch(cursor.value, () => {
   height: calc(1em + 4px);
   white-space: nowrap;
   transition: width .15s ease-in-out, transform .15s;
-
 }
 </style>

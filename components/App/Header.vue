@@ -11,6 +11,7 @@ const isHomePage = computed(() => route.path === '/');
 const isAboutPage = computed(() => route.path === '/about');
 const isWorkPage = computed(() => route.path === '/work');
 const isProject = computed(() => route.path.startsWith('/work/'));
+const whiteHeaderHeight = useProjectHeader();
 
 const filters = useFilters();
 
@@ -192,7 +193,7 @@ const projectInfoMobile = () => {
     </ClientOnly>
   </div>
 
-  <div class="white-header"></div>
+  <div class="white-header" :style="{height: isProject ? `${whiteHeaderHeight - (isMobile ? 30 : 60)}px` : undefined}"></div>
 
   <header class="site-header" :class="[isProject && 'site-header-project']">
 

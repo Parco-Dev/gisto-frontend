@@ -74,10 +74,18 @@ function usePageState() {
   )
 }
 
-export function useProject () {
+export const useProject = () => {
   return useState('app.project', () => {})
 }
 
-export function setProject (page?: any) {
+export const setProject = (page?: any) => {
   useProject().value = page;
+}
+
+export const useProjectHeader = () => {
+  return useState('projectHeader', () => 0)
+}
+
+export const setProjectHeader = (value: number) => {
+  useProjectHeader().value = value;
 }

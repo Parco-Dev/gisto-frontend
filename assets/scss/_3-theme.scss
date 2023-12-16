@@ -1354,9 +1354,10 @@ body[data-template=default] {
 		width: 100vw;
 		height: 136px;
 		z-index: 1;
+		transition: height .25s;
 		@include media-breakpoint-down(sm) { 
-			height: 120px;
-			display: none;
+			// height: 120px;
+			// display: none;
 		}
 	}
 	.content {

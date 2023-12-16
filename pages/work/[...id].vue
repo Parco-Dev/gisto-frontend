@@ -6,12 +6,20 @@ const kirbyPath = useRoute().path;
 const { queryApi, queryParams } = useQueryParams(getProjectQuery(kirbyPath));
 const { data } = await useFetch(queryApi, queryParams);
 const page = (data?.value as any)?.result;
+const projectTitle = ref(null as any);
 
 setPage(page);
 setProject(page);
 
+// Set white bar height dynamically
 onMounted(() => {
-  
+  if (projectTitle.value) {
+    setTimeout(() => {
+    const { clientHeight, offsetTop } = projectTitle.value;
+    console.log(clientHeight);
+    setProjectHeader(clientHeight + offsetTop);
+    }, 1500)
+  }
 })
 
 </script>
@@ -19,7 +27,7 @@ onMounted(() => {
 <template>
 <div class="content single-project single-project-page">
 
-  <div class="project-title">
+  <div ref="projectTitle" class="project-title">
     <Text :text="page.title" :reveal="true" :delay="BASE_DELAY" :invert="true" />
   </div>
 

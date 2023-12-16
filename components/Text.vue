@@ -6,6 +6,7 @@ const props = defineProps<{
   delay?: number,
   className?: string,
   invert?: boolean,
+  display?: 'inline-block' | 'inline',
 }>()
 
 const show = ref(false);
@@ -27,13 +28,13 @@ if (props.reveal && props.delay) {
       invert && 'invert',
       'animated-text'
     ]"
+    :style="[display ?? 'inline-block']"
     v-html="text"
   />
 </template>
 
 <style scoped lang="scss">
 span {
-  display: inline;
   position: relative;
   transition: width .35s ease-in-out, opacity .35s ease-in-out;
 
@@ -54,7 +55,7 @@ span {
   }
 
   &.hidden:after {
-    width: 101%;
+    width: 110%;
   }
 
   &.hidden-opacity {

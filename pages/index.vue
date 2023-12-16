@@ -5,6 +5,7 @@ import { BASE_DELAY } from '~/data/constants';
 const { queryApi, queryParams } = useQueryParams(homeQuery);
 const { data } = await useFetch(queryApi, queryParams);
 const page = (data?.value as any)?.result;
+const { isMobile } = useDevice();
 
 setPage(page);
 
@@ -46,13 +47,13 @@ const onMouseMove = (e: any) => {
           <div class="project-info">
             <p>
               <Text class-name="project-title" :text="project.title" :reveal="true" :delay="BASE_DELAY + index * 15" />&nbsp;
-              <Text :text="project.excerpt" :reveal="true" reveal-mode="opacity" :delay="BASE_DELAY + 200 + index * 15" />
+              <Text :text="project.excerpt" :reveal="true" reveal-mode="opacity" :delay="BASE_DELAY + 200 + index * 15" display="inline" />
             </p>
           </div>
         </a>
       </div>
       
-      <div class="background-icon">
+      <div v-if="!isMobile" class="background-icon">
         <img :src="page?.home_icon?.url" :alt="page?.home_icon?.alt" />
       </div>
       

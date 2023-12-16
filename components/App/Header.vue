@@ -5,6 +5,7 @@ const route = useRoute()
 const site = useSite()
 const page = usePage();
 const project = useProject() as any;
+const { isMobile } = useDevice();
 
 const isHomePage = computed(() => route.path === '/');
 const isAboutPage = computed(() => route.path === '/about');
@@ -27,9 +28,9 @@ const projectInfoMobile = () => {
 
 <template>
 
-  <div v-if="isProject" class="top-header-project top-header-project-mobile">
+  <div v-if="isProject && isMobile" class="top-header-project top-header-project-mobile">
     <div class="project-info-button" @click="projectInfoMobile()" >
-      <p>Project info <span class="arrow">↓</span></p>
+      <p>Project info <span :class="['arrow', projectInfoMobileVisible && 'rotate']" >↓</span></p>
     </div>
     <div v-if="projectInfoMobileVisible" class="project-info-content">
       <div class="content-row">
@@ -273,6 +274,14 @@ const projectInfoMobile = () => {
     [aria-current="page"] {
       text-decoration: underline;
     }
+  }
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform .15s;
+  &.rotate {
+    transform: rotate(180deg) translateY(2px);
   }
 }
 

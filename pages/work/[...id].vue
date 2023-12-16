@@ -15,9 +15,8 @@ setProject(page);
 onMounted(() => {
   if (projectTitle.value) {
     setTimeout(() => {
-    const { clientHeight, offsetTop } = projectTitle.value;
-    console.log(clientHeight);
-    setProjectHeader(clientHeight + offsetTop);
+      const { clientHeight, offsetTop } = projectTitle.value;
+      setProjectHeader(clientHeight + offsetTop);
     }, 1500)
   }
 })

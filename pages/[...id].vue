@@ -6,8 +6,6 @@ const { queryApi, queryParams } = useQueryParams(getPageQuery(kirbyPath));
 const { data } = await useFetch(queryApi, queryParams);
 const page = (data?.value as any)?.result;
 
-console.log(page);
-
 setPage(page);
 </script>
 

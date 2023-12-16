@@ -17,16 +17,14 @@ onMounted(() => {
   if (process.client) {
     // Added 1s timeout to avoid element to be null when coming from a different page
     setTimeout(() => {
-      const element = document.querySelector(".page-work");
-      element?.addEventListener('scroll', scrollFunction);
+      window.addEventListener('scroll', scrollFunction);
     }, 1000)
   }
 })
 
 onUnmounted(() => {
   if (process.client) {
-    const element = document.querySelector(".page-work");
-    element?.removeEventListener('scroll', scrollFunction);
+    window.removeEventListener('scroll', scrollFunction);
   }
 })
 
@@ -40,16 +38,16 @@ const hideImage = () => {
 }
 
 const scrollFunction = () => {
-    const target = document.querySelector(".page-work");
+    const target = document.querySelector("body");
     const list = document.querySelector('.projects-list');
     const images = document.querySelector('.mobile-projects-images');
 
-    if (!target || !list || !images) return;
-
-    const listRange = target.scrollHeight - target.clientHeight;
+    if (!target || !window || !list || !images) return;
+    
+    const listRange = target.clientHeight - window.outerHeight;
     const imageRange = images.scrollWidth - images.clientWidth;
-    const scrollY = target.scrollTop;
-
+    const scrollY = window.scrollY;
+    
     images.scrollLeft = scrollY / listRange * imageRange;
 };
 

@@ -209,6 +209,7 @@ body[data-template=home] {
 
 .top-header {
 	position: sticky;
+	position: -webkit-sticky;
 	top: 0px;
 	z-index: 1;
 	height: calc($spacer * 6);
@@ -246,10 +247,11 @@ body[data-template=home] {
 			@extend %small;
 			margin-bottom: 0px;
 			color: $color-white;
+			white-space: nowrap;
 		}
 		ul {
 			display: flex;
-			flex-wrap: wrap;
+			flex-wrap: nowrap;
 			margin: 0px;
 			padding: 0px;
 			li {
@@ -654,6 +656,7 @@ body[data-template=home] {
 			@extend %small;
 			margin: 0px;
 			text-transform: capitalize;
+			white-space: nowrap;
 			cursor: pointer;
 			color: $color-white;
 			transition: color .1s;
@@ -702,14 +705,12 @@ body[data-template=work] {
 	}
 	@include media-breakpoint-down(sm) { 
 		padding: 0px;
-		// min-height: 80vh;
-		// padding-bottom: 120px;
 		position: relative;
-		height: calc(100vh - 120px); // 420px
-		overflow-y: auto;
-		overflow-x: hidden;
 	}
 	.projects-header {
+		.row {
+			flex-wrap: nowrap;
+		}
 		@include media-breakpoint-down(sm) { 
 			display: none;
 		}
@@ -744,7 +745,7 @@ body[data-template=work] {
 	}
 	.projects-list {
 		@include media-breakpoint-down(sm) { 
-			min-height: calc(100vh - 120px);
+			min-height: 100vh;
 		}
 		.single-project {
 			position: relative;
@@ -758,6 +759,9 @@ body[data-template=work] {
 						}
 					}
 				}
+			}
+			.row {
+				flex-wrap: nowrap;
 			}
 			&.show-thumbnail {
 			// &:hover {
@@ -882,11 +886,12 @@ body[data-template=work] {
 		display: none;
 		@include media-breakpoint-down(sm) { 
 			display: block;
-			position: sticky;
-			bottom: 0px;
+			position: fixed;
+			bottom: 0;
 			left: 0px;
 			width: 100%;
 			display: flex;
+			background-color: $color-white;
 			overflow-x: auto;
 			overflow-y: hidden;
 			white-space: nowrap;
@@ -895,7 +900,7 @@ body[data-template=work] {
 			flex: 0 0 auto;
 			img {
 				height: calc($spacer * 12);
-				margin-right: calc($spacer / 4);
+				margin-right: calc($spacer / 5);
 			}
 		}
 	}

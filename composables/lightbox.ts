@@ -40,3 +40,16 @@ export const setFilesList = (value: boolean) => {
   useFilesList().value = value;
 }
 
+export const loadFiles = (group: any) => {
+  if (process.client) {
+    group?.files?.forEach((file: any) => {
+      if (file.url_1280) {
+        const image = new Image();
+        image.onload = () => {
+          file.loaded = true;
+        }
+        image.src = file.url_1280;
+      }
+    })
+  }
+}

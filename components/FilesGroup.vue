@@ -4,12 +4,14 @@ const props = defineProps<{ group: { title: string, files: any, index: number } 
 
 const groupIndex = useLightboxGroupIndex();
 const slideIndex = useLightboxSlideIndex();
+const content = useLightboxContent();
 
 const toggleGroup = () => {
   // If group is not active, open files list and update lightbox content
   if (props.group.index !== groupIndex.value) {
     setLightboxGroupIndex(props.group.index);
     setLightboxSlideIndex(0);
+    loadFiles(content.value?.[groupIndex.value]);
   } 
   // If group is already active, close lightbox, files list and reset content
   else {

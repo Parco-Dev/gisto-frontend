@@ -15,8 +15,10 @@ setProject(page);
 onMounted(() => {
   if (projectTitle.value) {
     setTimeout(() => {
-      const { clientHeight, offsetTop } = projectTitle.value;
-      setProjectHeader(clientHeight + offsetTop);
+      const topHeader = document.querySelector('.top-header');
+      const siteHeader = document.querySelector('.site-header');
+      if (!topHeader || !siteHeader) return;
+      setProjectHeader(topHeader.clientHeight + siteHeader.clientHeight + projectTitle.value.clientHeight);
     }, 1500)
   }
 })

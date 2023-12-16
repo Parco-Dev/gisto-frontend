@@ -60,15 +60,15 @@ export function getProjectQuery(pageId: string): KirbyQuerySchema {
       },
       photo_dump: {
         query: "page.photo_dump.toFiles",
-        select: [ 'url', 'name', 'extension', 'type', 'alt' ]
+        select: imageQuery,
       },
       drawings_diagrams: {
         query: "page.drawings_diagrams.toFiles",
-        select: [ 'url', 'name', 'extension', 'type', 'alt' ]
+        select: imageQuery,
       },
       models: {
         query: "page.models.toFiles",
-        select: [ 'url', 'name', 'extension', 'type', 'alt' ]
+        select: imageQuery,
       },
       video: {
         query: 'page.video.toStructure',
@@ -84,7 +84,7 @@ export function getProjectQuery(pageId: string): KirbyQuerySchema {
       },
       graphics: {
         query: 'page.graphics.toFiles',
-        select: [ 'url', 'name', 'extension', 'type', 'alt' ]
+        select: imageQuery,
       },
       links: {
         query: 'page.links.toStructure',

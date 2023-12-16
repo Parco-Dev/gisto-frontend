@@ -12,6 +12,7 @@ const prevGroup = () => {
     : groupIndex.value - 1
   )
   setLightboxSlideIndex(content.value?.[groupIndex.value]?.files.length - 1)
+  loadFiles(content.value?.[groupIndex.value])
 }
 
 const nextGroup = () => {
@@ -21,6 +22,7 @@ const nextGroup = () => {
     : groupIndex.value + 1
   )
   setLightboxSlideIndex(0)
+  loadFiles(content.value?.[groupIndex.value])
 }
 
 const prevSlide = () => {
@@ -69,6 +71,7 @@ const reset = () => {
 }
 
 onMounted(() => {
+  loadFiles(content.value?.[groupIndex.value])
   window.addEventListener('keydown', useArrowNavigation);
 })
 
@@ -106,7 +109,7 @@ const useArrowNavigation = (e: KeyboardEvent) => {
     <div class="overlay-close" @click="reset()"></div>
 
     <div
-      v-for="(file, index) in content[groupIndex].files"
+      v-for="(file, index) in content[groupIndex]?.files"
       :key="file.id"
       class="lightbox-file"
       @click="(e) => changeSlide(e)"
@@ -142,7 +145,7 @@ const useArrowNavigation = (e: KeyboardEvent) => {
       </div>
 
       <div v-else-if="fileIndex === index && file.media?.length && file.media[0].type === 'image'" class="type-image">
-        <img :src="file.media[0].url" />
+        <img :src="file.media[0].url_1280" />
       </div>
       
       <div v-else-if="fileIndex === index && file.type === 'video'" class="type-video">
@@ -152,7 +155,7 @@ const useArrowNavigation = (e: KeyboardEvent) => {
       </div>
 
       <div v-else-if="fileIndex === index && file.type === 'image'" class="type-image">
-        <img :src="file.url" />
+        <img :src="file.url_1280" />
       </div>
     
     </div>

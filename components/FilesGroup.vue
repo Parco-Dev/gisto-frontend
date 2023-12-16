@@ -13,7 +13,7 @@ const toggleGroup = () => {
     setLightboxGroupIndex(props.group.index);
     setLightboxSlideIndex(-1);
     loadFiles(content.value?.[groupIndex.value]);
-    openLightbox(0)
+    openLightbox(0);
 
     // On mobile, open directly lightbox
     if (isMobile) {

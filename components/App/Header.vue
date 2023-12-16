@@ -275,6 +275,7 @@ const scrollNavPosition = (event: { target: any; }) => {
 .top-header {
   &-bio, &-filters, &-project {
     position: fixed;
+    top: 0;
     width: 100%;
     animation: fade-from-top .75s ease-in-out 1;
   }

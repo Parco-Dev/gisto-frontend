@@ -92,7 +92,9 @@ const scrollFunction = () => {
             </div>
           </div>
           <div class="col-lg-5 col-9 project-title">
-            <Text :text="project.title" :reveal="true" :delay="BASE_DELAY + 50 + index * 15" @mouseenter="showImage(index)" @mouseleave="hideImage()" />
+            <span class="title-wrapper">
+              <Text :text="project.title" :reveal="true" :delay="BASE_DELAY + 50 + index * 15" @mouseenter="showImage(index)" @mouseleave="hideImage()" />
+            </span>
           </div>
           <div class="col-lg-3 col-12 project-client">
             <Text :text="project.client" :reveal="true" :delay="BASE_DELAY + 150 + index * 15" />

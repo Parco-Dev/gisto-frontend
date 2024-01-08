@@ -813,11 +813,13 @@ body[data-template=work] {
 				position: sticky;
 				top: 60px;
 				z-index: 3;
-				span {
-					// color: $color-white;
-					&:after {
-						// content: '';
-						// background-color: black;
+				.title-wrapper {
+					span {
+						display: inline;
+						&:after {
+							// content: '';
+							// background-color: black;
+						}
 					}
 				}
 			}

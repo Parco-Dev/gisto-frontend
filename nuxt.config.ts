@@ -1,7 +1,7 @@
 // import { siteQuery } from './queries'
 
 export default defineNuxtConfig({
-  modules: ['@vueuse/nuxt', 'nuxt-kql', '@nuxtjs/google-fonts', '@nuxtjs/device'],
+  modules: ['@vueuse/nuxt', 'nuxt-kql', '@nuxtjs/google-fonts', '@nuxtjs/device', 'nuxt-gtag'],
 
   app: {
     pageTransition: { 
@@ -19,6 +19,10 @@ export default defineNuxtConfig({
     families: {
       'IBM+Plex+Mono': [400, 700],
     }
+  },
+
+  gtag: {
+    id: 'G-XXXXXXXXX',
   },
 
   runtimeConfig: {

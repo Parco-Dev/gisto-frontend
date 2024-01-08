@@ -2,6 +2,7 @@
   <Html lang="en">
     <Head>
       <Link rel="icon" href="/favicon.jpg" type="image/jpeg" />
+      <ScriptIubenda />
     </Head>
 
     <Body>

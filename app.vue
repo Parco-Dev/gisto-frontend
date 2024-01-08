@@ -20,11 +20,6 @@
 .page-leave-active {
   transition: all 0.5s;
 }
-.page-enter-from,
-.page-leave-to {
-  /* opacity: 0;
-  transform: translateY(5px); */
-}
 
 .page-leave-to {
   .animated-image {

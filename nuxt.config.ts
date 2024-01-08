@@ -22,7 +22,7 @@ export default defineNuxtConfig({
   },
 
   gtag: {
-    id: 'G-XXXXXXXXX',
+    id: process.env.GTAG,
   },
 
   runtimeConfig: {

@@ -1773,5 +1773,189 @@ body[data-template=default] {
 			}
 		}
 	}
-
 }
+
+/* COOKIE BANNER */
+
+#iubenda-cs-banner {
+	.iubenda-cs-container {
+		.iubenda-cs-content {
+			.iubenda-cs-rationale {
+				margin: 0px !important;
+				width: 100% !important;
+				.iubenda-cs-close-btn {
+
+				}
+				.iubenda-banner-content {
+					padding: $spacer !important;
+					width: 70% !important;
+					@include media-breakpoint-up(xl) { 
+						padding: $spacer-xl !important;
+						width: 70% !important;
+					}
+					@include media-breakpoint-down(sm) { 
+						width: 100% !important;
+						padding: $spacer-sm !important;
+						margin-bottom: $spacer-sm !important;
+					}
+					#iubenda-cs-title {
+						margin: 0px !important;
+						margin-bottom: $spacer !important;
+						font-family: 'diatype-heavy', Helvetica, sans-serif !important;
+						font-weight: 400 !important;
+						@extend %small;
+						text-transform: uppercase !important;
+						@include media-breakpoint-up(xl) { 
+							font-size: calc(1.3vw - 2px) !important;
+							margin-bottom: $spacer-xl !important;
+						}
+						@include media-breakpoint-down(sm) { 
+							font-size: 4.2vw !important;
+							margin-bottom: $spacer-sm !important;
+						}
+					}
+					#iubenda-cs-paragraph {
+						.iub-p {
+							font-family: 'diatype-heavy', Helvetica, sans-serif !important;
+							@extend %small;
+							@include media-breakpoint-up(xl) { 
+								// font-size: calc(1.3vw - 2px) !important;
+							}
+							@include media-breakpoint-down(sm) { 
+								// font-size: 4.2vw !important;
+							}
+							a {
+								font-family: 'diatype-heavy', Helvetica, sans-serif !important;
+								color: $color-white !important;
+								opacity: 1 !important;
+							}
+						}
+					}
+				}
+				.iubenda-cs-opt-group {
+					margin: 0px !important;
+					padding: 0px $spacer !important;
+					justify-content: flex-start !important;
+					@include media-breakpoint-up(xl) { 
+						padding: 0px $spacer-xl !important;
+						justify-content: flex-start !important;
+					}
+					@include media-breakpoint-down(sm) { 
+						padding: 0px $spacer-sm !important;
+					}
+					.iubenda-cs-opt-group-custom {
+						margin: 0px !important;
+						button {
+							font-family: 'diatype-heavy', Helvetica, sans-serif !important;
+							// font-size: 1.3vw !important;
+							@extend %small;
+							background-color: transparent !important;
+							border-radius: 0px !important;
+							padding: 0px !important;
+							margin: 0px !important;
+							font-weight: 400 !important;
+							display: flex !important;
+							align-items: center !important;
+							@include media-breakpoint-up(xl) { 
+								// font-size: calc(1.3vw - 2px) !important;
+							}
+							@include media-breakpoint-down(sm) { 
+								// font-size: 4.2vw !important;
+								display: inline !important;
+								text-align: left !important;
+							}
+							&:focus {
+								outline: 0 !important;
+							}
+						}
+					}
+					.iubenda-cs-opt-group-consent {
+						justify-content: flex-start !important;
+						width: auto !important;
+						margin: 0px !important;
+						margin-left: calc($spacer * 2) !important;
+						@include media-breakpoint-up(xl) { 
+							margin-left: calc($spacer-xl * 2) !important;
+						}
+						@include media-breakpoint-down(sm) { 
+							width: auto !important;
+							// flex-direction: column !important;
+							justify-content: flex-start !important;
+							margin: 0px !important;
+							margin-bottom: calc($spacer-sm / 2) !important;
+						}
+						button {
+							font-family: 'diatype-heavy', Helvetica, sans-serif !important;
+							// font-size: 1.3vw !important;
+							background-color: transparent !important;
+							border-radius: 0px !important;
+							padding: 0px !important;
+							margin: 0px !important;
+							font-weight: 400 !important;
+							@extend %small;
+							margin-right: calc($spacer * 2) !important;
+							display: flex !important;
+							align-items: center !important;
+							@include media-breakpoint-up(xl) { 
+								// font-size: calc(1.3vw - 2px) !important;
+								margin-right: calc($spacer-xl * 2) !important;
+							}
+							@include media-breakpoint-down(sm) { 
+								// font-size: 4.2vw !important;
+								margin-right: calc($spacer-sm * 2) !important;
+								width: auto !important;
+								flex: none;
+							}
+							&:focus {
+								outline: 0 !important;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+body {
+	.iubenda-tp-btn.iubenda-cs-preferences-link {
+		padding: 0px !important;
+		background-color: transparent !important;
+		color: $color-black !important;
+		border: 0px !important;
+		outline: 0 !important;
+		box-shadow: none !important;
+		height: auto !important;
+		width: auto !important;
+		min-width: 0px !important;
+		min-height: 0px !important;
+		line-height: 1 !important;
+		text-align: right !important;
+		font-family: 'diatype-heavy', Helvetica, sans-serif !important;
+		// font-size: 1.2vw !important;		
+		@extend %small;
+		display: flex !important;
+		flex-direction: row-reverse !important;	
+		align-items: center !important;	
+		font-weight: 400 !important;	
+		@include media-breakpoint-up(xl) { 
+			// font-size: 1.2vw !important;
+		}
+		@include media-breakpoint-down(sm) { 
+			// font-size: 3.4vw !important;
+		}
+		&:hover {
+			&::after {
+				opacity: 1 !important;
+			}
+		}
+		&::after {
+			opacity: 0 !important;
+			transition: opacity 0.15s linear !important;
+		}
+	}
+	.iub__us-widget {
+		display: none !important;
+	}
+}
+

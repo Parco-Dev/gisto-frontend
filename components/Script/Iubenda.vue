@@ -1,6 +1,6 @@
 <script setup>
 useHead({
-  script: [{ src:"https://cs.iubenda.com/autoblocking/3346216.js"}],
+  script: [{ src:"https://cs.iubenda.com/autoblocking/3451312.js"}],
 })
 useHead({
   script: [{ src:"https://cdn.iubenda.com/cs/gpp/stub.js"}],
@@ -12,8 +12,8 @@ useHead({
   script: [{ children: `
     var _iub = _iub || [];
     _iub.csConfiguration = {
-      "siteId":3346216,
-      "cookiePolicyId":77235204,
+      "siteId":3451312,
+      "cookiePolicyId":77493516,
       "askConsentAtCookiePolicyUpdate":true,
       "enableFadp":true,
       "enableLgpd":true,

@@ -24,7 +24,7 @@ useHead({
       "perPurposeConsent":true,
       "usprApplies":false,
       "whitelabel":false,
-      "lang":"it",
+      "lang":"en",
       "floatingPreferencesButtonCaption":true,
       "banner":{
         "acceptButtonDisplay":true,

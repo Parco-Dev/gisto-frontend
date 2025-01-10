@@ -13,7 +13,7 @@ useHead({
     var _iub = _iub || [];
     _iub.csConfiguration = {
       "siteId":3451312,
-      "cookiePolicyId":77493516,
+      "cookiePolicyId":81879247,
       "askConsentAtCookiePolicyUpdate":true,
       "enableFadp":true,
       "enableLgpd":true,
